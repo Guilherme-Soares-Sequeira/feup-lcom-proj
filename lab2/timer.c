@@ -32,7 +32,7 @@ void (timer_int_handler)() {
 }
 
 int (timer_get_conf)(uint8_t timer, uint8_t *st) {
-  sys_outb(TIMER_CTRL, TIMER_RB_CMD | TIMER_RB_SEL(timer));
+  sys_outb(TIMER_CTRL, TIMER_RB_CMD | TIMER_RB_SEL(timer) | TIMER_RB_COUNT_);
 
   return util_sys_inb(TIMER_0 + timer, st);
 }
