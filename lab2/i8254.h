@@ -63,6 +63,10 @@
 #define TIMER_LSB_MASK 0x00FF
 #define TIMER_MSB_MASK 0xFF00
 
+/* MAX FREQUENCIES */
+#define TIMER_MIN_FREQ_BCD 120
+#define TIMER_MIN_FREQ_BIN 19
+
 /**@}*/
 
 #endif /* _LCOM_I8254_H */
