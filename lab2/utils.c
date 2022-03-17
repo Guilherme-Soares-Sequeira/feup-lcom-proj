@@ -1,14 +1,15 @@
 #include <lcom/lcf.h>
+#include "i8254.h"
 
 #include <stdint.h>
 
 int(util_get_LSB)(uint16_t val, uint8_t *lsb) {
-  *lsb = (uint8_t) (val & 0x00FF);
+  *lsb = (uint8_t) (val & TIMER_LSB_MASK);
   return 0;
 }
 
 int(util_get_MSB)(uint16_t val, uint8_t *msb) {
-  *msb = (uint8_t) ((val & 0xFF00) >> 8);
+  *msb = (uint8_t) ((val & TIMER_MSB_MASK) >> 8);
   return 0;
 }
 

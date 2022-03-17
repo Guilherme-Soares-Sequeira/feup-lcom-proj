@@ -58,6 +58,11 @@
 #define TIMER_ST_MODE (BIT(3) | (BIT(2) | BIT(1)))
 #define TIMER_ST_BCD (BIT(0))
 
+/* PARSE TIMER BYTES */
+
+#define TIMER_LSB_MASK 0x00FF
+#define TIMER_MSB_MASK 0xFF00
+
 /**@}*/
 
 #endif /* _LCOM_I8254_H */
