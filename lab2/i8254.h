@@ -52,6 +52,12 @@
 #define TIMER_RB_STATUS_ BIT(4)
 #define TIMER_RB_SEL(n)  BIT((n) + 1)
 
+/* PARSE TIMER CONFIG */
+
+#define TIMER_ST_INI_RW (TIMER_RB_COUNT_ | TIMER_RB_STATUS_)
+#define TIMER_ST_MODE (BIT(3) | (BIT(2) | BIT(1)))
+#define TIMER_ST_BCD (BIT(0))
+
 /**@}*/
 
 #endif /* _LCOM_I8254_H */

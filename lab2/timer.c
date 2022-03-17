@@ -46,13 +46,13 @@ int (timer_display_conf)(uint8_t timer, uint8_t st,
     val.byte = st;
     break;
   case tsf_initial:
-    val.in_mode = (st & TIMER_LSB_MSB) >> 4;
+    val.in_mode = (st & TIMER_ST_INI_RW) >> 4;
     break;
   case tsf_mode:
-    val.count_mode = (st & 0xE) >> 1;
+    val.count_mode = (st & TIMER_ST_MODE) >> 1;
     break;
   case tsf_base:
-    val.bcd = st & 1;
+    val.bcd = st & TIMER_ST_BCD;
     break;
   }
 
