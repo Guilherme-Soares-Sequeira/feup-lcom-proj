@@ -1,35 +1,36 @@
 #include <lcom/lcf.h>
 #include <lcom/timer.h>
-#include "utils.c"
 #include <stdint.h>
 
 #include "i8254.h"
+
+uint16_t(to_bcd)(uint16_t val);
 
 int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
   uint8_t st, IV_LSB, IV_MSB, write_cmd;
   uint16_t IV;
   uint32_t min_frequency;
 
-  timer_get_conf(timer, st);
+  timer_get_conf(timer, &st);
+   
+  write_cmd = st & (TIMER_ST_MODE | TIMER_ST_BCD); //set correct mode and BCD
+  write_cmd |= TIMER_LSB_MSB; //activate writing LSB and MSB
+  write_cmd |= (timer << 6); //set correct timer
   
-  write_cmd = (st & (TIMER_ST_MODE | TIMER_ST_BCD)); //set correct mode and BCD
-  write_cmd = write_cmd | (timer << 6); //set correct timer
-  write_cmd = write_cmd | TIMER_LSB_MSB; //activate writing LSB and MSB
-
-  sys_outb(TIMER_0 + timer, write_cmd);
+  sys_outb(TIMER_CTRL, write_cmd);
 
   min_frequency = (st & TIMER_BCD) ? TIMER_MIN_FREQ_BCD : TIMER_MIN_FREQ_BIN;
+
   if (freq < min_frequency)
     return 1;
-
+  
   if (st & TIMER_BCD)  //encode IV in BCD
     IV = to_bcd((uint16_t) (TIMER_FREQ / freq));
-
-  else //encode IV in binary
+  else  //encode IV in binary
     IV = (uint16_t) (TIMER_FREQ / freq);
-
-  IV_LSB = (IV & TIMER_LSB_MASK);
-  IV_MSB = ((uint16_t) (IV & TIMER_MSB_MASK)) >> 8;
+   
+  util_get_LSB(IV, &IV_LSB);
+  util_get_MSB(IV, &IV_MSB);
 
   sys_outb(TIMER_0 + timer, IV_LSB);
   sys_outb(TIMER_0 + timer, IV_MSB);
