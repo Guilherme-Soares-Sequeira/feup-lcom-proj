@@ -1,1 +1,8 @@
-hello
+**/.gdbinit
+**/*.o
+
+# lab0
+lab0/hello
+
+# lab2
+lab2/lab2
