@@ -6,6 +6,8 @@
 
 uint8_t global_hook_id;
 
+int counter;
+
 uint16_t(to_bcd)(uint16_t val);
 
 int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
@@ -53,12 +55,11 @@ int (timer_subscribe_int)(uint8_t *bit_no) {
 }
 
 int (timer_unsubscribe_int)() {
-  return sys_irqrmpolicy(&global_hook_id);
+  return sys_irqrmpolicy((int*) &global_hook_id);
 }
 
 void (timer_int_handler)() {
-  /* To be implemented by the students */
-  printf("%s is not yet implemented!\n", __func__);
+  counter++;
 }
 
 int (timer_get_conf)(uint8_t timer, uint8_t *st) {
