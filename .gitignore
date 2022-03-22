@@ -1,5 +1,7 @@
 **/.gdbinit
 **/*.o
+output.txt
+trace.txt
 
 # lab0
 lab0/hello
