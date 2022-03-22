@@ -6,6 +6,8 @@
 
 uint8_t global_hook_id;
 
+int32_t used_ids = 0;
+
 int counter;
 
 uint16_t(to_bcd)(uint16_t val);
@@ -43,7 +45,10 @@ int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
 }
 
 int (timer_subscribe_int)(uint8_t *bit_no) {
-  int hook_id = 12; // random
+  int hook_id; // random
+
+  while ((hook_id = (rand() % 32)) & used_ids);
+  used_ids |= BIT(hook_id);
 
   *bit_no = (uint8_t) hook_id;
 

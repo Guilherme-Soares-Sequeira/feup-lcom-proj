@@ -49,7 +49,7 @@ int(timer_test_int)(uint8_t time) {
 
   int ipc_status, r;
   message msg;
-  
+
   counter = 0;
 
   while (counter < time*60) {
