@@ -41,13 +41,18 @@ int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
 }
 
 int (timer_subscribe_int)(uint8_t *bit_no) {
-    /* To be implemented by the students */
-  printf("%s is not yet implemented!\n", __func__);
-  return 1;
+  int hook_id = 12; // random
+
+  *bit_no = (uint8_t) hook_id;
+
+  int res = sys_irqsetpolicy(TIMER0_IRQ, IRQ_REENABLE, &hook_id);
+
+  global_hook_id = (uint8_t) hook_id;
+
+  return res;
 }
 
 int (timer_unsubscribe_int)() {
-
   return sys_irqrmpolicy(&global_hook_id);
 }
 
