@@ -44,6 +44,9 @@ int(timer_test_time_base)(uint8_t timer, uint32_t freq) {
 }
 
 int(timer_test_int)(uint8_t time) {
+
+  if (timer_set_frequency(0, 60)) return;
+
   uint8_t bit;
   timer_subscribe_int(&bit);
 
