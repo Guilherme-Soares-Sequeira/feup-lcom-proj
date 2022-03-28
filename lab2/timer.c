@@ -47,8 +47,8 @@ int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
 int (timer_subscribe_int)(uint8_t *bit_no) {
   int hook_id; // random
 
-  while ((hook_id = BIT(rand() % 32)) & used_ids);
-  used_ids |= hook_id;
+  while (BIT(hook_id = (rand() % 32)) & used_ids);
+  used_ids |= BIT(hook_id);
 
   *bit_no = (uint8_t) hook_id;
 
