@@ -14,6 +14,7 @@
 #define KBC_STATUS_INBUF_FULL (BIT(1))
 #define KBC_STATUS_OUTBUF_FULL (BIT(0))
 
-#define KBC_SCAN_DOUBLE_BYTE (0xE0) 
+#define KBC_SCAN_DOUBLE_BYTE (0xE0)
+#define KBC_SCAN_DOUBLE_BYTE (0xE1) 
 
 #endif
