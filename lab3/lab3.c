@@ -5,7 +5,10 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-#define LAB3
+#include <i8042.h>
+#include <kbc.h>
+
+// #define LAB3
 
 int main(int argc, char *argv[]) {
   // sets the language of LCF messages (can be either EN-US or PT-PT)
@@ -32,8 +35,40 @@ int main(int argc, char *argv[]) {
 }
 
 int(kbd_test_scan)() {
-  /* To be completed by the students */
-  printf("%s is not yet implemented!\n", __func__);
+  uint8_t bit;
+  kbc_subscribe_int(&bit);
+
+  int ipc_status, r;
+  message msg;
+
+  bool run = true;
+
+  while (run) {
+    /* Get a request message. */
+    if ((r = driver_receive(ANY, &msg, &ipc_status)) != 0) {
+      printf("driver_receive failed with: %d", r);
+      continue;
+    }
+
+    if (is_ipc_notify(ipc_status) && 
+        _ENDPOINT_P(msg.m_source) == HARDWARE && 
+        msg.m_notify.interrupts & BIT(bit)) {
+      uint8_t stat, data;
+      util_sys_inb(KBC_OUT_BUF_STATUS, &stat);
+
+      if (stat & KBC_STATUS_OUTBUF_FULL) {
+        util_sys_inb(KBC_OUT_BUF_SCAN, &data);
+
+        if ((stat & KBC_STATUS_OK_MASK) == 0)
+          kbd_print_scancode(!(data & BIT(7)), 1, &data);
+
+        if (data == 0x81)
+          run = false;
+      }
+    }
+  }
+
+  kbc_unsubscribe_int(&bit);
   
   return 1;
 }
