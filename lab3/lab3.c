@@ -8,6 +8,14 @@
 #include <i8042.h>
 #include <kbc.h>
 
+extern int scancode_size;
+extern int scancode_type;
+
+extern uint8_t global_hook_id;
+extern uint32_t global_scancode;
+
+extern int32_t used_ids = 0;
+
 // #define LAB3
 
 int main(int argc, char *argv[]) {
