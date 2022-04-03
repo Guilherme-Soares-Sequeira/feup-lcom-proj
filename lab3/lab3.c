@@ -5,16 +5,18 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-#include <i8042.h>
-#include <kbc.h>
+#include "i8042.h"
+#include "kbc.h"
 
 extern int scancode_size;
 extern int scancode_type;
 
 extern uint8_t global_hook_id;
-extern uint32_t global_scancode;
+extern uint8_t scancode;
+extern uint8_t st_reg;
+extern uint8_t* scancodes;
 
-extern int32_t used_ids = 0;
+extern int32_t used_ids;
 
 // #define LAB3
 
@@ -58,25 +60,28 @@ int(kbd_test_scan)() {
       continue;
     }
 
-    if (is_ipc_notify(ipc_status) && 
+    if (is_ipc_notify(ipc_status) && // found interrupt 
         _ENDPOINT_P(msg.m_source) == HARDWARE && 
         msg.m_notify.interrupts & BIT(bit)) {
-      uint8_t stat, data;
-      util_sys_inb(KBC_OUT_BUF_STATUS, &stat);
-
-      if (stat & KBC_STATUS_OUTBUF_FULL) {
-        util_sys_inb(KBC_OUT_BUF_SCAN, &data);
-
-        if ((stat & KBC_STATUS_OK_MASK) == 0)
-          kbd_print_scancode(!(data & BIT(7)), 1, &data);
-
-        if (data == 0x81)
-          run = false;
+          
+      kbc_ih();
+      
+      if (scancode_size == 0) {
+        run = false;
+        continue;
       }
+
+      if ((st_reg & KBC_STATUS_OK_MASK) == 0) 
+        kbd_print_scancode(scancode_type, scancode_size, scancodes);
+      
+      if (scancodes[0] == ESC_KEY_BREAK_CODE) // esc key was released
+        run = false;
+          
+      free(scancodes); 
     }
   }
 
-  kbc_unsubscribe_int(&bit);
+  kbc_unsubscribe_int();
   
   return 1;
 }
