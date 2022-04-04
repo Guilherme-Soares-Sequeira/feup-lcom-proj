@@ -3,8 +3,6 @@
 
 #include "i8042.h"
 
-#define  DELAY_US 20000
-
 int      scancode_size;
 int      scancode_type;
 
@@ -78,4 +76,35 @@ void (kbc_ih)() {
     scancode_type = KBC_SCANCODE_BREAK;
   else
     scancode_type = KBC_SCANCODE_MAKE;
+}
+
+void (kbc_enable_int)() {
+
+  uint8_t status_reg;
+  
+  do {
+    status_reg = 0;
+    util_sys_inb(KBC_OUT_BUF_STATUS, &status_reg);
+  } while (status_reg & KBC_STATUS_INBUF_FULL);
+
+  // input buffer no longer full, safe to write commands
+
+  sys_outb(KBC_IN_BUF_CMD, KBC_READ_CMD_MASK);
+
+  uint8_t command_byte;
+  util_sys_inb(KBC_OUT_BUF_SCAN, &command_byte);
+
+  command_byte |= KBC_ENABLE_INT_MASK;
+
+  sys_outb(KBC_IN_BUF_CMD, KBC_WRITE_CMD_MASK);
+
+  sys_outb(KBC_IN_BUF_DATA, command_byte);
+
+}
+
+int (kbc_outbuf_full)() {
+  st_reg = 0;
+  util_sys_inb(KBC_OUT_BUF_STATUS, &st_reg);
+
+  return (st_reg & KBC_STATUS_OUTBUF_FULL);
 }

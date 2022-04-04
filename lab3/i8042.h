@@ -18,6 +18,9 @@
 #define KBC_STATUS_INBUF_FULL   (BIT(1))
 #define KBC_STATUS_OUTBUF_FULL  (BIT(0))
 #define KBC_SCANCODE_TYPE_MASK  (BIT(7))
+#define KBC_READ_CMD_MASK 0x20
+#define KBC_WRITE_CMD_MASK 0x60
+#define KBC_ENABLE_INT_MASK BIT(0)
 
 /* Scancode size byte indicators */
 

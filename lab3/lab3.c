@@ -66,8 +66,9 @@ int(kbd_test_scan)() {
           
       kbc_ih();
       
-      if (scancode_size == 0) {
+      if (scancode_size == 0) { //check with professor
         run = false;
+        free(scancodes);
         continue;
       }
 
@@ -87,9 +88,31 @@ int(kbd_test_scan)() {
 }
 
 int(kbd_test_poll)() {
-  /* To be completed by the students */
-  printf("%s is not yet implemented!\n", __func__);
+  bool run = true;
 
+  while (run) {
+    if (kbc_outbuf_full()) {
+      kbc_ih();
+      
+      if (scancode_size == 0) {
+        run = false;
+        free(scancodes);
+        continue;
+      }
+
+      if ((st_reg & KBC_STATUS_OK_MASK) == 0) 
+        kbd_print_scancode(scancode_type, scancode_size, scancodes);
+      
+      if (scancodes[0] == ESC_KEY_BREAK_CODE) // esc key was released
+        run = false;
+          
+      free(scancodes); 
+    }
+
+    tickdelay(micros_to_ticks(DELAY_US));  
+  }
+  
+  kbc_enable_int();
   return 1;
 }
 
