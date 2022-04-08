@@ -1,16 +1,25 @@
 #include <lcom/lcf.h>
 #include <stdint.h>
+#include <stdbool.h>
 
 #include "i8042.h"
 
+<<<<<<< HEAD
 int scancode_size;
 int scancode_type;
+=======
+int      scancode_size = 1; // most interrupts are associated with 1 byte scancodes, ih will deal with this value changing;
+int      scancode_type;
+>>>>>>> 9b4100e03e62153eed134048cb3f2c4c4f8cabfa
 
 int32_t  kbc_global_hook_id;
 uint8_t  st_reg;
-uint8_t* scancodes;
+uint8_t  *scancodes = NULL; // scan codes have at most 3 bytes (?)
 
 extern int32_t used_ids;
+
+bool     ready = false, scancode_processed = false;
+int      bytes_read = 0;
 
 int(kbc_subscribe_int)(uint8_t *bit_no) {
   int hook_id; // random
@@ -33,6 +42,49 @@ int(kbc_unsubscribe_int)() {
 }
 
 void (kbc_ih)() {
+
+  if (scancode_processed) {
+    scancode_processed = false;
+    scancode_size = 1; // reset scancode_size for next scancode, always at least 1
+    free(scancodes);
+    scancodes = NULL;
+  }
+
+  uint8_t scancode_byte;
+  ready = false;
+
+  util_sys_inb(KBC_OUT_BUF_STATUS, &st_reg); // query status register
+  util_sys_inb(KBC_OUT_BUF_SCAN, &scancode_byte); // safe to read, KBC triggers interrupt on OUT_BUFF full
+  bytes_read++;
+
+  if (st_reg & KBC_STATUS_OK_MASK) { // if timeout/transmission error, abort current interrupt
+    bytes_read = 0;
+    scancode_size = 0;
+    return;
+  } 
+
+  if (scancode_byte == KBC_SCAN_DOUBLE_BYTE || scancode_byte == KBC_SCAN_TRIPLE_BYTE) {// mark that we have to read more bytes
+    scancode_size += (uint8_t) (scancode_byte & 0xF) + 1; // declare that we will need to read more bytes
+  }
+
+  scancodes = realloc(scancodes, sizeof(uint8_t)*bytes_read);
+
+  if (!scancodes) { // in case realloc returns NULL -> error
+    bytes_read = 0;
+    scancode_size = 0;
+    return;
+  };
+
+  scancodes[bytes_read - 1] = scancode_byte;
+
+  if (bytes_read == scancode_size) {
+    ready = true; // mark scancode fully read
+    bytes_read = 0; // reset bytes read for next scancode
+    scancode_type = (scancodes[scancode_size - 1] & BIT(7)) ? KBC_SCANCODE_BREAK : KBC_SCANCODE_MAKE;
+  }
+}
+
+/* void (kbc_ih2)() {
   uint8_t scancode = 0;
 
   puts("pqp");
@@ -46,7 +98,7 @@ void (kbc_ih)() {
     scancode_size = 0;
   
   if (st_reg & KBC_STATUS_OUTBUF_FULL) {
-    util_sys_inb(KBC_OUT_BUF_SCAN, &scancode);
+    util_sys_inb(KBC_OUT_BUF_SCAN, &scancode);<
     
     if (scancode_size == 0) 
       return;
@@ -81,7 +133,7 @@ void (kbc_ih)() {
     scancode_type = KBC_SCANCODE_BREAK;
   else
     scancode_type = KBC_SCANCODE_MAKE;
-}
+} */
 
 void (kbc_enable_int)() {
 
