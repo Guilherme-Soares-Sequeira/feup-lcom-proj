@@ -16,12 +16,12 @@ uint16_t(to_bcd)(uint16_t val) {
   return res;
 }
 
-int(util_get_LSB)(uint16_t val, uint8_t *lsb) {
+int(util_get_lsb)(uint16_t val, uint8_t *lsb) {
   *lsb = (uint8_t) (val & TIMER_LSB_MASK);
   return 0;
 }
 
-int(util_get_MSB)(uint16_t val, uint8_t *msb) {
+int(util_get_msb)(uint16_t val, uint8_t *msb) {
   *msb = (uint8_t) ((val & TIMER_MSB_MASK) >> 8);
   return 0;
 }
