@@ -18,6 +18,8 @@ extern uint8_t* scancodes;
 
 extern int32_t used_ids;
 
+extern bool ready, scancode_processed;
+
 // #define LAB3
 
 int main(int argc, char *argv[]) {
@@ -67,18 +69,20 @@ int(kbd_test_scan)() {
       kbc_ih();
       
       if (scancode_size == 0) { //check with professor
-        run = false;
-        free(scancodes);
+        scancode_processed = true;
         continue;
       }
 
-      if ((st_reg & KBC_STATUS_OK_MASK) == 0) 
+      if (ready) { // need only to check if we are ready to print the scancode since errors should have been caught by the previous if statement
         kbd_print_scancode(scancode_type, scancode_size, scancodes);
-      
-      if (scancodes[0] == ESC_KEY_BREAK_CODE) // esc key was released
-        run = false;
-          
-      free(scancodes); 
+        scancode_processed = true;
+
+        // this should be inside this if because we can only safely verify a scan code when it is fully ready
+        if (scancodes[0] == ESC_KEY_BREAK_CODE) { // esc key was released
+          run = false;
+          free(scancodes); // next step of ih will not run so we must explicitely free the scancodes here
+        }   
+      }      
     }
   }
 
