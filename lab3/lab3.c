@@ -72,21 +72,6 @@ int(kbd_test_scan)() {
         msg.m_notify.interrupts & BIT(bit)) {
 
       kbc_ih();
-<<<<<<< HEAD
-
-      if (scancode_size == 0) {
-        free(scancodes);
-        continue;
-      }
-
-      if ((st_reg & KBC_STATUS_OK_MASK) == 0)
-        kbd_print_scancode(scancode_type, scancode_size, scancodes);
-
-      if (scancodes[0] == ESC_KEY_BREAK_CODE) // esc key was released
-        run = false;
-
-      free(scancodes);
-=======
       
       if (scancode_size == 0) { //check with professor
         scancode_processed = true;
@@ -103,7 +88,6 @@ int(kbd_test_scan)() {
           free(scancodes); // next step of ih will not run so we must explicitely free the scancodes here
         }   
       }      
->>>>>>> 9b4100e03e62153eed134048cb3f2c4c4f8cabfa
     }
   }
 

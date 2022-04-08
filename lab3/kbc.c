@@ -4,13 +4,8 @@
 
 #include "i8042.h"
 
-<<<<<<< HEAD
-int scancode_size;
-int scancode_type;
-=======
 int      scancode_size = 1; // most interrupts are associated with 1 byte scancodes, ih will deal with this value changing;
 int      scancode_type;
->>>>>>> 9b4100e03e62153eed134048cb3f2c4c4f8cabfa
 
 int32_t  kbc_global_hook_id;
 uint8_t  st_reg;
