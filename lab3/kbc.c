@@ -79,57 +79,6 @@ void (kbc_ih)() {
   }
 }
 
-/* void (kbc_ih2)() {
-  uint8_t scancode = 0;
-
-  puts("pqp");
-
-  scancode_size = 1;
-  scancodes = (uint8_t*)malloc(sizeof(uint8_t)); // initialze array with size = 1
-
-  util_sys_inb(KBC_OUT_BUF_STATUS, &st_reg);
-
-  if (st_reg & KBC_STATUS_OK_MASK) 
-    scancode_size = 0;
-  
-  if (st_reg & KBC_STATUS_OUTBUF_FULL) {
-    util_sys_inb(KBC_OUT_BUF_SCAN, &scancode);<
-    
-    if (scancode_size == 0) 
-      return;
-    
-    scancodes[0] = scancode;
-    scancode_size = 1;
-  }
-
-  if (scancodes[0] == KBC_SCAN_DOUBLE_BYTE) {
-    scancodes = (uint8_t*)realloc(scancodes, 2 * sizeof(uint8_t)); // reallocate memory
-
-    util_sys_inb(KBC_OUT_BUF_SCAN, &scancode);
-    scancodes[1] = scancode;
-    
-    scancode_size = 2;
-  }
-
-  if (scancodes[0] == KBC_SCAN_TRIPLE_BYTE) {
-    scancodes = (uint8_t*)realloc(scancodes, 4 * sizeof(uint8_t)); // reallocate memory
-    
-    util_sys_inb(KBC_OUT_BUF_SCAN, &scancode);
-    scancodes[1] = scancode;
-    util_sys_inb(KBC_OUT_BUF_SCAN, &scancode);
-    scancodes[2] = scancode;
-    util_sys_inb(KBC_OUT_BUF_SCAN, &scancode);
-    scancodes[3] = scancode;
-
-    scancode_size = 4;
-  }
-
-  if (scancodes[scancode_size - 1] & KBC_BREAKCODE_BIT)
-    scancode_type = KBC_SCANCODE_BREAK;
-  else
-    scancode_type = KBC_SCANCODE_MAKE;
-} */
-
 void (kbc_enable_int)() {
 
   uint8_t status_reg;

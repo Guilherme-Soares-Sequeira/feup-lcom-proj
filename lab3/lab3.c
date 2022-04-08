@@ -82,7 +82,7 @@ int(kbd_test_scan)() {
         kbd_print_scancode(scancode_type, scancode_size, scancodes);
         scancode_processed = true;
 
-        // this should be inside this if because we can only safely verify a scan code when it is fully ready
+        // this should be inside this if because we can only safely verify a scan code when it is fully read
         if (scancodes[0] == ESC_KEY_BREAK_CODE) { // esc key was released
           run = false;
           free(scancodes); // next step of ih will not run so we must explicitely free the scancodes here
@@ -104,17 +104,19 @@ int(kbd_test_poll)() {
       kbc_ih();
 
       if (scancode_size == 0) {
-        free(scancodes);
+        scancode_processed = true;
         continue;
       }
 
-      if ((st_reg & KBC_STATUS_OK_MASK) == 0)
+      if (ready) {
         kbd_print_scancode(scancode_type, scancode_size, scancodes);
+        scancode_processed = true;
 
-      if (scancodes[0] == ESC_KEY_BREAK_CODE) // esc key was released
-        run = false;
-
-      free(scancodes);
+        if (scancodes[0] == ESC_KEY_BREAK_CODE) { // esc key was released
+          run = false;
+          free(scancodes);
+        }   
+      }
     }
 
     tickdelay(micros_to_ticks(DELAY_US));
@@ -150,18 +152,21 @@ int(kbd_test_timed_scan)(uint8_t n) {
         kbc_ih();
 
         if (scancode_size == 0) {
-          free(scancodes);
+          scancode_processed = true;
           continue;
         }
 
-        if ((st_reg & KBC_STATUS_OK_MASK) == 0)
+        if (ready) {
           kbd_print_scancode(scancode_type, scancode_size, scancodes);
+          scancode_processed = true;
 
-        if (scancodes[0] == ESC_KEY_BREAK_CODE) // esc key was released
-          run = false;
+          if (scancodes[0] == ESC_KEY_BREAK_CODE) { // esc key was released
+            run = false;
+            free(scancodes);
+          }   
+        }
 
         timer_counter = 0;
-        free(scancodes);
       }
 
       if (msg.m_notify.interrupts & BIT(timer_bit)) {

@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "lab3.h": "c",
-        "ipc.h": "c"
+        "ipc.h": "c",
+        "timer.h": "c"
     }
 }
