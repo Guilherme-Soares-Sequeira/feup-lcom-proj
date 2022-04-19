@@ -16,5 +16,7 @@ void* (vg_init)(in_port_t graphics_mode) {
   r.bx = graphics_mode | LINEAR_MODE;
   sys_int86(&r);
 
+  if (r.al != 0x4F || r.ah != 0) return NULL;
+
   return NULL;
 }
