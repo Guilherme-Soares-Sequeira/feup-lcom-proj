@@ -45,10 +45,10 @@ int(timer_test_time_base)(uint8_t timer, uint32_t freq) {
 
 int(timer_test_int)(uint8_t time) {
 
-  if (timer_set_frequency(0, 60)) return;
+  if (timer_set_frequency(0, 60)) return 1;
 
   uint8_t bit;
-  timer_subscribe_int(&bit);
+  if (timer_subscribe_int(&bit)) return 1;
 
   int ipc_status, r;
   message msg;
@@ -82,5 +82,5 @@ int(timer_test_int)(uint8_t time) {
 
   timer_unsubscribe_int();
 
-  return 1;
+  return 0;
 }
