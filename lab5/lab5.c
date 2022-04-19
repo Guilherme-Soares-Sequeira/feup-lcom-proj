@@ -3,6 +3,8 @@
 
 #include <lcom/lab5.h>
 
+#include "vbe.h"
+
 #include <stdint.h>
 #include <stdio.h>
 
@@ -33,14 +35,8 @@ int main(int argc, char *argv[]) {
 }
 
 int(video_test_init)(uint16_t mode, uint8_t delay) {
-  // TODO: Extract to another file
-  struct reg86 r;
-  memset(&r, 0, sizeof(r));
 
-  r.intno = 0x10;
-  r.ax = 0x4F02;
-  r.bx = BIT(14) | mode;
-  sys_int86(&r);
+  vbe_set_mode(mode);
 
   sleep(delay);
   vg_exit();
