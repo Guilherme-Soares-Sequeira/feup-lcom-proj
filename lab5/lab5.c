@@ -2,8 +2,7 @@
 #include <lcom/lcf.h>
 
 #include <lcom/lab5.h>
-
-#include "vbe.h"
+#include <lcom/video_gr.h>
 
 #include <stdint.h>
 #include <stdio.h>
@@ -35,8 +34,7 @@ int main(int argc, char *argv[]) {
 }
 
 int(video_test_init)(uint16_t mode, uint8_t delay) {
-
-  vbe_set_mode(mode);
+  vg_init(mode);
 
   sleep(delay);
   vg_exit();
@@ -49,6 +47,11 @@ int(video_test_rectangle)(uint16_t mode, uint16_t x, uint16_t y,
   /* To be completed */
   printf("%s(0x%03X, %u, %u, %u, %u, 0x%08x): under construction\n",
          __func__, mode, x, y, width, height, color);
+
+  vg_init(mode);
+
+  sleep(10);
+  vg_exit();
 
   return 1;
 }
