@@ -50,7 +50,10 @@ int(video_test_rectangle)(uint16_t mode, uint16_t x, uint16_t y,
 
   vg_init(mode);
 
-  sleep(10);
+  for(int i = 0; i < height; i++)
+    vg_draw_hline(x, y + i, width, color);
+
+  sleep(3);
   vg_exit();
 
   return 1;

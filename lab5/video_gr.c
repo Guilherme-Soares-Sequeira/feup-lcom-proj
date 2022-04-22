@@ -5,11 +5,14 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <math.h>
+#include <stdbool.h>
 
 #include "vbe.h"
 
 vbe_mode_info_t mode_info;
 void* vram;
+
+bool indexed = false;
 
 void (_get_mode_info)(in_port_t mode) {
   vbe_get_mode_info(mode, &mode_info);
@@ -46,5 +49,32 @@ void* (vg_init)(in_port_t graphics_mode) {
 
   if (sys_int86(&r) || r.al != 0x4F || r.ah != 0) return NULL;
 
+  indexed = graphics_mode == 0x105;
+
   return vram;
+}
+
+#define COLOR_SIZE_MASK(x) (BIT(x) - 1)
+
+int (vg_draw_hline)(uint16_t x, uint16_t y, uint16_t len, uint32_t color) {
+
+  if (indexed && color > 255) return 1;
+
+  int bytes_per_pixel = (mode_info.BitsPerPixel + mode_info.LinRsvdMaskSize)/8;
+
+  uint8_t* base = ((uint8_t*)vram) + x + y * mode_info.XResolution;
+
+  color &= COLOR_SIZE_MASK(mode_info.BitsPerPixel);
+  
+  for (int i = 0; i < len * bytes_per_pixel; i += bytes_per_pixel) {
+
+    uint32_t tmp_color = color;
+
+    for (int j = 0; j < bytes_per_pixel; j++) {
+      base[i + j] = tmp_color & 0xFF;
+      color >>= 8;
+    }
+  }
+
+  return 0;
 }
