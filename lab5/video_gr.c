@@ -43,9 +43,8 @@ void* (vg_init)(in_port_t graphics_mode) {
   r.intno = VBE_INTERFACE;
   r.ax = VBE_SET_MODE;
   r.bx = graphics_mode | LINEAR_MODE;
-  sys_int86(&r);
 
-  if (r.al != 0x4F || r.ah != 0) return NULL;
+  if (sys_int86(&r) || r.al != 0x4F || r.ah != 0) return NULL;
 
   return vram;
 }
