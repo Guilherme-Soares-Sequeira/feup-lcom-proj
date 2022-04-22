@@ -56,25 +56,32 @@ void* (vg_init)(in_port_t graphics_mode) {
 
 #define COLOR_SIZE_MASK(x) (BIT(x) - 1)
 
+int _bytes_per_pixel() {
+  return (mode_info.BitsPerPixel + mode_info.LinRsvdMaskSize)/8;
+}
+
+int (vg_draw_pixel)(uint8_t* vram_base, uint16_t x, uint16_t y, uint32_t color) {
+
+  int bytes_per_pixel = _bytes_per_pixel();
+
+  for (int j = 0; j < bytes_per_pixel; j++) {
+    vram_base[(x + y * mode_info.XResolution) * bytes_per_pixel + j] = color & 0xFF;
+    color >>= 8;
+  }
+
+  return 0;
+}
+
 int (vg_draw_hline)(uint16_t x, uint16_t y, uint16_t len, uint32_t color) {
 
   if (indexed && color > 255) return 1;
 
-  int bytes_per_pixel = (mode_info.BitsPerPixel + mode_info.LinRsvdMaskSize)/8;
-
-  uint8_t* base = ((uint8_t*)vram) + x + y * mode_info.XResolution;
+  uint8_t* base = ((uint8_t*)vram);
 
   color &= COLOR_SIZE_MASK(mode_info.BitsPerPixel);
   
-  for (int i = 0; i < len * bytes_per_pixel; i += bytes_per_pixel) {
-
-    uint32_t tmp_color = color;
-
-    for (int j = 0; j < bytes_per_pixel; j++) {
-      base[i + j] = tmp_color & 0xFF;
-      color >>= 8;
-    }
-  }
+  for (int i = 0; i < len; i++)
+    vg_draw_pixel(base, x + i, y, color);
 
   return 0;
 }
