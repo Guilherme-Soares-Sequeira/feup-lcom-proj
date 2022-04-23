@@ -14,7 +14,7 @@ void* vram;
 
 bool indexed = false;
 
-void (_get_mode_info)(in_port_t mode) {
+void (_get_mode_info)(in_port_t mode) { //TODO: implement this using sys_int86
   vbe_get_mode_info(mode, &mode_info);
 }
 
@@ -62,10 +62,17 @@ int _bytes_per_pixel() {
 
 int (vg_draw_pixel)(uint8_t* vram_base, uint16_t x, uint16_t y, uint32_t color) {
 
+  if (indexed && color > 255) return 1;
+
   int bytes_per_pixel = _bytes_per_pixel();
 
+  int pixel_offset = x + y * mode_info.XResolution;
+  int byte_offset = pixel_offset * bytes_per_pixel;
+
+  uint8_t* pixel_start = vram_base + byte_offset;
+
   for (int j = 0; j < bytes_per_pixel; j++) {
-    vram_base[(x + y * mode_info.XResolution) * bytes_per_pixel + j] = color & 0xFF;
+    pixel_start[j] = color & 0xFF;
     color >>= 8;
   }
 
@@ -81,7 +88,7 @@ int (vg_draw_hline)(uint16_t x, uint16_t y, uint16_t len, uint32_t color) {
   color &= COLOR_SIZE_MASK(mode_info.BitsPerPixel);
   
   for (int i = 0; i < len; i++)
-    vg_draw_pixel(base, x + i, y, color);
+    if (vg_draw_pixel(base, x + i, y, color)) return 1;
 
   return 0;
 }
