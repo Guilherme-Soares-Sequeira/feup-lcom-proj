@@ -64,6 +64,8 @@ int (vg_draw_pixel)(uint8_t* vram_base, uint16_t x, uint16_t y, uint32_t color) 
 
   if (indexed && color > 255) return 1;
 
+  color &= COLOR_SIZE_MASK(vg_mode_info.BitsPerPixel);
+
   int bytes_per_pixel = _bytes_per_pixel();
 
   int pixel_offset = x + y * vg_mode_info.XResolution;
@@ -94,8 +96,13 @@ int (vg_draw_hline)(uint16_t x, uint16_t y, uint16_t len, uint32_t color) {
 }
 
 int (vg_draw_rectangle)(uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint32_t color) {
+
+  if (indexed && color > 255) return 1;
+
+  color &= COLOR_SIZE_MASK(vg_mode_info.BitsPerPixel);
+
   for(int i = 0; i < height; i++)
-    vg_draw_hline(x, y + i, width, color);
+    if (vg_draw_hline(x, y + i, width, color)) return 1;
 
   return 0;
 }
