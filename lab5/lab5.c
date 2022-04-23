@@ -7,6 +7,8 @@
 #include <stdint.h>
 #include <stdio.h>
 
+extern vbe_mode_info_t vg_mode_info;
+
 // Any header files included below this line should have been created by you
 
 int main(int argc, char *argv[]) {
@@ -44,12 +46,8 @@ int(video_test_init)(uint16_t mode, uint8_t delay) {
 
 int(video_test_rectangle)(uint16_t mode, uint16_t x, uint16_t y,
                           uint16_t width, uint16_t height, uint32_t color) {
-
   vg_init(mode);
-
-  for(int i = 0; i < height; i++)
-    vg_draw_hline(x, y + i, width, color);
-
+  vg_draw_rectangle(x, y, width, height, color);
   sleep(3);
   vg_exit();
 
@@ -57,9 +55,17 @@ int(video_test_rectangle)(uint16_t mode, uint16_t x, uint16_t y,
 }
 
 int(video_test_pattern)(uint16_t mode, uint8_t no_rectangles, uint32_t first, uint8_t step) {
-  /* To be completed */
-  printf("%s(0x%03x, %u, 0x%08x, %d): under construction\n", __func__,
-         mode, no_rectangles, first, step);
+  vg_init(mode);
+  
+  int size_x = vg_mode_info.XResolution/no_rectangles;
+  int size_y = vg_mode_info.YResolution/no_rectangles;
+
+  for (int y = 0; y < no_rectangles; ++y)
+    for (int x = 0; x < no_rectangles; ++x, first += step)
+      vg_draw_rectangle(x*size_x, y*size_y, size_x, size_y, first);
+
+  sleep(3);
+  vg_exit();
 
   return 1;
 }
