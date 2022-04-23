@@ -60,7 +60,7 @@ int _bytes_per_pixel() {
   return (vg_mode_info.BitsPerPixel + vg_mode_info.LinRsvdMaskSize)/8;
 }
 
-int (vg_draw_pixel)(uint8_t* vram_base, uint16_t x, uint16_t y, uint32_t color) {
+int (vg_draw_pixel)(uint16_t x, uint16_t y, uint32_t color) {
 
   if (indexed && color > 255) return 1;
 
@@ -71,7 +71,7 @@ int (vg_draw_pixel)(uint8_t* vram_base, uint16_t x, uint16_t y, uint32_t color) 
   int pixel_offset = x + y * vg_mode_info.XResolution;
   int byte_offset = pixel_offset * bytes_per_pixel;
 
-  uint8_t* pixel_start = vram_base + byte_offset;
+  uint8_t* pixel_start = vram + byte_offset;
 
   for (int j = 0; j < bytes_per_pixel; j++) {
     pixel_start[j] = color & 0xFF;
@@ -90,7 +90,7 @@ int (vg_draw_hline)(uint16_t x, uint16_t y, uint16_t len, uint32_t color) {
   color &= COLOR_SIZE_MASK(vg_mode_info.BitsPerPixel);
   
   for (int i = 0; i < len; i++)
-    if (vg_draw_pixel(base, x + i, y, color)) return 1;
+    if (vg_draw_pixel(x + i, y, color)) return 1;
 
   return 0;
 }
