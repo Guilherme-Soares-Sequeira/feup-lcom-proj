@@ -6,3 +6,5 @@
 #define VBE_SET_MODE 0x4F02
 
 #define LINEAR_MODE BIT(14)
+
+#define VBE_MODE_1024x768_INDEXED 0x105

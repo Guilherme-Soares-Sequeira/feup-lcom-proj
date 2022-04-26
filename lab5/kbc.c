@@ -7,19 +7,11 @@
 int      scancode_size = 1; // most interrupts are associated with 1 byte scancodes, ih will deal with this value changing;
 int      scancode_type;
 
-<<<<<<< Updated upstream
 int32_t  kbc_global_hook_id;
 uint8_t  st_reg;
 uint8_t  *scancodes = NULL; // scan codes have at most 3 bytes (?)
-=======
-int scancode_error;
-int scancode_is_make;
 
-uint8_t global_hook_id;
-uint32_t global_scancode;
->>>>>>> Stashed changes
-
-extern int32_t used_ids;
+int32_t   used_ids = 0;
 
 bool     ready = false, scancode_processed = false;
 int      bytes_read = 0;
@@ -40,7 +32,6 @@ int(kbc_subscribe_int)(uint8_t *bit_no) {
   return res;
 }
 
-<<<<<<< Updated upstream
 int(kbc_unsubscribe_int)() {
   return sys_irqrmpolicy( (int*) &kbc_global_hook_id );
 }
@@ -118,31 +109,3 @@ int (kbc_outbuf_full)() {
 
   return (st_reg & KBC_STATUS_OUTBUF_FULL);
 }
-=======
-int(kbc_unsubscribe_int)(uint8_t *bit_no) {
-  return sys_irqrmpolicy((int *) &global_hook_id);
-}
-
-// add global variables later
-// global scancode (uint8_t)
-// global scancode_is_make (boolean)
-// global scancode_error (boolean)
-
-void (kbc_ih)() {
-  uint8_t st_reg, scancode;
-
-  util_sys_inb(KBC_OUT_BUF_STATUS, &st_reg);
-  uint8_t global_scancode_arr[] = (uint8_t *) &global_scancode; 
-
-  if (st_reg & KBC_STATUS_OK_MASK) 
-    scancode_error = 1;
-  
-  if (st_reg & KBC_STATUS_OUTBUF_FULL)
-    util_sys_inb(KBC_OUT_BUF_SCAN, &scancode); // later check if its 0xE0
-  
-  if (scancode & KBC_SCANCODE_TYPE_MASK)
-    scancode_is_make = 0;
-
-  global_scancode = scancode;
-}
->>>>>>> Stashed changes

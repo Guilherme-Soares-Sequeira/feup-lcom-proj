@@ -61,10 +61,10 @@ int _bytes_per_pixel() {
 }
 
 int (vg_draw_pixel)(uint16_t x, uint16_t y, uint32_t color) {
-
+  
   if (indexed && color > 255) return 1;
 
-  if (x >= vg_mode_info.XResolution || y >= vg_mode_info.YResolution)
+  if (x >= vg_mode_info.XResolution || x < 0 || y >= vg_mode_info.YResolution ||  y < 0)
     return 0;
 
   color &= COLOR_SIZE_MASK(vg_mode_info.BitsPerPixel);
@@ -96,4 +96,23 @@ int (vg_draw_rectangle)(uint16_t x, uint16_t y, uint16_t width, uint16_t height,
     if (vg_draw_hline(x, y + i, width, color)) return 1;
 
   return 0;
+}
+
+xpm_image_t (vg_load_xpm) (const xpm_map_t map) {
+  xpm_image_t info;
+  xpm_load(map, XPM_INDEXED, &info);
+  return info;
+}
+
+int (vg_draw_xpm)(const xpm_image_t xpm_info, uint16_t x, uint16_t y) {
+  uint8_t* bytes = xpm_info.bytes;
+  
+  for (unsigned long int i = 0; i < (unsigned long) xpm_info.size; i++) {
+    if (vg_draw_pixel(
+      x + (i % xpm_info.width), y + (i / xpm_info.height), (uint32_t) *(bytes + i))
+      ) 
+        return 1;    
+  }
+  
+  return OK;
 }
