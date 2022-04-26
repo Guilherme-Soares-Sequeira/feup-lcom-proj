@@ -64,6 +64,9 @@ int (vg_draw_pixel)(uint16_t x, uint16_t y, uint32_t color) {
 
   if (indexed && color > 255) return 1;
 
+  if (x >= vg_mode_info.XResolution || y >= vg_mode_info.YResolution)
+    return 0;
+
   color &= COLOR_SIZE_MASK(vg_mode_info.BitsPerPixel);
 
   int bytes_per_pixel = _bytes_per_pixel();
@@ -71,7 +74,7 @@ int (vg_draw_pixel)(uint16_t x, uint16_t y, uint32_t color) {
   int pixel_offset = x + y * vg_mode_info.XResolution;
   int byte_offset = pixel_offset * bytes_per_pixel;
 
-  uint8_t* pixel_start = vram + byte_offset;
+  uint8_t* pixel_start = (uint8_t*)vram + byte_offset;
 
   for (int j = 0; j < bytes_per_pixel; j++) {
     pixel_start[j] = color & 0xFF;
@@ -82,13 +85,6 @@ int (vg_draw_pixel)(uint16_t x, uint16_t y, uint32_t color) {
 }
 
 int (vg_draw_hline)(uint16_t x, uint16_t y, uint16_t len, uint32_t color) {
-
-  if (indexed && color > 255) return 1;
-
-  uint8_t* base = ((uint8_t*)vram);
-
-  color &= COLOR_SIZE_MASK(vg_mode_info.BitsPerPixel);
-  
   for (int i = 0; i < len; i++)
     if (vg_draw_pixel(x + i, y, color)) return 1;
 
@@ -96,11 +92,6 @@ int (vg_draw_hline)(uint16_t x, uint16_t y, uint16_t len, uint32_t color) {
 }
 
 int (vg_draw_rectangle)(uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint32_t color) {
-
-  if (indexed && color > 255) return 1;
-
-  color &= COLOR_SIZE_MASK(vg_mode_info.BitsPerPixel);
-
   for(int i = 0; i < height; i++)
     if (vg_draw_hline(x, y + i, width, color)) return 1;
 
