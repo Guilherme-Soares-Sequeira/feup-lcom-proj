@@ -110,12 +110,7 @@ int(video_test_pattern)(uint16_t mode, uint8_t no_rectangles, uint32_t first, ui
   kbc_subscribe_int(&kbc_bit);
   vg_init(mode);
 
-  int size_x = vg_mode_info.XResolution / no_rectangles;
-  int size_y = vg_mode_info.YResolution / no_rectangles;
-
-  for (int y = 0; y < no_rectangles; ++y)
-    for (int x = 0; x < no_rectangles; ++x, first += step)
-      vg_draw_rectangle(x * size_x, y * size_y, size_x, size_y, first);
+  if (vg_draw_pattern(no_rectangles, first, step)) return 1;
 
   bool run = true;
   int ipc_status, r;

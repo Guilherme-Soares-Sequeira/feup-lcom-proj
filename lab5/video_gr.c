@@ -116,3 +116,41 @@ int (vg_draw_xpm)(const xpm_image_t xpm_info, uint16_t x, uint16_t y) {
   
   return OK;
 }
+
+void getRGB(uint32_t color, uint8_t* r, uint8_t* g, uint8_t* b) {
+  *r = (color >> vg_mode_info.RedFieldPosition)   & COLOR_SIZE_MASK(vg_mode_info.RedMaskSize);
+  *g = (color >> vg_mode_info.GreenFieldPosition) & COLOR_SIZE_MASK(vg_mode_info.GreenMaskSize);
+  *b = (color >> vg_mode_info.BlueFieldPosition)  & COLOR_SIZE_MASK(vg_mode_info.BlueMaskSize);
+}
+
+uint32_t getIndexedColor(uint32_t index, int no_rectangles, int col, int row, int step) {
+  return (index + (row * no_rectangles + col) * step) % (1 << vg_mode_info.BitsPerPixel);
+}
+
+uint32_t getDirectColor(uint32_t color, int no_rectangles, int col, int row, int step) {
+
+    uint8_t r, g, b;
+    getRGB(color, &r, &g, &b);
+
+    r = (r + col * step) % (1 << vg_mode_info.RedMaskSize);
+  	g = (g + row * step) % (1 << vg_mode_info.GreenMaskSize);
+  	b = (b + (col + row) * step) % (1 << vg_mode_info.BlueMaskSize);	
+
+    return 0 | (r << vg_mode_info.RedFieldPosition) | (g << vg_mode_info.GreenFieldPosition) | (b << vg_mode_info.BlueFieldPosition);
+}
+
+int vg_draw_pattern(uint8_t no_rectangles, uint32_t first, uint8_t step) {
+
+  int size_x = vg_mode_info.XResolution / no_rectangles;
+  int size_y = vg_mode_info.YResolution / no_rectangles;
+
+  for (int y = 0; y < no_rectangles; ++y)
+    for (int x = 0; x < no_rectangles; ++x) {
+
+      uint32_t color = (indexed ? getIndexedColor : getDirectColor)(first, no_rectangles, x, y, step);
+
+      if (vg_draw_rectangle(x * size_x, y * size_y, size_x, size_y, color)) return 1;
+    }
+
+  return 0;
+}
