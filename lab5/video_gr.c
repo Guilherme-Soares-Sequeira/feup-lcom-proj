@@ -124,7 +124,7 @@ void getRGB(uint32_t color, uint8_t* r, uint8_t* g, uint8_t* b) {
 }
 
 uint32_t makeRGB(uint8_t r, uint8_t g, uint8_t b) {
-  return 0 | (r << vg_mode_info.RedFieldPosition) | (g << vg_mode_info.GreenFieldPosition) | (b <<  vg_mode_info.BlueFieldPosition);
+  return 0 | ((r & COLOR_SIZE_MASK(vg_mode_info.RedMaskSize))   << vg_mode_info.RedFieldPosition) |          ((g & COLOR_SIZE_MASK(vg_mode_info.GreenMaskSize)) << vg_mode_info.GreenFieldPosition) |          ((b & COLOR_SIZE_MASK(vg_mode_info.BlueMaskSize))  <<  vg_mode_info.BlueFieldPosition);
 }
 
 uint32_t getIndexedColor(uint32_t index, int no_rectangles, int col, int row, int step) {
