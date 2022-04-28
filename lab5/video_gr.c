@@ -123,6 +123,10 @@ void getRGB(uint32_t color, uint8_t* r, uint8_t* g, uint8_t* b) {
   *b = (color >> vg_mode_info.BlueFieldPosition)  & COLOR_SIZE_MASK(vg_mode_info.BlueMaskSize);
 }
 
+uint32_t makeRGB(uint8_t r, uint8_t g, uint8_t b) {
+  return 0 | (r << vg_mode_info.RedFieldPosition) | (g << vg_mode_info.GreenFieldPosition) | (b <<  vg_mode_info.BlueFieldPosition);
+}
+
 uint32_t getIndexedColor(uint32_t index, int no_rectangles, int col, int row, int step) {
   return (index + (row * no_rectangles + col) * step) % (1 << vg_mode_info.BitsPerPixel);
 }
@@ -136,7 +140,7 @@ uint32_t getDirectColor(uint32_t color, int no_rectangles, int col, int row, int
   	g = (g + row * step) % (1 << vg_mode_info.GreenMaskSize);
   	b = (b + (col + row) * step) % (1 << vg_mode_info.BlueMaskSize);	
 
-    return 0 | (r << vg_mode_info.RedFieldPosition) | (g << vg_mode_info.GreenFieldPosition) | (b << vg_mode_info.BlueFieldPosition);
+    return makeRGB(r, g, b);
 }
 
 int vg_draw_pattern(uint8_t no_rectangles, uint32_t first, uint8_t step) {
