@@ -207,9 +207,37 @@ int(video_test_xpm)(xpm_map_t xpm, uint16_t x, uint16_t y) {
 
 int(video_test_move)(xpm_map_t xpm, uint16_t xi, uint16_t yi, uint16_t xf, uint16_t yf,
                      int16_t speed, uint8_t fr_rate) {
-  /* To be completed */
-  printf("%s(%8p, %u, %u, %u, %u, %d, %u): under construction\n",
-         __func__, xpm, xi, yi, xf, yf, speed, fr_rate);
+  if (xi != xf && yi != yf)
+    panic("Not a straight line!\n");
+
+  vg_init(0x105);
+  bool horiz = yi == yf;
+  bool scount = speed < 0;
+  speed = abs(speed);
+  int count = 0;
+  double sleep_time = 1000000/fr_rate;
+
+  while (xi != xf || yi != yf) {
+    // vg_draw_xpm(xpm, xi, yi);
+    vg_draw_rectangle(xi, yi, 100, 100, 10);
+    usleep(sleep_time);
+    vg_draw_rectangle(xi, yi, 100, 100, 0);
+
+    if (scount) {
+      if (++count % speed == 0)
+        horiz ? ++xi : ++yi;
+    } else {
+      horiz ? (xi += speed) : (yi += speed);
+    }
+  }
+
+  xi = xf;
+  yi = yf;
+  // vg_draw_xpm(xpm, xi, yi);
+  vg_draw_rectangle(xi, yi, 100, 100, 10);
+
+  sleep(3);
+  vg_exit();
 
   return 1;
 }
