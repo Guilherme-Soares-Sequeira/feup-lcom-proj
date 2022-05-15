@@ -44,19 +44,20 @@ int(mouse_test_packet)(uint32_t cnt) {
   int ipc_status, r;
   message msg;
 
-  bool run = true;
-
-  while (run) {
+  while (cnt) {
+    puts("im in main loop");
     /* Get a request message. */
     if ((r = driver_receive(ANY, &msg, &ipc_status)) != 0) {
       printf("driver_receive failed with: %d", r);
       continue;
     }
-
+    
+    printf("The interrupts are %x\n", msg.m_notify.interrupts);
+    
     if (is_ipc_notify(ipc_status) && // found interrupt
         _ENDPOINT_P(msg.m_source) == HARDWARE &&
         msg.m_notify.interrupts & BIT(bit)) {
-
+      puts("after getting an interrupt");
       mouse_ih();
 
       if (mouse_ready) { // need only to check if we are ready to print the scancode since errors should have been caught by the previous if statement
@@ -65,10 +66,6 @@ int(mouse_test_packet)(uint32_t cnt) {
 
         mouse_print_packet(&data_packet);
         --cnt;
-
-        if (cnt == 0) { // esc key was released
-          run = false;
-        }
       }
     }
   }
