@@ -1,4 +1,8 @@
 #include <lcom/lcf.h>
+#include <lcom/lab4.h>
+#include <lcom/utils.h>
+
+#include <stdlib.h>
 
 #include "i8042.h"
 #include "mouse.h"
@@ -13,12 +17,16 @@ bool mouse_ready = false;
 
 /* declared in LCF */
 
+struct packet (get_mouse_packet)() {
+  return mouse_packet;
+}
+
 int (mouse_subscribe_int) (uint8_t *bit_no) {
   int hook_id = MOUSE_HOOK_ID;
 
   (*bit_no) = (uint8_t) hook_id;
 
-  int res = sys_irqsetpolicy(MOUSE_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, hook_id);
+  int res = sys_irqsetpolicy(MOUSE_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, &hook_id);
 
   mouse_global_hook_id = hook_id;
   
@@ -32,12 +40,9 @@ int (mouse_unsubscribe_int)() {
 void (mouse_ih)() {
   uint8_t byte = 0;
   
-  if (!kbc_outbuf_full()) {
-    util_sys_inb(KBC_OUT_BUF_SCAN, &byte);
-    return;
-  }
-
   util_sys_inb(KBC_OUT_BUF_SCAN, &byte);
+  if (!kbc_outbuf_full())
+    return;
 
   switch(counter) {
     case 0:
@@ -45,33 +50,34 @@ void (mouse_ih)() {
         mouse_ready = false;
         return;
       }
-      mouse_packet.bytes[counter] = byte;
+
       mouse_packet.rb = byte & MOUSE_RB;
       mouse_packet.lb = byte & MOUSE_LB;
       mouse_packet.mb = byte & MOUSE_MB;
       mouse_packet.x_ov = byte & MOUSE_XOVFL;
       mouse_packet.y_ov = byte & MOUSE_YOVFL;
 
-      
       mouse_packet.delta_x = 0;
       mouse_packet.delta_y = 0;
       
       break;
-    case 1:
+    case 1: {
       bool sign = mouse_packet.bytes[0] & MOUSE_XSIGN;
-      
-      mouse_packet.bytes[1] = uint8_to_int16(byte, sign);
 
+      mouse_packet.delta_x = uint8_to_int16(byte, sign);
       break;
-
-    case 2:
+    }
+    case 2: {
       bool sign = mouse_packet.bytes[0] & MOUSE_YSIGN;
       
-      mouse_packet.bytes[2] = uint8_to_int16(byte, sign);
+      mouse_packet.delta_y = uint8_to_int16(byte, sign);
       break;    
+    }
   }
-  counter == 2 ? counter = 0 : counter++;
+  mouse_packet.bytes[counter] = byte;
+  counter = (counter + 1) % (sizeof(mouse_packet.bytes));
 
+  mouse_ready = counter == 0; // when we catch a 0 at this point, we know we have successfully parsed 3 bytes
 }
 
 int (kbc_outbuf_full)() {

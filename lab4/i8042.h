@@ -1,3 +1,5 @@
+#include <lcom/lcf.h>
+
 /* KBC registers */
 
 #define KBC_IN_BUF_DATA     0x60 
