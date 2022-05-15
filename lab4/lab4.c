@@ -74,6 +74,7 @@ int(mouse_test_packet)(uint32_t cnt) {
   }
 
   mouse_unsubscribe_int();
+  reset_kbc();
 
   return 1;
 }

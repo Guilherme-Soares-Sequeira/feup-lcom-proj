@@ -1,7 +1,7 @@
 #include <lcom/lcf.h>
 #include <lcom/utils.h>
 
-#define LSB_MASK 0XFF
+#define LSB_MASK 0xFF
 
 uint8_t (get_LSB)(uint32_t num) {
 	return (uint8_t) num & LSB_MASK;

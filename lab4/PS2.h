@@ -23,3 +23,12 @@
 /* Shift amounts */
 
 #define MOUSE_XSIGN_SHIFT 4
+
+
+/* mouse controller acknowledgment bytes */
+
+#define MOUSE_ACK   0xFA
+#define MOUSE_NACK  0xFE
+#define MOUSE_ERROR 0xFC
+
+#define WRITE_BYTE_TO_MOUSE 0xD4
