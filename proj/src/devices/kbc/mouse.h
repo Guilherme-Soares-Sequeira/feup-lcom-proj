@@ -5,10 +5,6 @@
 #include "PS2.h"
 #include "i8042.h"
 
-#define DISABLE_DATA_REPORTING_CMD 0xF5
-#define ENABLE_DATA_REPORTING_CMD 0xF4
-#define SET_STREAMMODE_CMD 0XEA
-
 int (mouse_subscribe_int)(uint8_t *bit_no);
 int (mouse_unsubscribe_int)();
 

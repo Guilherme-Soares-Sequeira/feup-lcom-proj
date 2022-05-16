@@ -26,7 +26,7 @@ int(mouse_subscribe_int)(uint8_t *bit_no) {
 
   (*bit_no) = (uint8_t) hook_id;
 
-  int res = sys_irqsetpolicy(MOUSE_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, &hook_id);
+  int res = sys_irqsetpolicy(KBC_MOUSE_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, &hook_id);
 
   mouse_global_hook_id = hook_id;
 
@@ -42,7 +42,7 @@ void(mouse_ih)() {
 
   bool obf_full = kbc_outbuf_full();
 
-  util_sys_inb(KBC_OUT_BUF_SCAN, &byte);
+  util_sys_inb(KBC_OUT_BUF, &byte);
   if (!obf_full)
     return;
 
@@ -86,15 +86,15 @@ void (kbc_enable_data_report) () {
   wait_for_inbuff_empty();
   sys_outb(KBC_IN_BUF_CMD, 0x60);
   uint8_t cmd = 0; cmd |= (BIT(1));
-  sys_outb(KBC_IN_BUF_DATA, cmd);
-  write_command_to_mouse(ENABLE_DATA_REPORTING_CMD);
+  sys_outb(KBC_IN_BUF_CMD, cmd);
+  write_command_to_mouse(MOUSE_ENABLE_DATA_REPORTING);
 }
 
 bool(kbc_outbuf_full)() {
   uint8_t st_reg = 0;
-  util_sys_inb(KBC_OUT_BUF_STATUS, &st_reg);
+  util_sys_inb(KBC_OUT_BUF_ST, &st_reg);
 
-  return (st_reg & (KBC_STATUS_OUTBUF_FULL | BIT(5)));
+  return (st_reg & (KBC_ST_OBF | BIT(5)));
 }
 
 int16_t(uint8_to_int16)(uint8_t uint8_val, bool sign) {
@@ -102,7 +102,7 @@ int16_t(uint8_to_int16)(uint8_t uint8_val, bool sign) {
 }
 
 void(reset_kbc)() {
-  write_command_to_mouse(DISABLE_DATA_REPORTING_CMD);
+  write_command_to_mouse(MOUSE_DISABLE_DATA_REPORTING);
   return;
 }
 
@@ -114,8 +114,8 @@ void(wait_for_inbuff_empty)() {
     printf("awaiting inbuf empty: %d\n", temp);
     temp++;
     status_reg = 0;
-    util_sys_inb(KBC_OUT_BUF_STATUS, &status_reg);
-  } while (status_reg & KBC_STATUS_INBUF_FULL);
+    util_sys_inb(KBC_OUT_BUF_ST, &status_reg);
+  } while (status_reg & KBC_ST_IBF);
 
   return;
 }
@@ -123,7 +123,7 @@ void(wait_for_inbuff_empty)() {
 uint8_t(mouse_command_feedback)() {
   uint8_t byte = 0;
 
-  util_sys_inb(KBC_OUT_BUF_SCAN, &byte);
+  util_sys_inb(KBC_OUT_BUF, &byte);
 
   return byte;
 }
@@ -134,9 +134,9 @@ void(write_command_to_mouse)(uint8_t command) {
   uint8_t temp = 0;
   do {
     wait_for_inbuff_empty();
-    sys_outb(KBC_IN_BUF_CMD, WRITE_BYTE_TO_MOUSE);
+    sys_outb(KBC_IN_BUF_CMD, KBC_WR_BYTE_TO_MOUSE);
     wait_for_inbuff_empty();
-    sys_outb(KBC_IN_BUF_DATA, command);
+    sys_outb(KBC_IN_BUF_CMD, command);
     tickdelay(micros_to_ticks(25000));
     feedback = mouse_command_feedback();
     temp++;
