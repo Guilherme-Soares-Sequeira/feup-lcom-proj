@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sun May 15 22:40:01 2022
+# Make data base, printed on Mon May 16 21:37:37 2022
 
 # Variables
 
@@ -51,7 +51,7 @@ VTE_VERSION = 6003
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en","availableLanguages":{},"_languagePackSupport":true}
 # environment
-JOURNAL_STREAM = 8:54568
+JOURNAL_STREAM = 8:55552
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # environment
@@ -79,9 +79,9 @@ VSCODE_VERBOSE_LOGGING = true
 # environment
 LC_CTYPE = pt_PT.UTF-8
 # environment
-MANAGERPID = 1948
+MANAGERPID = 1860
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-4e5a8bba-236c-4e26-984e-83f3863f71ba.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-f15b2794-b0b9-4c7f-8ecd-fda83965682f.sock
 # environment
 LC_NAME = pt_PT.UTF-8
 # environment
@@ -97,7 +97,7 @@ GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
 LSCOLORS = Gxfxcxdxbxegedabagacad
 # environment
-SESSION_MANAGER = local/pedro-ramalho:@/tmp/.ICE-unix/2198,unix/pedro-ramalho:/tmp/.ICE-unix/2198
+SESSION_MANAGER = local/pedro-ramalho:@/tmp/.ICE-unix/2109,unix/pedro-ramalho:/tmp/.ICE-unix/2109
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -115,7 +115,7 @@ DISABLE_WAYLAND = 1
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = 1d23b6e4b77949fc93ffe04a5d4b393b
+INVOCATION_ID = d999f6398ea54081a36151cc6adf4f89
 # environment
 GDK_PIXBUF_MODULEDIR = /snap/code/96/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # default
@@ -141,7 +141,7 @@ PWD = /home/pedro/Desktop/MINIX-LCOM/shared
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 2138
+SSH_AGENT_PID = 2048
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -192,6 +192,8 @@ SNAP_USER_DATA = /home/pedro/snap/code/96
 SHLVL = 1
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
+# environment
+LATEXWORKSHOP_DOCKER_LATEX = 
 # default
 MAKE_VERSION := 4.2.1
 # environment
@@ -213,7 +215,7 @@ LC_TELEPHONE = pt_PT.UTF-8
 # default
 MAKE_COMMAND := make
 # environment
-OLDPWD = /home/pedro
+OLDPWD = /home/pedro/Desktop/MINIX-LCOM/shared/proj
 # default
 .VARIABLES := 
 # automatic
@@ -253,11 +255,11 @@ PAGER = less
 # environment
 LC_ALL = C
 # environment
-GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/274b6a59_2735_4102_8c25_050c730d2e0f
+GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/c4b98a4f_3769_4f5a_902c_e2105b117cb4
 # automatic
 ^F = $(notdir $^)
 # environment
-GNOME_TERMINAL_SERVICE = :1.3630
+GNOME_TERMINAL_SERVICE = :1.3638
 # default
 SUFFIXES := 
 # environment
@@ -279,9 +281,9 @@ LANG = C
 # environment
 TERM = xterm-256color
 # environment
-VSCODE_PID = 56721
+VSCODE_PID = 22950
 # variable set hash-table stats:
-# Load=134/1024=13%, Rehash=0, Collisions=21/156=13%
+# Load=135/1024=13%, Rehash=0, Collisions=21/157=13%
 
 # Pattern-specific Variable Values
 
@@ -289,10 +291,10 @@ VSCODE_PID = 56721
 
 # Directories
 
- 
-# . (device 66309, inode 8799668): 14 files, no impossibilities.
+# . (device 66309, inode 8799668): 13 files, no impossibilities.
 
-# 14 files, no impossibilities in 1 directories.
+ 
+# 13 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -342,12 +344,12 @@ GNUmakefile:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 22 / storage = 176 B / avg = 8 B
-# current buf: size = 8162 B / used = 176 B / count = 22 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 21 / storage = 165 B / avg = 7 B
+# current buf: size = 8162 B / used = 165 B / count = 21 / avg = 7 B
 
-# strcache performance: lookups = 25 / hit rate = 12%
+# strcache performance: lookups = 24 / hit rate = 12%
 # hash-table stats:
-# Load=22/8192=0%, Rehash=0, Collisions=1/25=4%
-# Finished Make data base on Sun May 15 22:40:01 2022
+# Load=21/8192=0%, Rehash=0, Collisions=1/24=4%
+# Finished Make data base on Mon May 16 21:37:37 2022
 
  
