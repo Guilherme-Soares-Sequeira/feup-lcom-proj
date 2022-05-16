@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sun May 15 22:04:28 2022
+# Make data base, printed on Mon May 16 23:31:32 2022
 
 # Variables
 
@@ -51,7 +51,7 @@ VTE_VERSION = 6003
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en","availableLanguages":{},"_languagePackSupport":true}
 # environment
-JOURNAL_STREAM = 8:54568
+JOURNAL_STREAM = 8:55552
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # environment
@@ -79,9 +79,9 @@ VSCODE_VERBOSE_LOGGING = true
 # environment
 LC_CTYPE = pt_PT.UTF-8
 # environment
-MANAGERPID = 1948
+MANAGERPID = 1860
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-c59156ab-e5bd-4cb5-85f1-a632ebeea342.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-b61f002b-64f5-451f-a3b2-1f418551782d.sock
 # environment
 LC_NAME = pt_PT.UTF-8
 # environment
@@ -99,7 +99,7 @@ GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
 LSCOLORS = Gxfxcxdxbxegedabagacad
 # environment
-SESSION_MANAGER = local/pedro-ramalho:@/tmp/.ICE-unix/2198,unix/pedro-ramalho:/tmp/.ICE-unix/2198
+SESSION_MANAGER = local/pedro-ramalho:@/tmp/.ICE-unix/2109,unix/pedro-ramalho:/tmp/.ICE-unix/2109
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -117,7 +117,7 @@ DISABLE_WAYLAND = 1
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = 1d23b6e4b77949fc93ffe04a5d4b393b
+INVOCATION_ID = d999f6398ea54081a36151cc6adf4f89
 # environment
 GDK_PIXBUF_MODULEDIR = /snap/code/96/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # default
@@ -145,7 +145,7 @@ PWD = /home/pedro/Desktop/MINIX-LCOM/shared/lab4
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 2138
+SSH_AGENT_PID = 2048
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -221,7 +221,7 @@ LC_TELEPHONE = pt_PT.UTF-8
 # default
 MAKE_COMMAND := make
 # environment
-OLDPWD = /home/pedro
+OLDPWD = /home/pedro/Desktop/MINIX-LCOM/shared
 # default
 .VARIABLES := 
 # automatic
@@ -261,11 +261,11 @@ PAGER = less
 # environment
 LC_ALL = C
 # environment
-GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/5653d058_e8b1_4fab_9a06_24be54243833
+GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/c4b98a4f_3769_4f5a_902c_e2105b117cb4
 # automatic
 ^F = $(notdir $^)
 # environment
-GNOME_TERMINAL_SERVICE = :1.3630
+GNOME_TERMINAL_SERVICE = :1.3638
 # default
 SUFFIXES := 
 # environment
@@ -277,12 +277,12 @@ WINDOWPATH = 2
 # default
 .INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
 # environment
- 
-Makefile:16: *** missing separator.  Stop.
-
 LC_IDENTIFICATION = pt_PT.UTF-8
 # default
 .RECIPEPREFIX := 
+ 
+Makefile:16: *** missing separator.  Stop.
+
 # environment
 LC_ADDRESS = pt_PT.UTF-8
 # environment
@@ -290,7 +290,7 @@ LANG = C
 # environment
 TERM = xterm-256color
 # environment
-VSCODE_PID = 53943
+VSCODE_PID = 34885
 # variable set hash-table stats:
 # Load=139/1024=14%, Rehash=0, Collisions=19/155=12%
 
@@ -300,9 +300,9 @@ VSCODE_PID = 53943
 
 # Directories
 
-# . (device 66309, inode 8936160): 18 files, no impossibilities.
+# . (device 66309, inode 8936160): 13 files, no impossibilities.
 
-# 18 files, no impossibilities in 1 directories.
+# 13 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -337,12 +337,12 @@ Makefile:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 23 / storage = 192 B / avg = 8 B
-# current buf: size = 8162 B / used = 192 B / count = 23 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 18 / storage = 156 B / avg = 8 B
+# current buf: size = 8162 B / used = 156 B / count = 18 / avg = 8 B
 
-# strcache performance: lookups = 27 / hit rate = 14%
+# strcache performance: lookups = 22 / hit rate = 18%
 # hash-table stats:
-# Load=23/8192=0%, Rehash=0, Collisions=1/27=4%
-# Finished Make data base on Sun May 15 22:04:28 2022
+# Load=18/8192=0%, Rehash=0, Collisions=1/22=5%
+# Finished Make data base on Mon May 16 23:31:32 2022
 
  
