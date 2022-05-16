@@ -25,7 +25,7 @@ int(kbc_subscribe_int)(uint8_t *bit_no) {
 
   *bit_no = (uint8_t) hook_id;
 
-  int res = sys_irqsetpolicy(KBC_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, &hook_id);
+  int res = sys_irqsetpolicy(KBC_KEYBOARD_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, &hook_id);
 
   kbc_global_hook_id = (uint8_t) hook_id;
 
