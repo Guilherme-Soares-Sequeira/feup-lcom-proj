@@ -76,10 +76,7 @@ int (vg_draw_pixel)(uint16_t x, uint16_t y, uint32_t color) {
 
   uint8_t* pixel_start = (uint8_t*)vram + byte_offset;
 
-  for (int j = 0; j < bytes_per_pixel; j++) {
-    pixel_start[j] = color & 0xFF;
-    color >>= 8;
-  }
+  memcpy(pixel_start, &color, bytes_per_pixel);
 
   return 0;
 }
