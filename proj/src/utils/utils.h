@@ -1,7 +1,7 @@
+#include <lcom/lcf.h>
+
 #ifndef UTILS_H
 #define UTILS_H
-
-#include <lcom/lcf.h>
 
 
 /* masks used to fetch the LSB and MSB of a 16-bit integer */
@@ -17,5 +17,7 @@ int (util_get_LSB)(uint16_t val, uint8_t *lsb);
 int (util_get_MSB)(uint16_t val, uint8_t *msb);
 
 int (util_sys_inb)(int port, uint8_t *value);
+
+uint16_t(to_bcd)(uint16_t val);
 
 #endif

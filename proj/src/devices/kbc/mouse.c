@@ -37,10 +37,17 @@ int(mouse_unsubscribe_int)() {
   return sys_irqrmpolicy((int *) &mouse_global_hook_id);
 }
 
+bool (kbc_mouse_data)() {
+  uint8_t st_reg = 0;
+  util_sys_inb(KBC_OUT_BUF_ST, &st_reg);
+
+  return (st_reg & (KBC_ST_OBF  | BIT(5)));
+}
+
 void(mouse_ih)() {
   uint8_t byte = 0;
 
-  bool obf_full = kbc_outbuf_full();
+  bool obf_full = kbc_mouse_data();
 
   util_sys_inb(KBC_OUT_BUF, &byte);
   if (!obf_full)
@@ -88,13 +95,6 @@ void (kbc_enable_data_report) () {
   uint8_t cmd = 0; cmd |= (BIT(1));
   sys_outb(KBC_IN_BUF_CMD, cmd);
   write_command_to_mouse(MOUSE_ENABLE_DATA_REPORTING);
-}
-
-bool(kbc_outbuf_full)() {
-  uint8_t st_reg = 0;
-  util_sys_inb(KBC_OUT_BUF_ST, &st_reg);
-
-  return (st_reg & (KBC_ST_OBF | BIT(5)));
 }
 
 int16_t(uint8_to_int16)(uint8_t uint8_val, bool sign) {

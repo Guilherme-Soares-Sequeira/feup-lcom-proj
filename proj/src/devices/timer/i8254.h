@@ -3,6 +3,8 @@
 
 #include <lcom/lcf.h>
 
+#include "../../utils/utils.h"
+
 /** @defgroup i8254 i8254
  * @{
  *

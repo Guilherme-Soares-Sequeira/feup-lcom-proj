@@ -1,6 +1,8 @@
 // IMPORTANT: you must include the following line in all your C files
 #include <lcom/lcf.h>
 
+#include "../../utils/utils.h"
+
 #define VBE_INTERFACE 0x10
 
 #define VBE_SET_MODE 0x4F02
