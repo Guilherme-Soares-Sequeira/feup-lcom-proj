@@ -2,7 +2,7 @@
 
 PROG=proj
 
-.PATH: ${.CURDIR}
+.PATH: ${.CURDIR}/src
 .PATH: ${.CURDIR}/src/devices/kbc
 .PATH: ${.CURDIR}/src/devices/timer
 .PATH: ${.CURDIR}/src/devices/video
