@@ -44,6 +44,10 @@ bool (kbc_mouse_data)() {
   return (st_reg & (KBC_ST_OBF  | BIT(5)));
 }
 
+bool (lb_is_pressed)() {
+  return mouse_packet.lb;
+}
+
 void(mouse_ih)() {
   uint8_t byte = 0;
 

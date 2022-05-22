@@ -98,6 +98,25 @@ int (vg_draw_rectangle)(uint16_t x, uint16_t y, uint16_t width, uint16_t height,
   return 0;
 }
 
+int (vg_draw_circle)(uint16_t x, uint16_t y, uint16_t radius, uint32_t color) {
+  int32_t top_left_x = x - radius;
+  int32_t top_left_y = y - radius;
+  int32_t max_distance = radius * radius;
+  int32_t x32 = x, y32 = y; // So that calculations don't overflow
+  
+  for (int32_t i = top_left_x; i <= top_left_x + 2*radius; i++) {
+      for (int32_t j = top_left_y; j <= top_left_y + 2*radius; j++) {
+          if ((x32-i) * (x32-i) + (y32-j) * (y32-j) <= max_distance) {
+              if (vg_draw_pixel(i, j, color)) {
+                  return 1;
+              }
+          }
+      }
+  }
+
+  return 0;
+}
+
 xpm_image_t (vg_load_xpm) (const xpm_map_t map) {
   xpm_image_t info;
   xpm_load(map, XPM_INDEXED, &info);

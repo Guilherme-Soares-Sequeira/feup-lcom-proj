@@ -12,6 +12,8 @@ int (mouse_unsubscribe_int)();
 
 bool (kbc_mouse_data)();
 
+bool (lb_is_pressed)();
+
 struct packet (get_mouse_packet)();
 
 void (reset_kbc)();

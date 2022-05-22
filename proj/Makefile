@@ -8,7 +8,7 @@ PROG=proj
 .PATH: ${.CURDIR}/src/devices/video
 .PATH: ${.CURDIR}/src/utils
 
-SRCS = proj.c kbc.c mouse.c timer.c video_gr.c utils.c
+SRCS = proj.c kbc.c mouse.c timer.c video_gr.c utils.c cursor.c
 
 
 # additional compilation flags
