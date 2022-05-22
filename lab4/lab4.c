@@ -74,8 +74,54 @@ int(mouse_test_packet)(uint32_t cnt) {
 }
 
 int(mouse_test_async)(uint8_t idle_time) {
-  /* To be completed */
-  printf("%s(%u): under construction\n", __func__, idle_time);
+
+  uint8_t timer_bit, mouse_bit;
+  timer_subscribe_int(&timer_bit);
+  kbc_enable_data_report();
+  mouse_subscribe_int(&mouse_bit);
+
+  int ipc_status, r;
+  message msg;
+
+  bool cnt = true;
+  extern int timer_counter;
+
+  while(cnt) { 
+      /* Get a request message. */
+      if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 
+          printf("driver_receive failed with: %d", r);
+          continue;
+      }
+      if (is_ipc_notify(ipc_status)) { 
+          switch (_ENDPOINT_P(msg.m_source)) {
+              case HARDWARE: 			
+                  if (msg.m_notify.interrupts & BIT(mouse_bit)) {
+                    mouse_ih();
+                    timer_counter = 0;
+                    if (mouse_ready) {
+                      struct packet data_packet = get_mouse_packet();
+                      mouse_print_packet(&data_packet);
+                    }
+                  }
+                  else if (msg.m_notify.interrupts & BIT(timer_bit)) {
+                    timer_int_handler();
+                    if (timer_counter / sys_hz() >= idle_time) {
+                      cnt = false;
+                    }
+                  }
+                  break;
+              default:
+                  break; 	
+          }
+      } else { /* received a standard message, not a notification */
+          /* no standard messages expected: do nothing */
+      }
+  }
+
+  mouse_unsubscribe_int();
+  reset_kbc();
+  timer_unsubscribe_int();
+
   return 1;
 }
 
