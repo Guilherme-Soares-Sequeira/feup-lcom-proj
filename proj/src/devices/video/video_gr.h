@@ -6,3 +6,4 @@ int (vg_draw_xpm)(const xpm_image_t xpm_info, uint16_t x, uint16_t y);
 xpm_image_t (vg_load_xpm) (const xpm_map_t map);
 
 void (clear_screen)();
+void (flip)();

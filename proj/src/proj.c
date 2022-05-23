@@ -80,7 +80,7 @@ int(proj_main_loop)(int argc, char* argv[]) {
   /* video card initialization */
 
   vg_init(VBE_MODE_1024x768_INDEXED);
-  vg_draw_rectangle(0, 0, 1024, 768, 63);
+  // vg_init(VBE_MODE_1280x1024_FULL_COLOR);
 
   cursor_load();
   
@@ -122,12 +122,15 @@ int(proj_main_loop)(int argc, char* argv[]) {
 
             if (mouse_ready) {
               cursor_move(mouse_packet.delta_x, mouse_packet.delta_y);
-              clear_screen();
-              cursor_draw();
             }
           }
       }
     }
+
+    clear_screen();
+    vg_draw_rectangle(0, 0, 1024, 768, 63);
+    cursor_draw();
+    flip();
   }
 
   /* unsubscribe interrupts */

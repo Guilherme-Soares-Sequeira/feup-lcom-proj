@@ -11,6 +11,8 @@
 
 #define VBE_MODE_1024x768_INDEXED 0x105
 
+#define VBE_MODE_1280x1024_FULL_COLOR 0x11B
+
 void getRGB(uint32_t color, uint8_t* r, uint8_t* g, uint8_t* b);
 
 uint32_t makeRGB(uint8_t r, uint8_t g, uint8_t b);

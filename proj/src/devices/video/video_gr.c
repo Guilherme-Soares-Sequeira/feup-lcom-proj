@@ -12,8 +12,10 @@
 #include "vbe.h"
 
 vbe_mode_info_t vg_mode_info;
-void* vram;
+void* front_buffer;
+void* back_buffer;
 
+int bytes_per_pixel = 0;
 bool indexed = false;
 
 void (_get_mode_info)(in_port_t mode) { //TODO: implement this using sys_int86
@@ -21,21 +23,27 @@ void (_get_mode_info)(in_port_t mode) { //TODO: implement this using sys_int86
 }
 
 void (_map_memory)() {
-  vram = 0;
-  int r;
+  front_buffer = 0;
   struct minix_mem_range mr; /* physical memory range */
   unsigned int vram_base = vg_mode_info.PhysBasePtr; /* VRAM’s physical addresss */
-  unsigned int vram_size = ceil(vg_mode_info.BitsPerPixel/8.0) * vg_mode_info.XResolution * vg_mode_info.YResolution; /* VRAM’s size, but you can use the frame-buffer size, instead */
-  printf("%u\n", vram_size);
+  bytes_per_pixel = (vg_mode_info.BitsPerPixel + vg_mode_info.LinRsvdMaskSize)/8;
+  unsigned int vram_size = bytes_per_pixel * vg_mode_info.XResolution * vg_mode_info.YResolution;
+
   /* Allow memory mapping */
   mr.mr_base = (phys_bytes) vram_base;
   mr.mr_limit = mr.mr_base + vram_size;
+
+  int r;
   if((r = sys_privctl(SELF, SYS_PRIV_ADD_MEM, &mr)) != OK)
     panic("sys_privctl (ADD_MEM) failed: %d\n", r);
+    
   /* Map memory */
-  vram = vm_map_phys(SELF, (void *)mr.mr_base, vram_size);
-  if(vram == MAP_FAILED)
-    panic("couldn’t map video memory");
+  front_buffer = vm_map_phys(SELF, (void *)mr.mr_base, vram_size);
+
+  if(front_buffer == MAP_FAILED)
+    panic("couldn't map video memory");
+
+  back_buffer = malloc(vram_size);
 }
 
 void* (vg_init)(in_port_t graphics_mode) {
@@ -53,30 +61,21 @@ void* (vg_init)(in_port_t graphics_mode) {
 
   indexed = graphics_mode == 0x105;
 
-  return vram;
+  return back_buffer;
 }
 
 #define COLOR_SIZE_MASK(x) (BIT(x) - 1)
 
-int _bytes_per_pixel() {
-  return (vg_mode_info.BitsPerPixel + vg_mode_info.LinRsvdMaskSize)/8;
-}
-
 int (vg_draw_pixel)(uint16_t x, uint16_t y, uint32_t color) {
-  
-  if (indexed && color > 255) return 1;
-
   if (x >= vg_mode_info.XResolution || x < 0 || y >= vg_mode_info.YResolution ||  y < 0)
     return 0;
 
   color &= COLOR_SIZE_MASK(vg_mode_info.BitsPerPixel);
 
-  int bytes_per_pixel = _bytes_per_pixel();
-
   int pixel_offset = x + y * vg_mode_info.XResolution;
   int byte_offset = pixel_offset * bytes_per_pixel;
 
-  uint8_t* pixel_start = (uint8_t*)vram + byte_offset;
+  uint8_t* pixel_start = (uint8_t*)back_buffer + byte_offset;
 
   for (int j = 0; j < bytes_per_pixel; j++) {
     pixel_start[j] = color & 0xFF;
@@ -218,7 +217,6 @@ uint32_t getIndexedColor(uint32_t index, int no_rectangles, int col, int row, in
 }
 
 uint32_t getDirectColor(uint32_t color, int no_rectangles, int col, int row, int step) {
-
     uint8_t r, g, b;
     getRGB(color, &r, &g, &b);
 
@@ -246,5 +244,9 @@ int vg_draw_pattern(uint8_t no_rectangles, uint32_t first, uint8_t step) {
 }
 
 void (clear_screen)() {
-  memset(vram, 0, ceil(vg_mode_info.BitsPerPixel/8.0) * vg_mode_info.XResolution * vg_mode_info.YResolution);
+  memset(back_buffer, 0, bytes_per_pixel * vg_mode_info.XResolution * vg_mode_info.YResolution);
+}
+
+void (flip)() {
+  memcpy(front_buffer, back_buffer, bytes_per_pixel * vg_mode_info.XResolution * vg_mode_info.YResolution);
 }
