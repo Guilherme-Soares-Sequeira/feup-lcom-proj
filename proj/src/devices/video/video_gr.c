@@ -5,6 +5,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <math.h>
+#include <string.h>
 #include <stdbool.h>
 
 #include "vbe.h"
@@ -176,4 +177,8 @@ int vg_draw_pattern(uint8_t no_rectangles, uint32_t first, uint8_t step) {
     }
 
   return 0;
+}
+
+void (clear_screen)() {
+  memset(vram, 0, ceil(vg_mode_info.BitsPerPixel/8.0) * vg_mode_info.XResolution * vg_mode_info.YResolution);
 }

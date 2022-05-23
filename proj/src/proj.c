@@ -122,6 +122,7 @@ int(proj_main_loop)(int argc, char* argv[]) {
 
             if (mouse_ready) {
               cursor_move(mouse_packet.delta_x, mouse_packet.delta_y);
+              clear_screen();
               cursor_draw();
             }
           }
