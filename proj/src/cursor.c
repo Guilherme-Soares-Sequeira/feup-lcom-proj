@@ -21,8 +21,8 @@ void (cursor_load)() {
 }
 
 void (cursor_move)(int16_t delta_x, int16_t delta_y) {
-  cursor_x += delta_x;
-  cursor_y -= delta_y;
+  cursor_x = MIN(MAX(0, cursor_x + delta_x), 1024 - cursor_xpm.width);
+  cursor_y = MIN(MAX(0, cursor_y - delta_y), 768 - cursor_xpm.height);
 }
 
 void (cursor_set_lb)(bool new_lb) {
