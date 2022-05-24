@@ -79,7 +79,8 @@ int(proj_main_loop)(int argc, char* argv[]) {
 
   /* video card initialization */
 
-  vg_init(VBE_MODE_1024x768_INDEXED);
+  // vg_init(VBE_MODE_1024x768_INDEXED);
+  vg_init(VBE_MODE_800x600_INDEXED);
   // vg_init(VBE_MODE_1280x1024_FULL_COLOR);
 
   cursor_load();
@@ -127,8 +128,10 @@ int(proj_main_loop)(int argc, char* argv[]) {
       }
     }
 
-    clear_screen();
-    vg_draw_rectangle(0, 0, 1024, 768, 63);
+    clear_screen(9);
+    vg_draw_rectangle(16, 104, 480, 480, 63);
+    vg_draw_rectangle(512, 104, 272, 480, 63);
+    vg_draw_rectangle(16, 16, 768, 72, 63);
     cursor_draw();
     flip();
   }

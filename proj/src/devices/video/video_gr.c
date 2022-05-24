@@ -67,8 +67,14 @@ void *(vg_init) (in_port_t graphics_mode) {
 
 #define COLOR_SIZE_MASK(x) (BIT(x) - 1)
 
-int(vg_draw_pixel)(uint16_t x, uint16_t y, uint32_t color) {
-  if (x >= vg_mode_info.XResolution || x < 0 || y >= vg_mode_info.YResolution || y < 0)
+int (vg_draw_pixel_index)(uint32_t i, uint32_t color) {
+  memcpy((uint8_t*)back_buffer + i, &color, bytes_per_pixel);
+
+  return 0;
+}
+
+int (vg_draw_pixel)(uint16_t x, uint16_t y, uint32_t color) {
+  if (x >= vg_mode_info.XResolution || x < 0 || y >= vg_mode_info.YResolution ||  y < 0)
     return 0;
 
   color &= COLOR_SIZE_MASK(vg_mode_info.BitsPerPixel);
@@ -86,18 +92,31 @@ int(vg_draw_pixel)(uint16_t x, uint16_t y, uint32_t color) {
   return 0;
 }
 
-int(vg_draw_hline)(uint16_t x, uint16_t y, uint16_t len, uint32_t color) {
-  for (int i = 0; i < len && x + i < vg_mode_info.XResolution; i++)
-    if (vg_draw_pixel(x + i, y, color))
-      return 1;
+int (vg_draw_hline)(uint16_t x, uint16_t y, uint16_t len, uint32_t color) {
+  int i = y * vg_mode_info.XResolution + x;
 
+  memset((uint8_t*)back_buffer + i * bytes_per_pixel, color, len * bytes_per_pixel);
+
+  // for (int i = 0; i < len && x + i < vg_mode_info.XResolution; i++)
+  //   if (vg_draw_pixel(x + i, y, color)) return 1;
+    
   return 0;
 }
 
-int(vg_draw_rectangle)(uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint32_t color) {
-  for (int i = 0; i < height && y + i < vg_mode_info.YResolution; i++)
-    if (vg_draw_hline(x, y + i, width, color))
-      return 1;
+int (vg_draw_rectangle)(uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint32_t color) {
+  int i = (x + y * vg_mode_info.XResolution) * bytes_per_pixel;
+  int offset = vg_mode_info.XResolution * bytes_per_pixel;
+  width *= bytes_per_pixel;
+
+  for (int j = 0; j < height; ++j, i += offset)
+    memset((uint8_t*)back_buffer + i, color, width);
+
+  // for (int j = 0; j < height; ++j, i += offset)
+  //   for (int k = 0; k < width; ++k, i += bytes_per_pixel)
+  //     vg_draw_pixel_index(i, color);
+
+  // for(int i = 0; i < height && y + i < vg_mode_info.YResolution; i++)
+  //   if (vg_draw_hline(x, y + i, width, color)) return 1;
 
   return 0;
 }
@@ -193,13 +212,16 @@ xpm_image_t(vg_load_xpm)(const xpm_map_t map) {
   return info;
 }
 
-int(vg_draw_xpm)(const xpm_image_t xpm_info, uint16_t x, uint16_t y) {
-  uint8_t *bytes = xpm_info.bytes;
+int (vg_draw_xpm)(const xpm_image_t xpm_info, uint16_t x, uint16_t y) {
+  uint8_t* bytes = xpm_info.bytes;
 
-  for (unsigned long int i = 0; i < (unsigned long) xpm_info.size; i++) {
-    if (vg_draw_pixel(
-          x + (i % xpm_info.width), y + (i / xpm_info.height), (uint32_t) * (bytes + i)))
-      return 1;
+  for (unsigned long int i = 0; i < (unsigned long) xpm_info.width * xpm_info.height; i++) {
+    if (bytes[i] != 255 && vg_draw_pixel(
+      x + (i % xpm_info.width),
+      y + (i / xpm_info.width),
+      (uint32_t) *(bytes + i))
+    )
+        return 1;
   }
 
   return OK;
@@ -247,8 +269,8 @@ int vg_draw_pattern(uint8_t no_rectangles, uint32_t first, uint8_t step) {
   return 0;
 }
 
-void(clear_screen)() {
-  memset(back_buffer, 0, bytes_per_pixel * vg_mode_info.XResolution * vg_mode_info.YResolution);
+void (clear_screen)(uint8_t color) {
+  memset(back_buffer, color, bytes_per_pixel * vg_mode_info.XResolution * vg_mode_info.YResolution);
 }
 
 void(flip)() {
