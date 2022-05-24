@@ -29,3 +29,12 @@ uint16_t(to_bcd)(uint16_t val) {
   return res;
 }
 
+float float_abs(const float num) {
+  if (num < 0.0) return -num;
+  else return num;
+}
+
+bool max(const int a, const int b) {
+  if (a >= b) return a;
+  return b;
+}

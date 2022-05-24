@@ -126,8 +126,47 @@ int(mouse_test_async)(uint8_t idle_time) {
 }
 
 int(mouse_test_gesture)(uint8_t x_len, uint8_t tolerance) {
-  /* To be completed */
-  printf("%s: under construction\n", __func__);
+  uint8_t bit;
+  kbc_enable_data_report();
+  mouse_subscribe_int(&bit);
+  
+  bool event = false;
+  mouse_event_t mouse_event = {7, 0, 0, false, false, false};
+
+  int ipc_status, r;
+  message msg;
+
+  while (1) {
+    /* Get a request message. */
+    if ((r = driver_receive(ANY, &msg, &ipc_status)) != 0) {
+      printf("driver_receive failed with: %d", r);
+      continue;
+    }
+    
+    
+    if (is_ipc_notify(ipc_status) && // found interrupt
+        _ENDPOINT_P(msg.m_source) == HARDWARE &&
+        msg.m_notify.interrupts & BIT(bit)) {
+      mouse_ih();
+
+      if (mouse_ready) { // need only to check if we are ready to print the scancode since errors should have been caught by the previous if statement
+        struct packet data_packet = get_mouse_packet();
+        mouse_print_packet(&data_packet);
+
+        mouse_event = mouse_event_from_data_packet(&data_packet, &mouse_event);
+        event = true;
+      }
+    }
+    if (event) {
+      if (mouse_check_pattern(mouse_event, x_len, tolerance))
+        break;
+      event = false;
+    }
+  }
+
+  mouse_unsubscribe_int();
+  reset_kbc();
+
   return 1;
 }
 
