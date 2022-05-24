@@ -11,7 +11,7 @@ int32_t mouse_global_hook_id;
 
 struct packet mouse_packet;
 
-uint8_t counter = 0;
+uint8_t packet_counter = 0;
 
 bool mouse_ready = false;
 
@@ -57,7 +57,7 @@ void(mouse_ih)() {
   if (!obf_full)
     return;
 
-  switch (counter) {
+  switch (packet_counter) {
     case 0:
       if (!(byte & MOUSE_FBYTE)) {
         mouse_ready = false;
@@ -87,10 +87,10 @@ void(mouse_ih)() {
       break;
     }
   }
-  mouse_packet.bytes[counter] = byte;
-  counter = (counter + 1) % (sizeof(mouse_packet.bytes));
+  mouse_packet.bytes[packet_counter] = byte;
+  packet_counter = (packet_counter + 1) % (sizeof(mouse_packet.bytes));
 
-  mouse_ready = counter == 0; // when we catch a 0 at this point, we know we have successfully parsed 3 bytes
+  mouse_ready = (packet_counter == 0); // when we catch a 0 at this point, we know we have successfully parsed 3 bytes
 }
 
 void (kbc_enable_data_report) () {
@@ -140,7 +140,7 @@ void(write_command_to_mouse)(uint8_t command) {
     wait_for_inbuff_empty();
     sys_outb(KBC_IN_BUF_CMD, KBC_WR_BYTE_TO_MOUSE);
     wait_for_inbuff_empty();
-    sys_outb(KBC_IN_BUF_CMD, command);
+    sys_outb(KBC_IN_BUF_ARG, command);
     tickdelay(micros_to_ticks(25000));
     feedback = mouse_command_feedback();
     temp++;

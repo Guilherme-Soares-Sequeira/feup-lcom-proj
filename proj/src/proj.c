@@ -42,6 +42,8 @@ extern bool ready, scancode_processed;
 struct packet mouse_packet;
 extern bool mouse_ready;
 
+#define FPS 60
+extern unsigned long counter;
 
 int main(int argc, char *argv[]) {
   // sets the language of LCF messages (can be either EN-US or PT-PT)
@@ -49,11 +51,11 @@ int main(int argc, char *argv[]) {
 
   // enables to log function invocations that are being "wrapped" by LCF
   // [comment this out if you don't want/need it]
-  lcf_trace_calls("/home/lcom/labs/lab5/trace.txt");
+  lcf_trace_calls("/home/lcom/labs/proj/trace.txt");
 
   // enables to save the output of printf function calls on a file
   // [comment this out if you don't want/need it]
-  lcf_log_output("/home/lcom/labs/lab5/output.txt");
+  lcf_log_output("/home/lcom/labs/proj/output.txt");
 
   // handles control over to LCF
   // [LCF handles command line arguments and invokes the right function]
@@ -68,14 +70,19 @@ int main(int argc, char *argv[]) {
 }
 
 int(proj_main_loop)(int argc, char* argv[]) {
-  uint8_t keyboard_bit, mouse_bit;
+  uint8_t keyboard_bit, mouse_bit, timer_bit;
 
   kbc_enable_data_report();
 
   /* subscribe interrupts */
 
+  timer_subscribe_int(&timer_bit);
   kbc_subscribe_int(&keyboard_bit);
   mouse_subscribe_int(&mouse_bit);
+
+  /* timer initialization */
+
+  timer_set_frequency(0, 60 * FPS);
 
   /* video card initialization */
 
@@ -100,6 +107,22 @@ int(proj_main_loop)(int argc, char* argv[]) {
     if (is_ipc_notify(ipc_status)) {
       switch (_ENDPOINT_P(msg.m_source)) {
         case HARDWARE:
+          if (msg.m_notify.interrupts & BIT(timer_bit)) {
+            timer_int_handler();
+
+            if (counter % FPS == 0) {
+              counter = 0;
+            }
+          }
+
+          if (msg.m_notify.interrupts & BIT(mouse_bit)) {
+            mouse_ih();
+
+            if (mouse_ready) {
+              cursor_move(mouse_packet.delta_x, mouse_packet.delta_y);
+            }
+          }
+
           if (msg.m_notify.interrupts & BIT(keyboard_bit)) {
             kbc_ih();
       
@@ -117,14 +140,6 @@ int(proj_main_loop)(int argc, char* argv[]) {
               }
             }
           }
-          
-          if (msg.m_notify.interrupts & BIT(mouse_bit)) {
-            mouse_ih();
-
-            if (mouse_ready) {
-              cursor_move(mouse_packet.delta_x, mouse_packet.delta_y);
-            }
-          }
       }
     }
 
@@ -138,6 +153,7 @@ int(proj_main_loop)(int argc, char* argv[]) {
 
   /* unsubscribe interrupts */
 
+  timer_unsubscribe_int();
   kbc_unsubscribe_int();
   mouse_unsubscribe_int();
 
