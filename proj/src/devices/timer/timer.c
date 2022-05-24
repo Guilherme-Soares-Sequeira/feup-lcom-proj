@@ -4,9 +4,9 @@
 
 #include "i8254.h"
 
-int32_t global_hook_id;
+unsigned long counter;
 
-int counter;
+int32_t timer_global_hook_id;
 
 uint16_t(to_bcd)(uint16_t val);
 
@@ -49,13 +49,13 @@ int (timer_subscribe_int)(uint8_t *bit_no) {
 
   int res = sys_irqsetpolicy(TIMER0_IRQ, IRQ_REENABLE, &hook_id);
 
-  global_hook_id = hook_id;
+  timer_global_hook_id = hook_id;
 
   return res;
 }
 
 int (timer_unsubscribe_int)() {
-  return sys_irqrmpolicy((int*) &global_hook_id);
+  return sys_irqrmpolicy((int*) &timer_global_hook_id);
 }
 
 void (timer_int_handler)() {
