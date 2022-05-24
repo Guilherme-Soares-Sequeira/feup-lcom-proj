@@ -1,4 +1,8 @@
 {
   "makefile.extensionOutputFolder": "./.vscode",
-  "C_Cpp.errorSquiggles": "Disabled"
+  "C_Cpp.errorSquiggles": "Disabled",
+  "files.associations": {
+    "ps2.h": "c",
+    "i8042.h": "c"
+  }
 }

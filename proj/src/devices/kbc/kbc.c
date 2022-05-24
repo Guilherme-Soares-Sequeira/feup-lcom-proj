@@ -17,11 +17,7 @@ bool     ready = false, scancode_processed = false;
 int      bytes_read = 0;
 
 int(kbc_subscribe_int)(uint8_t *bit_no) {
-  int hook_id; // random
-
-  while (BIT(hook_id = (rand() % 32)) & used_ids)
-    ;
-  used_ids |= BIT(hook_id);
+  int hook_id = KBC_KEYBOARD_IRQ;
 
   *bit_no = (uint8_t) hook_id;
 
