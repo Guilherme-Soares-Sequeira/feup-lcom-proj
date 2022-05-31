@@ -21,7 +21,7 @@
 /* other includes */
 
 #include <stdbool.h>
-#include "cursor.h"
+#include "game/cursor.h"
 #include "xpm/cursor.xpm"
 
 

@@ -7,6 +7,7 @@ PROG=proj
 .PATH: ${.CURDIR}/src/devices/timer
 .PATH: ${.CURDIR}/src/devices/video
 .PATH: ${.CURDIR}/src/utils
+.PATH: ${.CURDIR}/src/game
 
 SRCS = proj.c kbc.c mouse.c timer.c video_gr.c utils.c cursor.c
 

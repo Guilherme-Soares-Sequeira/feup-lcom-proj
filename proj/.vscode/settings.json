@@ -3,6 +3,7 @@
   "C_Cpp.errorSquiggles": "Disabled",
   "files.associations": {
     "ps2.h": "c",
-    "i8042.h": "c"
+    "i8042.h": "c",
+    "video_gr.h": "c"
   }
 }
