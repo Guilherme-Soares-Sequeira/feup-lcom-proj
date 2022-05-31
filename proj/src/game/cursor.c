@@ -7,7 +7,7 @@
 
 static xpm_image_t cursor_xpm;
 
-static position pos;
+static position pos = {0, 0};
 
 static bool lb;
 

@@ -143,11 +143,15 @@ int(proj_main_loop)(int argc, char* argv[]) {
       }
     }
 
+    if (!mouse_packet.lb) {
     clear_screen(9);
     vg_draw_rectangle(16, 104, 480, 480, 63);
     vg_draw_rectangle(512, 104, 272, 480, 63);
     vg_draw_rectangle(16, 16, 768, 72, 63);
-    cursor_draw();
+    cursor_draw(); 
+    }
+    else
+      vg_draw_circle(cursor_get_pos().x, cursor_get_pos().y, 10, 1);
     flip();
   }
 
