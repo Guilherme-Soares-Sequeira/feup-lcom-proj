@@ -115,7 +115,6 @@ void(wait_for_inbuff_empty)() {
 
   int temp = 0;
   do {
-    printf("awaiting inbuf empty: %d\n", temp);
     temp++;
     status_reg = 0;
     util_sys_inb(KBC_OUT_BUF_ST, &status_reg);

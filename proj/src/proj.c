@@ -16,6 +16,7 @@
 /* utils include */
 
 #include "utils/utils.h"
+#include "utils/color.h"
 
 
 /* other includes */
@@ -23,7 +24,7 @@
 #include <stdbool.h>
 #include "game/cursor.h"
 #include "xpm/cursor.xpm"
-
+#include "game/canvas.h"
 
 /* global variables */
 
@@ -80,9 +81,9 @@ int(proj_main_loop)(int argc, char* argv[]) {
   kbc_subscribe_int(&keyboard_bit);
   mouse_subscribe_int(&mouse_bit);
 
-  /* timer initialization */
+  /* timer initialization */ 
 
-  timer_set_frequency(0, 60 * FPS);
+  //timer_set_frequency(0, FPS); USE ONLY TO INCREASE FPS to more than 60    
 
   /* video card initialization */
 
@@ -91,12 +92,14 @@ int(proj_main_loop)(int argc, char* argv[]) {
   // vg_init(VBE_MODE_1280x1024_FULL_COLOR);
 
   cursor_load();
+  canvas_load();
   
   int ipc_status, r;
   message msg;
 
   bool run = true;
 
+  int seconds = 0;
   while (run) {
     /* Get a request message. */
     if ((r = driver_receive(ANY, &msg, &ipc_status)) != 0) {
@@ -110,7 +113,12 @@ int(proj_main_loop)(int argc, char* argv[]) {
           if (msg.m_notify.interrupts & BIT(timer_bit)) {
             timer_int_handler();
 
-            counter %= FPS;
+            clear_screen(COLOR_BLUE);
+            
+            canvas_draw();
+            cursor_draw();
+
+            flip();
           }
 
           if (msg.m_notify.interrupts & BIT(mouse_bit)) {
@@ -118,6 +126,9 @@ int(proj_main_loop)(int argc, char* argv[]) {
 
             if (mouse_ready) {
               cursor_move(mouse_packet.delta_x, mouse_packet.delta_y);
+
+              if (mouse_packet.lb)
+                canvas_draw_pencil_circle();
             }
           }
 
@@ -140,19 +151,8 @@ int(proj_main_loop)(int argc, char* argv[]) {
           }
       }
     }
-
-    if (!mouse_packet.lb) {
-    clear_screen(9);
-    vg_draw_rectangle(16, 104, 480, 480, 63);
-    vg_draw_rectangle(512, 104, 272, 480, 63);
-    vg_draw_rectangle(16, 16, 768, 72, 63);
-    cursor_draw(); 
-    }
-    else
-      vg_draw_circle(cursor_get_pos().x, cursor_get_pos().y, 10, 1);
-    flip();
   }
-
+  printf("seconds = %d\n", seconds);
   /* unsubscribe interrupts */
 
   timer_unsubscribe_int();

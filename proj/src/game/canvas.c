@@ -10,9 +10,10 @@ static uint32_t (canvas_get_buffer_size)() {
 
 void (canvas_load)() {
   canvas_buffer.h_res = H_RES;
-  canvas_buffer.y_res = CANVAS_BOTTOM_VISIBLE_LIMIT;
+  canvas_buffer.v_res = CANVAS_BOTTOM_VISIBLE_LIMIT;
   canvas_buffer.bytes_per_pixel = CANVAS_BYPP;
   canvas_buffer.buffer_start = malloc(canvas_get_buffer_size());
+  canvas_clear();
 }
 
 void (canvas_draw)() {
@@ -20,7 +21,12 @@ void (canvas_draw)() {
 }
 
 void (canvas_fill)(uint8_t color) {
-  memset(canvas_buffer.buffer_start, canvas_buffer.buffer_size, color);
+  memset(canvas_buffer.buffer_start, color, canvas_get_buffer_size());
+}
+
+int (canvas_draw_pencil_circle)() {
+  uint16_t thickness = 10;
+  return buf_draw_circle(&canvas_buffer, cursor_get_pos(), thickness, 0x10);
 }
 
 void (canvas_clear)() {
@@ -30,3 +36,5 @@ void (canvas_clear)() {
 void (canvas_exit)() {
   free(canvas_buffer.buffer_start);
 }
+
+
