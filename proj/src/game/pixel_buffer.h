@@ -1,3 +1,6 @@
+#ifndef PIXEL_BUFFER_H
+#define PIXEL_BUFFER_H
+
 #include <lcom/lcf.h>
 
 #include <stdint.h>
@@ -15,3 +18,5 @@ typedef struct {
 } pixel_buffer;
 
 pixel_buffer new_pixel_buffer(uint16_t h_res, uint16_t v_res, uint8_t bytes_per_pixel);
+
+#endif

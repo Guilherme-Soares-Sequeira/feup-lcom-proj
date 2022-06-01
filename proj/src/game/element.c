@@ -10,3 +10,4 @@ bool (is_hovered)(interactive_element elem) {
           mouse_position.y >= elem.top_pos.y &&
           mouse_position.y < elem.top_pos.y + elem.v_len);
 }
+

@@ -2,6 +2,5 @@
 
 #include "canvas.h"
 
-static pixel_buffer canvas_buffer;
+// static pixel_buffer canvas_buffer;
 
-void* canvas_buffer;

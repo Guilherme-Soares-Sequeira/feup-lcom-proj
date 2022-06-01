@@ -1,3 +1,5 @@
+#ifndef INTERACTIVE_ELEMENT_H
+#define INTERACTIVE_ELEMENT_H
 
 #include <lcom/lcf.h>
 
@@ -20,3 +22,5 @@ typedef struct {
 } interactive_element;
 
 bool (is_hovered)(interactive_element elem);
+
+#endif

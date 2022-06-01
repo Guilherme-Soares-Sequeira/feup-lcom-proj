@@ -8,7 +8,7 @@ Makefile:28: *** missing separator.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue May 31 11:43:49 2022
+# Make data base, printed on Wed Jun  1 16:18:48 2022
 
 # Variables
 
@@ -53,7 +53,7 @@ VTE_VERSION = 6003
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en","availableLanguages":{},"_languagePackSupport":true}
 # environment
-JOURNAL_STREAM = 8:50711
+JOURNAL_STREAM = 8:51654
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # environment
@@ -81,13 +81,13 @@ VSCODE_VERBOSE_LOGGING = true
 # environment
 LC_CTYPE = pt_PT.UTF-8
 # environment
-MANAGERPID = 1744
+MANAGERPID = 1803
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-164b7b68-a9bf-4a47-8e48-9fe61c155994.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-b2059f6c-28bf-46fb-93fc-7289cb5c1093.sock
 # environment
 LC_NAME = pt_PT.UTF-8
 # environment
-VSCODE_CWD = /home/pedro/Desktop/MINIX-LCOM/shared/proj/src
+VSCODE_CWD = /home/pedro/Desktop/MINIX-LCOM/shared/proj
 # environment
 XDG_SESSION_PATH = /org/freedesktop/DisplayManager/Session0
 # environment
@@ -103,13 +103,14 @@ GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
 LSCOLORS = Gxfxcxdxbxegedabagacad
 # environment
-SESSION_MANAGER = local/pedro-ramalho:@/tmp/.ICE-unix/1950,unix/pedro-ramalho:/tmp/.ICE-unix/1950
+SESSION_MANAGER = local/pedro-ramalho:@/tmp/.ICE-unix/2008,unix/pedro-ramalho:/tmp/.ICE-unix/2008
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
 GDK_PIXBUF_MODULE_FILE = /home/pedro/snap/code/common/.cache/gdk-pixbuf-loaders.cache
 # environment
 SNAP = /snap/code/97
+ 
 # environment
 SNAP_VERSION = c3511e6c
 # environment
@@ -121,7 +122,7 @@ DISABLE_WAYLAND = 1
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = 00fd20e9888a45db8c6cecbb49ae9240
+INVOCATION_ID = 896e8135e3fa49a79d5777e2751e39d5
 # environment
 GDK_PIXBUF_MODULEDIR = /snap/code/97/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # default
@@ -151,7 +152,7 @@ PWD = /home/pedro/Desktop/MINIX-LCOM/shared/proj
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 1892
+SSH_AGENT_PID = 1947
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -167,6 +168,7 @@ VSCODE_CLI = 1
 # environment
 VSCODE_CODE_CACHE_PATH = /home/pedro/.config/Code/CachedData/c3511e6c69bb39013c4a4b7b9566ec1ca73fc4d5
 # environment
+ 
 LOGNAME = pedro
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
@@ -199,7 +201,7 @@ MAKECMDGOALS := all
 # environment
 QT_IM_MODULE = ibus
 # makefile (from 'Makefile', line 12)
-SRCS = proj.c kbc.c mouse.c timer.c video_gr.c utils.c cursor.c
+SRCS = proj.c kbc.c mouse.c timer.c video_gr.c utils.c cursor.c canvas.c element.c pixel_buffer.c
 # environment
 SNAP_USER_DATA = /home/pedro/snap/code/97
 # environment
@@ -227,7 +229,7 @@ LC_TELEPHONE = pt_PT.UTF-8
 # default
 MAKE_COMMAND := make
 # environment
-OLDPWD = /home/pedro
+OLDPWD = /home/pedro/Desktop/MINIX-LCOM/shared/proj/src
 # default
 .VARIABLES := 
 # automatic
@@ -235,6 +237,7 @@ OLDPWD = /home/pedro
 # environment
 LANGUAGE = en_US
 # environment
+ 
 XDG_SEAT_PATH = /org/freedesktop/DisplayManager/Seat0
 # environment
 VSCODE_IPC_HOOK = /run/user/1000/vscode-67d47394-1.67.2-main.sock
@@ -271,11 +274,12 @@ PAGER = less
 # environment
 LC_ALL = C
 # environment
-GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/07daa5fa_a50d_44e2_be80_b61f9bf2396f
+GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/755ea6d3_e75d_45ff_b8a9_7f6d89a0ea2c
 # automatic
 ^F = $(notdir $^)
 # environment
-GNOME_TERMINAL_SERVICE = :1.83
+GNOME_TERMINAL_SERVICE = :1.98
+ 
 # default
 SUFFIXES := 
 # environment
@@ -295,9 +299,8 @@ LANG = C
 # environment
 TERM = xterm-256color
 # environment
-VSCODE_PID = 15971
+VSCODE_PID = 3856
 # variable set hash-table stats:
- 
 # Load=142/1024=14%, Rehash=0, Collisions=17/164=10%
 
 # Pattern-specific Variable Values
@@ -306,14 +309,15 @@ VSCODE_PID = 15971
 
 # Directories
 
-# . (device 66309, inode 8936172): 9 files, no impossibilities.
+# . (device 66309, inode 8936172): 20 files, no impossibilities.
 
-# 9 files, no impossibilities in 1 directories.
+# 20 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
 # No implicit rules.
 
+ 
 # Files
 
 # Not a target:
@@ -362,6 +366,7 @@ Makefile:
 /src:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
+ 
 #  File has not been updated.
 
 # Not a target:
@@ -384,12 +389,12 @@ Makefile:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 21 / storage = 202 B / avg = 9 B
-# current buf: size = 8162 B / used = 202 B / count = 21 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 32 / storage = 298 B / avg = 9 B
+# current buf: size = 8162 B / used = 298 B / count = 32 / avg = 9 B
 
-# strcache performance: lookups = 36 / hit rate = 41%
+# strcache performance: lookups = 47 / hit rate = 31%
 # hash-table stats:
-# Load=21/8192=0%, Rehash=0, Collisions=1/36=3%
-# Finished Make data base on Tue May 31 11:43:49 2022
+# Load=32/8192=0%, Rehash=0, Collisions=1/47=2%
+# Finished Make data base on Wed Jun  1 16:18:48 2022
 
  

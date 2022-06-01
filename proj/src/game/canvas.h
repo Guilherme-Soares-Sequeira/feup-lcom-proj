@@ -1,3 +1,6 @@
+#ifndef CANVAS_H
+#define CANVAS_H
+
 #include <lcom/lcf.h>
 
 #include "pixel_buffer.h"
@@ -7,9 +10,6 @@
 #define CANVAS_RIGHT_VISIBLE_LIMIT 770
 #define CANVAS_BOTTOM_VISIBLE_LIMIT 340
 
-typedef struct {
-  
-} CANVAS_STATE;
 
 void (canvas_init)();
 
@@ -17,3 +17,4 @@ void (canvas_fill)(uint8_t color);
 
 void (canvas_clear)();
 
+#endif

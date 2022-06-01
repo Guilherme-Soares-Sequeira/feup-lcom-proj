@@ -9,7 +9,7 @@ PROG=proj
 .PATH: ${.CURDIR}/src/utils
 .PATH: ${.CURDIR}/src/game
 
-SRCS = proj.c kbc.c mouse.c timer.c video_gr.c utils.c cursor.c
+SRCS = proj.c kbc.c mouse.c timer.c video_gr.c utils.c cursor.c canvas.c element.c pixel_buffer.c
 
 
 # additional compilation flags
