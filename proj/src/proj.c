@@ -110,9 +110,7 @@ int(proj_main_loop)(int argc, char* argv[]) {
           if (msg.m_notify.interrupts & BIT(timer_bit)) {
             timer_int_handler();
 
-            if (counter % FPS == 0) {
-              counter = 0;
-            }
+            counter %= FPS;
           }
 
           if (msg.m_notify.interrupts & BIT(mouse_bit)) {

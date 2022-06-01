@@ -18,6 +18,10 @@ void *back_buffer;
 int bytes_per_pixel = 0;
 bool indexed = false;
 
+void* (vg_get_back_buffer)() {
+  return back_buffer;
+}
+
 void(_get_mode_info)(in_port_t mode) { // TODO: implement this using sys_int86
   vbe_get_mode_info(mode, &vg_mode_info);
 }

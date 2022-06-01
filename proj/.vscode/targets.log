@@ -8,7 +8,7 @@ Makefile:28: *** missing separator.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Wed Jun  1 16:18:48 2022
+# Make data base, printed on Wed Jun  1 18:57:18 2022
 
 # Variables
 
@@ -110,7 +110,6 @@ XDG_RUNTIME_DIR = /run/user/1000
 GDK_PIXBUF_MODULE_FILE = /home/pedro/snap/code/common/.cache/gdk-pixbuf-loaders.cache
 # environment
 SNAP = /snap/code/97
- 
 # environment
 SNAP_VERSION = c3511e6c
 # environment
@@ -168,7 +167,6 @@ VSCODE_CLI = 1
 # environment
 VSCODE_CODE_CACHE_PATH = /home/pedro/.config/Code/CachedData/c3511e6c69bb39013c4a4b7b9566ec1ca73fc4d5
 # environment
- 
 LOGNAME = pedro
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
@@ -201,7 +199,7 @@ MAKECMDGOALS := all
 # environment
 QT_IM_MODULE = ibus
 # makefile (from 'Makefile', line 12)
-SRCS = proj.c kbc.c mouse.c timer.c video_gr.c utils.c cursor.c canvas.c element.c pixel_buffer.c
+SRCS = proj.c kbc.c mouse.c timer.c video_gr.c utils.c cursor.c canvas.c element.c pixel_buffer.c graphics.c
 # environment
 SNAP_USER_DATA = /home/pedro/snap/code/97
 # environment
@@ -237,7 +235,6 @@ OLDPWD = /home/pedro/Desktop/MINIX-LCOM/shared/proj/src
 # environment
 LANGUAGE = en_US
 # environment
- 
 XDG_SEAT_PATH = /org/freedesktop/DisplayManager/Seat0
 # environment
 VSCODE_IPC_HOOK = /run/user/1000/vscode-67d47394-1.67.2-main.sock
@@ -279,7 +276,6 @@ GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/755ea6d3_e75d_45ff_b8a9_7f6d8
 ^F = $(notdir $^)
 # environment
 GNOME_TERMINAL_SERVICE = :1.98
- 
 # default
 SUFFIXES := 
 # environment
@@ -309,15 +305,14 @@ VSCODE_PID = 3856
 
 # Directories
 
-# . (device 66309, inode 8936172): 20 files, no impossibilities.
+# . (device 66309, inode 8936172): 8 files, no impossibilities.
 
-# 20 files, no impossibilities in 1 directories.
+# 8 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
 # No implicit rules.
 
- 
 # Files
 
 # Not a target:
@@ -358,6 +353,7 @@ Makefile:
 
 # Not a target:
 .DEFAULT:
+ 
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -366,7 +362,6 @@ Makefile:
 /src:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
- 
 #  File has not been updated.
 
 # Not a target:
@@ -389,12 +384,12 @@ Makefile:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 32 / storage = 298 B / avg = 9 B
-# current buf: size = 8162 B / used = 298 B / count = 32 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 20 / storage = 193 B / avg = 9 B
+# current buf: size = 8162 B / used = 193 B / count = 20 / avg = 9 B
 
-# strcache performance: lookups = 47 / hit rate = 31%
+# strcache performance: lookups = 35 / hit rate = 42%
 # hash-table stats:
-# Load=32/8192=0%, Rehash=0, Collisions=1/47=2%
-# Finished Make data base on Wed Jun  1 16:18:48 2022
+# Load=20/8192=0%, Rehash=0, Collisions=1/35=3%
+# Finished Make data base on Wed Jun  1 18:57:18 2022
 
  
