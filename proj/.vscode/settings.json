@@ -4,6 +4,7 @@
   "files.associations": {
     "ps2.h": "c",
     "i8042.h": "c",
-    "video_gr.h": "c"
+    "video_gr.h": "c",
+    "*.xpm": "c"
   }
 }

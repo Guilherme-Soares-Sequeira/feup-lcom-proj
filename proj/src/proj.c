@@ -99,7 +99,6 @@ int(proj_main_loop)(int argc, char* argv[]) {
 
   bool run = true;
 
-  int seconds = 0;
   while (run) {
     /* Get a request message. */
     if ((r = driver_receive(ANY, &msg, &ipc_status)) != 0) {
@@ -152,7 +151,6 @@ int(proj_main_loop)(int argc, char* argv[]) {
       }
     }
   }
-  printf("seconds = %d\n", seconds);
   /* unsubscribe interrupts */
 
   timer_unsubscribe_int();

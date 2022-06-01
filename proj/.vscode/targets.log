@@ -8,7 +8,7 @@ Makefile:28: *** missing separator.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Wed Jun  1 18:57:18 2022
+# Make data base, printed on Wed Jun  1 23:02:53 2022
 
 # Variables
 
@@ -83,7 +83,7 @@ LC_CTYPE = pt_PT.UTF-8
 # environment
 MANAGERPID = 1803
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-b2059f6c-28bf-46fb-93fc-7289cb5c1093.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-aa8990f1-6ed6-456d-8181-195f30bcdf18.sock
 # environment
 LC_NAME = pt_PT.UTF-8
 # environment
@@ -227,7 +227,7 @@ LC_TELEPHONE = pt_PT.UTF-8
 # default
 MAKE_COMMAND := make
 # environment
-OLDPWD = /home/pedro/Desktop/MINIX-LCOM/shared/proj/src
+OLDPWD = /home/pedro
 # default
 .VARIABLES := 
 # automatic
@@ -271,11 +271,11 @@ PAGER = less
 # environment
 LC_ALL = C
 # environment
-GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/755ea6d3_e75d_45ff_b8a9_7f6d89a0ea2c
+GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/889c79de_bf06_43fc_9264_329a8ecbbebe
 # automatic
 ^F = $(notdir $^)
 # environment
-GNOME_TERMINAL_SERVICE = :1.98
+GNOME_TERMINAL_SERVICE = :1.4885
 # default
 SUFFIXES := 
 # environment
@@ -295,8 +295,9 @@ LANG = C
 # environment
 TERM = xterm-256color
 # environment
-VSCODE_PID = 3856
+VSCODE_PID = 49151
 # variable set hash-table stats:
+ 
 # Load=142/1024=14%, Rehash=0, Collisions=17/164=10%
 
 # Pattern-specific Variable Values
@@ -305,9 +306,9 @@ VSCODE_PID = 3856
 
 # Directories
 
-# . (device 66309, inode 8936172): 8 files, no impossibilities.
+# . (device 66309, inode 8936172): 21 files, no impossibilities.
 
-# 8 files, no impossibilities in 1 directories.
+# 21 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -353,7 +354,6 @@ Makefile:
 
 # Not a target:
 .DEFAULT:
- 
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -384,12 +384,12 @@ Makefile:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 20 / storage = 193 B / avg = 9 B
-# current buf: size = 8162 B / used = 193 B / count = 20 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 33 / storage = 309 B / avg = 9 B
+# current buf: size = 8162 B / used = 309 B / count = 33 / avg = 9 B
 
-# strcache performance: lookups = 35 / hit rate = 42%
+# strcache performance: lookups = 48 / hit rate = 31%
 # hash-table stats:
-# Load=20/8192=0%, Rehash=0, Collisions=1/35=3%
-# Finished Make data base on Wed Jun  1 18:57:18 2022
+# Load=33/8192=0%, Rehash=0, Collisions=1/48=2%
+# Finished Make data base on Wed Jun  1 23:02:54 2022
 
  
