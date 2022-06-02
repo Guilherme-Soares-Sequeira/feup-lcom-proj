@@ -18,24 +18,24 @@
  * @brief States that define what the mouse will draw and how it looks when hovering the canvas 
  * 
  */
-typedef enum {
+typedef enum cursor_style {
   CURSOR_DSTATE_CIRCLE,
   CURSOR_DSTATE_SQUARE,
   CURSOR_DSTATE_ARROW,
   CURSOR_DSTATE_LINE,
   CURSOR_DSTATE_BUCKET
-} cursor_state_t;
+} cursor_state_style_t;
 
 
 /**
  * @brief States that define the thickness of the mouse
  * 
  */
-typedef enum {
+typedef enum cursor_thickness {
   CURSOR_DSTATE_THIN,
   CURSOR_DSTATE_REGULAR,
   CURSOR_DSTATE_THICK
-} cursor_thickness_t;
+} cursor_state_thickness_t;
 
 
 /**
@@ -63,26 +63,18 @@ position (cursor_get_pos)();
 
 
 /**
- * @brief Assigns a new value to the left button of the cursor
- * @param new_lb new value of the left button
+ * @brief Gets the current style of the cursor
  * 
+ * @return cursor style
  */
-void (cursor_set_lb)(bool new_lb);
-
-
-/**
- * @brief Get cursor state
- * 
- * @return cursor state
- */
-cursor_state_t (cursor_get_state)();
+cursor_state_style_t (cursor_get_style)();
 
 
 /**
  * @brief Set cursor state
  * @param state state to be set
  */
-void (cursor_set_state)(cursor_state_t state);
+void (cursor_set_style)(cursor_state_style_t style);
 
 
 /**
@@ -90,7 +82,7 @@ void (cursor_set_state)(cursor_state_t state);
  * 
  * @return cursor thickness
  */
-cursor_thickness_t (cursor_get_thickness)();
+cursor_state_thickness_t (cursor_get_thickness)();
 
 
 /**
@@ -98,7 +90,7 @@ cursor_thickness_t (cursor_get_thickness)();
  * 
  * @return cursor thickness to be set
  */
-void (cursor_set_thickness)(cursor_thickness_t thickness);
+void (cursor_set_thickness)(cursor_state_thickness_t thickness);
 
 
 /**
@@ -113,6 +105,14 @@ void (cursor_draw)();
  * 
  */
 void (cursor_clear)();
+
+
+/**
+ * @brief Assigns a new value to the left button of the cursor
+ * @param new_lb new value of the left button
+ * 
+ */
+void (cursor_set_lb)(bool lb);
 
 
 /**

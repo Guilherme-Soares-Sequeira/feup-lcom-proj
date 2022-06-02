@@ -30,6 +30,4 @@ int (canvas_draw_pencil_square)();
 
 void (canvas_exit)(); /* frees the memory allocated to the canvas */
 
-
-
 #endif

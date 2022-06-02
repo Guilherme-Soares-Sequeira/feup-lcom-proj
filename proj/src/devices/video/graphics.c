@@ -100,21 +100,17 @@ int (buf_draw_rectangle)(pixel_buffer const * const buf, position pos, uint16_t 
 }
 
 int (buf_draw_circle)(pixel_buffer const * const buf, position pos, uint16_t radius, uint8_t color) {
-  uint16_t top_left_x = pos.x - radius;
-  uint16_t top_left_y = pos.y - radius;
-  uint32_t max_distance = radius * radius;
-  uint32_t x32 = pos.x, y32 = pos.y;
+  const uint32_t squared_radius = pow(radius, 2);
 
-  for (uint32_t i = top_left_x; i <= top_left_x + 2 * radius; i++) {
-    for (uint32_t j = top_left_y; j <= top_left_y + 2 * radius; j++) {
-      if ((x32 - i) * (x32 - i) + (y32 - j) * (y32 - j) <= max_distance) {
+  uint32_t x32b = pos.x, y32b = pos.y;
+
+  for (uint32_t i = pos.x - radius; i <= (pos.x - radius) + 2 * radius; i++) 
+    for (uint32_t j = pos.y - radius; j <= (pos.y - radius) + 2 * radius; j++) 
+      if (((x32b - i) * (x32b - i) +  (y32b - j) * (y32b - j)) <= squared_radius) 
         if (buf_draw_pixel(buf, (position) {i, j}, color)) {
           fprintf(stderr, "There was an error drawing a pixel at %s!\n", __func__);
           return 1;
         }
-      }
-    }
-  }
-
+      
   return 0;
 }

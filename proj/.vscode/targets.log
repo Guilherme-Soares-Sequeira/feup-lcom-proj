@@ -1,6 +1,4 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
-Makefile:28: *** missing separator.  Stop.
-
 # GNU Make 4.2.1
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2016 Free Software Foundation, Inc.
@@ -8,7 +6,7 @@ Makefile:28: *** missing separator.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Wed Jun  1 23:02:53 2022
+# Make data base, printed on Thu Jun  2 14:51:28 2022
 
 # Variables
 
@@ -53,7 +51,7 @@ VTE_VERSION = 6003
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en","availableLanguages":{},"_languagePackSupport":true}
 # environment
-JOURNAL_STREAM = 8:51654
+JOURNAL_STREAM = 8:45888
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # environment
@@ -81,9 +79,9 @@ VSCODE_VERBOSE_LOGGING = true
 # environment
 LC_CTYPE = pt_PT.UTF-8
 # environment
-MANAGERPID = 1803
+MANAGERPID = 1799
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-aa8990f1-6ed6-456d-8181-195f30bcdf18.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-d6567c9c-eb20-4558-87b5-4a4bf2986038.sock
 # environment
 LC_NAME = pt_PT.UTF-8
 # environment
@@ -103,7 +101,7 @@ GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
 LSCOLORS = Gxfxcxdxbxegedabagacad
 # environment
-SESSION_MANAGER = local/pedro-ramalho:@/tmp/.ICE-unix/2008,unix/pedro-ramalho:/tmp/.ICE-unix/2008
+SESSION_MANAGER = local/pedro-ramalho:@/tmp/.ICE-unix/2005,unix/pedro-ramalho:/tmp/.ICE-unix/2005
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -121,7 +119,7 @@ DISABLE_WAYLAND = 1
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = 896e8135e3fa49a79d5777e2751e39d5
+INVOCATION_ID = e5ca83470e7343ffb05d528c2fd67de2
 # environment
 GDK_PIXBUF_MODULEDIR = /snap/code/97/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # default
@@ -151,7 +149,7 @@ PWD = /home/pedro/Desktop/MINIX-LCOM/shared/proj
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 1947
+SSH_AGENT_PID = 1946
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -271,11 +269,11 @@ PAGER = less
 # environment
 LC_ALL = C
 # environment
-GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/889c79de_bf06_43fc_9264_329a8ecbbebe
+GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/79cce82c_0202_4f8e_ae7d_5d966965d02e
 # automatic
 ^F = $(notdir $^)
 # environment
-GNOME_TERMINAL_SERVICE = :1.4885
+GNOME_TERMINAL_SERVICE = :1.85
 # default
 SUFFIXES := 
 # environment
@@ -285,6 +283,9 @@ CHROME_DESKTOP = code-url-handler.desktop
 # default
 .INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
 # environment
+ 
+Makefile:28: *** missing separator.  Stop.
+
 LC_IDENTIFICATION = pt_PT.UTF-8
 # default
 .RECIPEPREFIX := 
@@ -295,9 +296,8 @@ LANG = C
 # environment
 TERM = xterm-256color
 # environment
-VSCODE_PID = 49151
+VSCODE_PID = 3970
 # variable set hash-table stats:
- 
 # Load=142/1024=14%, Rehash=0, Collisions=17/164=10%
 
 # Pattern-specific Variable Values
@@ -390,6 +390,6 @@ Makefile:
 # strcache performance: lookups = 48 / hit rate = 31%
 # hash-table stats:
 # Load=33/8192=0%, Rehash=0, Collisions=1/48=2%
-# Finished Make data base on Wed Jun  1 23:02:54 2022
+# Finished Make data base on Thu Jun  2 14:51:28 2022
 
  

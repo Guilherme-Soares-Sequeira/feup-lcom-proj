@@ -3,6 +3,8 @@
 
 #include <lcom/lcf.h>
 
+#include <math.h>
+
 #include "../../game/pixel_buffer.h"
 #include "../../utils/position.h"
 #include "../../utils/const.h"
