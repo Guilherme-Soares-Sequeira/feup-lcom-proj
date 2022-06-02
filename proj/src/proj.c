@@ -25,6 +25,7 @@
 #include "game/cursor.h"
 #include "xpm/cursor.xpm"
 #include "game/canvas.h"
+#include "game/text.h"
 
 /* global variables */
 
@@ -93,6 +94,7 @@ int(proj_main_loop)(int argc, char* argv[]) {
 
   cursor_load();
   canvas_load();
+  text_load();
   
   int ipc_status, r;
   message msg;

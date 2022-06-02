@@ -27,8 +27,8 @@ void (cursor_load)() {
 }
 
 void (cursor_move)(int16_t delta_x, int16_t delta_y) {
-  pos.x = MIN(MAX(0, pos.x + delta_x), H_RES - cursor_xpm.width);
-  pos.y = MIN(MAX(0, pos.y - delta_y), V_RES - cursor_xpm.height);
+  pos.x = MIN(MAX(0, pos.x + delta_x), H_RES - cursor_default_xpm.width);
+  pos.y = MIN(MAX(0, pos.y - delta_y), V_RES - cursor_default_xpm.height);
 }
 
 void (cursor_set_lb)(bool new_lb) {
@@ -36,11 +36,11 @@ void (cursor_set_lb)(bool new_lb) {
 }
 
 void (cursor_draw)() {
-  vg_draw_xpm(cursor_xpm, pos.x, pos.y);
+  vg_draw_xpm(cursor_default_xpm, pos.x, pos.y);
 }
 
 void (cursor_clear)() {
-  free(cursor_xpm.bytes);
+  free(cursor_default_xpm.bytes);
 }
 
 void (cursor_set_state)(cursor_state_t state) {
