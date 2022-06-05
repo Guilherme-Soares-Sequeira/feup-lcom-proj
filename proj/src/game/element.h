@@ -18,6 +18,8 @@ typedef struct {
   
   int8_t event_priority; 
 
+  void (*draw_element)(position topleft_pos);
+
   void (*mouse_event_handler)(position top_pos, uint16_t h_len, uint16_t v_len);
 } interactive_element;
 

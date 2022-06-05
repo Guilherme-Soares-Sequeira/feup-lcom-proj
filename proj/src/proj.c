@@ -27,6 +27,8 @@
 #include "game/canvas.h"
 #include "game/text.h"
 
+#include "xpm/buttons/button_plus_size.xpm"
+
 /* global variables */
 
 /* keyboard */
@@ -95,11 +97,13 @@ int(proj_main_loop)(int argc, char* argv[]) {
   cursor_load();
   canvas_load();
   text_load();
-  
+
   int ipc_status, r;
   message msg;
 
   bool run = true;
+
+  xpm_image_t button_plus = vg_load_xpm(xpm_button_plus);
 
   while (run) {
     /* Get a request message. */
@@ -118,6 +122,7 @@ int(proj_main_loop)(int argc, char* argv[]) {
             
             canvas_draw();
             cursor_draw();
+            vg_draw_xpm(button_plus, 380, 350);
 
             flip();
           }

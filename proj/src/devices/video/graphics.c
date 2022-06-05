@@ -3,10 +3,10 @@
 #include "graphics.h"
 
 int (buf_draw_pixel)(pixel_buffer const * const buf, position pos, uint8_t color) {
-  if (pos.x >= H_RES || pos.y >= V_RES)
+  if (pos.x >= buf->h_res || pos.y >= buf->v_res)
     return 0;
   
-  int pixel_offset = pos.x + pos.y * H_RES;
+  int pixel_offset = pos.x + pos.y * buf->h_res;
   int byte_offset = pixel_offset * buf->bytes_per_pixel;
 
   uint8_t *pixel_start = (uint8_t *) buf->buffer_start + byte_offset;
@@ -88,8 +88,8 @@ int (buf_draw_line)(pixel_buffer const * const buf, position from_pos, position 
 }
 
 int (buf_draw_rectangle)(pixel_buffer const * const buf, position pos, uint16_t width, uint16_t height, uint8_t color) {
-  int i = (pos.x + pos.y * H_RES) * buf->bytes_per_pixel;
-  int offset = H_RES * buf->bytes_per_pixel;
+  int i = (pos.x + pos.y * buf->h_res) * buf->bytes_per_pixel;
+  int offset = buf->h_res * buf->bytes_per_pixel;
   
   width *= buf->bytes_per_pixel;
 
@@ -112,5 +112,23 @@ int (buf_draw_circle)(pixel_buffer const * const buf, position pos, uint16_t rad
           return 1;
         }
       
+  return 0;
+}
+
+
+int (buf_draw_hline)(pixel_buffer const * const buf, position pos, uint16_t len, uint8_t color) {
+  int byte_offset = (pos.y * buf->h_res + pos.x) * buf->bytes_per_pixel;
+  len = pos.x + len >= buf->h_res ? buf->h_res - pos.x - 1 : len; 
+
+  memset((uint8_t*)buf->buffer_start + byte_offset, color, len * buf->bytes_per_pixel);
+  return 0;
+}
+
+int (buf_draw_vline)(pixel_buffer const * const buf, position pos, uint16_t len, uint8_t color) {
+  int byte_offset = (pos.y * buf->h_res + pos.x) * buf->bytes_per_pixel;
+
+  for (int i = 0; i < len && pos.y + i < buf->v_res; i++)
+    if (buf_draw_pixel(buf, (position) {pos.x, pos.y+i}, color)) return 1;
+    
   return 0;
 }

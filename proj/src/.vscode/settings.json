@@ -9,6 +9,7 @@
   "files.associations": {
     "sysutil.h": "c",
     "cursor.h": "c",
-    "*.xpm": "c"
+    "*.xpm": "c",
+    "position.h": "c"
   },
 }

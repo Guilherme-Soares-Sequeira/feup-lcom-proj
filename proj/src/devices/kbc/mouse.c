@@ -65,7 +65,10 @@ void(mouse_ih)() {
       }
 
       mouse_packet.rb = byte & MOUSE_RB;
+      
       mouse_packet.lb = byte & MOUSE_LB;
+      cursor_set_lb(mouse_packet.lb);
+
       mouse_packet.mb = byte & MOUSE_MB;
       mouse_packet.x_ov = byte & MOUSE_XOVFL;
       mouse_packet.y_ov = byte & MOUSE_YOVFL;

@@ -9,10 +9,6 @@
 #include "../utils/position.h"
 #include "../utils/const.h"
 
-#define SCALE 5
-#define DEFAULT 5
-#define THICKNESS(n) (n * SCALE + DEFAULT)
-
 
 /**
  * @brief States that define what the mouse will draw and how it looks when hovering the canvas 
