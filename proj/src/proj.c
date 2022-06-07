@@ -26,8 +26,8 @@
 #include "xpm/cursor.xpm"
 #include "game/canvas.h"
 #include "game/text.h"
-
-#include "xpm/buttons/button_plus_size.xpm"
+#include "game/element.h"
+#include "game/ui.h"
 
 /* global variables */
 
@@ -94,16 +94,20 @@ int(proj_main_loop)(int argc, char* argv[]) {
   vg_init(VBE_MODE_800x600_INDEXED);
   // vg_init(VBE_MODE_1280x1024_FULL_COLOR);
 
+  load_backbuffer();
   cursor_load();
   canvas_load();
   text_load();
+  load_button_xpms();
+  load_ie_drawing();
 
   int ipc_status, r;
   message msg;
 
-  bool run = true;
+  interactive_element* drawing_ies = get_drawing_ies();
+  uint8_t num_ies = get_number_of_drawing_ies();
 
-  xpm_image_t button_plus = vg_load_xpm(xpm_button_plus);
+  bool run = true;
 
   while (run) {
     /* Get a request message. */
@@ -121,8 +125,8 @@ int(proj_main_loop)(int argc, char* argv[]) {
             clear_screen(COLOR_BLUE);
             
             canvas_draw();
+            draw_menu();
             cursor_draw();
-            vg_draw_xpm(button_plus, 380, 350);
 
             flip();
           }
@@ -133,8 +137,20 @@ int(proj_main_loop)(int argc, char* argv[]) {
             if (mouse_ready) {
               cursor_move(mouse_packet.delta_x, mouse_packet.delta_y);
 
-              if (mouse_packet.lb)
-                canvas_draw_pencil_circle();
+              if (mouse_packet.lb) {
+                for (int i = 0; i < num_ies; i++) {
+                  if (is_hovered(drawing_ies[i])) {
+                    drawing_ies[i].mouse_event_handler();
+                    break;
+                  }
+                }
+
+                if (!cursor_lb_pressed())
+                  cursor_set_lb(true);
+              }
+              else {
+                cursor_set_lb(false);
+              }
             }
           }
 

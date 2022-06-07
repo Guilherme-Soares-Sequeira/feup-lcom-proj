@@ -25,8 +25,7 @@ void (canvas_fill)(uint8_t color) {
 }
 
 int (canvas_draw_pencil_circle)() {
-  uint16_t thickness = 10;
-  return buf_draw_circle(&canvas_buffer, cursor_get_pos(), thickness, 0x10);
+  return buf_draw_circle(&canvas_buffer, cursor_get_pos(), cursor_get_thickness(), cursor_get_color());
 }
 
 void (canvas_clear)() {
@@ -37,4 +36,16 @@ void (canvas_exit)() {
   free(canvas_buffer.buffer_start);
 }
 
+pixel_buffer const * (get_canvas_buffer)() {
+  return &canvas_buffer;
+}
 
+void (canvas_mouse_handler)() {
+  switch(cursor_get_style()) {
+    case CURSOR_DSTATE_CIRCLE: canvas_draw_pencil_circle(); break;
+    case CURSOR_DSTATE_SQUARE: break;
+    case CURSOR_DSTATE_ARROW: break;
+    case CURSOR_DSTATE_LINE: break;
+    case CURSOR_DSTATE_BUCKET: break;
+  }
+}

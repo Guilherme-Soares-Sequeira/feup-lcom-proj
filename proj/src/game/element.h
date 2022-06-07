@@ -6,8 +6,9 @@
 #include <stdbool.h>
 
 #include "cursor.h"
-
+#include "canvas.h"
 #include "../utils/position.h"
+#include "draw_buttons.h"
 
 
 typedef struct {
@@ -18,11 +19,17 @@ typedef struct {
   
   int8_t event_priority; 
 
-  void (*draw_element)(position topleft_pos);
-
-  void (*mouse_event_handler)(position top_pos, uint16_t h_len, uint16_t v_len);
+  void (*mouse_event_handler)();
 } interactive_element;
 
+xpm_image_t (get_button_plus)();
+
+void (load_ie_drawing)();
+
 bool (is_hovered)(interactive_element elem);
+
+uint8_t (get_number_of_drawing_ies)();
+
+interactive_element* (get_drawing_ies)();
 
 #endif

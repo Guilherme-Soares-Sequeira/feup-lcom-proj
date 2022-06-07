@@ -8,6 +8,11 @@
 #include "../../game/pixel_buffer.h"
 #include "../../utils/position.h"
 #include "../../utils/const.h"
+#include "video_gr.h"
+
+void (load_backbuffer)();
+
+pixel_buffer const * (get_back_buffer)();
 
 /**
  * @brief Draws a pixel on a pixel_buffer
@@ -54,7 +59,11 @@ int (buf_draw_rectangle)(pixel_buffer const * const buf, position pos, uint16_t 
  */
 int (buf_draw_circle)(pixel_buffer const * const buf, position pos, uint16_t radius, uint8_t color);
 
+int (buf_draw_hline)(pixel_buffer const * const buf, position pos, uint16_t len, uint8_t color);
 
+int (buf_draw_vline)(pixel_buffer const * const buf, position pos, uint16_t len, uint8_t color);
+
+int (buf_draw_xpm)(pixel_buffer const * const buf, const xpm_image_t xpm_info, position pos);
 
 
 #endif

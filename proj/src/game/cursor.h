@@ -8,6 +8,10 @@
 #include "../devices/video/video_gr.h"
 #include "../utils/position.h"
 #include "../utils/const.h"
+#include "../utils/color.h"
+
+#define MIN_THICKNESS 1
+#define MAX_THICKNESS 16
 
 
 /**
@@ -21,17 +25,6 @@ typedef enum cursor_style {
   CURSOR_DSTATE_LINE,
   CURSOR_DSTATE_BUCKET
 } cursor_state_style_t;
-
-
-/**
- * @brief States that define the thickness of the mouse
- * 
- */
-typedef enum cursor_thickness {
-  CURSOR_DSTATE_THIN,
-  CURSOR_DSTATE_REGULAR,
-  CURSOR_DSTATE_THICK
-} cursor_state_thickness_t;
 
 
 /**
@@ -78,7 +71,7 @@ void (cursor_set_style)(cursor_state_style_t style);
  * 
  * @return cursor thickness
  */
-cursor_state_thickness_t (cursor_get_thickness)();
+uint8_t (cursor_get_thickness)();
 
 
 /**
@@ -86,8 +79,11 @@ cursor_state_thickness_t (cursor_get_thickness)();
  * 
  * @return cursor thickness to be set
  */
-void (cursor_set_thickness)(cursor_state_thickness_t thickness);
+void (cursor_set_thickness)(uint8_t thickness);
 
+void (cursor_increase_thickness)();
+
+void (cursor_decrease_thickness)();
 
 /**
  * @brief Draws the cursor on screen
@@ -118,5 +114,19 @@ void (cursor_set_lb)(bool lb);
  */
 bool (cursor_lb_pressed)();
 
+uint8_t (cursor_get_color)();
+
+
+void (cursor_set_color_black)();
+
+void (cursor_set_color_blue)();
+
+void (cursor_set_color_green)();
+
+void (cursor_set_color_red)();
+
+void (cursor_set_color_brown)();
+
+void (cursor_set_color_yellow)();
 
 #endif

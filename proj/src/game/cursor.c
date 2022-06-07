@@ -17,9 +17,10 @@ static position cursor_pos = {0, 0}; /**< @brief cursor_position of the cursor *
 
 static cursor_state_style_t cursor_style; /**< @brief style of the cursor */
 
-static cursor_state_thickness_t cursor_thickness; /**< @brief thickness of the cursor */
+static uint8_t cursor_color;
+static uint8_t cursor_thickness;
 
-static bool cursor_lb; /**< @brief indicates whether the mouse left button has been pressed or not */
+static bool cursor_lb; /**< @brief indicates whether the mouse left button was already pressed or not */
 
 
 void (cursor_load)() {
@@ -29,6 +30,9 @@ void (cursor_load)() {
   cursor_pos.x = H_RES/2;
   cursor_pos.y = V_RES/2;
 
+  cursor_color = COLOR_BLACK;
+  cursor_thickness = MIN_THICKNESS;
+  
   cursor_lb = false;
 }
 
@@ -65,11 +69,11 @@ cursor_state_style_t (cursor_get_style)() {
   return cursor_style;
 }
 
-void (cursor_set_thickness)(cursor_state_thickness_t thickness) {
+void (cursor_set_thickness)(uint8_t thickness) {
   cursor_thickness = thickness;
 }
 
-cursor_state_thickness_t (cursor_get_thickness)() {
+uint8_t (cursor_get_thickness)() {
   return cursor_thickness;
 }
 
@@ -83,4 +87,40 @@ bool (cursor_lb_pressed)() {
 
 void (cursor_set_lb)(bool lb) {
   cursor_lb = lb;
+}
+
+uint8_t (cursor_get_color)() {
+  return cursor_color;
+}
+
+void (cursor_increase_thickness)() {
+  cursor_thickness = cursor_thickness + 1 > MAX_THICKNESS ? MAX_THICKNESS : cursor_thickness + 1;
+}
+
+void (cursor_decrease_thickness)() {
+  cursor_thickness = cursor_thickness - 1 < MIN_THICKNESS ? MIN_THICKNESS : cursor_thickness - 1;
+}
+
+void (cursor_set_color_black)() {
+  cursor_color = COLOR_BLACK;
+}
+
+void (cursor_set_color_blue)() {
+  cursor_color = COLOR_BLUE;
+}
+
+void (cursor_set_color_green)() {
+  cursor_color = COLOR_GREEN;
+}
+
+void (cursor_set_color_red)() {
+  cursor_color = COLOR_RED;
+}
+
+void (cursor_set_color_brown)() {
+  cursor_color = COLOR_BROWN;
+}
+
+void (cursor_set_color_yellow)() {
+  cursor_color = COLOR_YELLOW;
 }

@@ -2,6 +2,20 @@
 
 #include "graphics.h"
 
+static pixel_buffer backbuffer;
+
+void (load_backbuffer)() {
+  backbuffer.buffer_start = vg_get_back_buffer();
+  backbuffer.h_res = H_RES;
+  backbuffer.v_res = V_RES;
+  backbuffer.bytes_per_pixel = 1;
+  backbuffer.buffer_size = backbuffer.h_res * backbuffer.v_res * backbuffer.bytes_per_pixel;
+}
+
+pixel_buffer const * (get_back_buffer)() {
+  return &backbuffer;
+}
+
 int (buf_draw_pixel)(pixel_buffer const * const buf, position pos, uint8_t color) {
   if (pos.x >= buf->h_res || pos.y >= buf->v_res)
     return 0;
@@ -125,10 +139,23 @@ int (buf_draw_hline)(pixel_buffer const * const buf, position pos, uint16_t len,
 }
 
 int (buf_draw_vline)(pixel_buffer const * const buf, position pos, uint16_t len, uint8_t color) {
-  int byte_offset = (pos.y * buf->h_res + pos.x) * buf->bytes_per_pixel;
-
   for (int i = 0; i < len && pos.y + i < buf->v_res; i++)
     if (buf_draw_pixel(buf, (position) {pos.x, pos.y+i}, color)) return 1;
     
   return 0;
+}
+
+int (buf_draw_xpm)(pixel_buffer const * const buf, const xpm_image_t xpm_info, position pos) {
+  uint8_t* bytes = xpm_info.bytes;
+
+  for (unsigned long int i = 0; i < (unsigned long) xpm_info.width * xpm_info.height; i++) {
+    if (bytes[i] != 255 && buf_draw_pixel(
+      buf,
+      (position) {pos.x + (i % xpm_info.width), pos.y + (i / xpm_info.width)},
+      (uint8_t) *(bytes + i))
+    )
+      return 1;
+  }
+
+  return OK;
 }
