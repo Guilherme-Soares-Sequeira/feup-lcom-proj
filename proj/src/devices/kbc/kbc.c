@@ -11,9 +11,7 @@ int32_t  kbc_global_hook_id;
 uint8_t  st_reg;
 uint8_t  *scancodes = NULL; // scan codes have at most 3 bytes (?)
 
-extern int32_t used_ids;
-
-bool     ready = false, scancode_processed = false;
+bool     keyboard_packet_ready = false, scancode_processed = false;
 int      bytes_read = 0;
 
 int(kbc_subscribe_int)(uint8_t *bit_no) {
@@ -42,7 +40,7 @@ void (kbc_ih)() {
   }
 
   uint8_t scancode_byte;
-  ready = false;
+  keyboard_packet_ready = false;
 
   util_sys_inb(KBC_OUT_BUF_ST, &st_reg); // query status register
   util_sys_inb(KBC_OUT_BUF, &scancode_byte); // safe to read, KBC triggers interrupt on OUT_BUFF full
@@ -69,7 +67,7 @@ void (kbc_ih)() {
   scancodes[bytes_read - 1] = scancode_byte;
 
   if (bytes_read == scancode_size) {
-    ready = true; // mark scancode fully read
+    keyboard_packet_ready = true; // mark scancode fully read
     bytes_read = 0; // reset bytes read for next scancode
     scancode_type = (scancodes[scancode_size - 1] & BIT(7)) ? KBC_SCANCODE_BREAK : KBC_SCANCODE_MAKE;
   }
@@ -105,3 +103,20 @@ int (kbc_outbuf_full)() {
 
   return (st_reg & KBC_ST_OBF);
 }
+
+bool (keyboard_ready)() {
+  return keyboard_packet_ready;
+}
+
+void (mark_scancode_processed)() {
+  scancode_processed = true;
+}
+
+int (get_scancode_size)(){
+  return scancode_size;
+}
+
+int (get_scancode_type)(){
+  return scancode_type;
+}
+

@@ -10,6 +10,7 @@
 #include <string.h>
 
 #include "vbe.h"
+#include "../../utils/color.h"
 
 vbe_mode_info_t vg_mode_info;
 void *front_buffer;
@@ -220,7 +221,7 @@ int (vg_draw_xpm)(const xpm_image_t xpm_info, uint16_t x, uint16_t y) {
   uint8_t* bytes = xpm_info.bytes;
 
   for (unsigned long int i = 0; i < (unsigned long) xpm_info.width * xpm_info.height; i++) {
-    if (bytes[i] != 255 && vg_draw_pixel(
+    if (bytes[i] != COLOR_TRANSPARENT && vg_draw_pixel(
       x + (i % xpm_info.width),
       y + (i / xpm_info.width),
       (uint32_t) *(bytes + i))

@@ -151,3 +151,7 @@ void(write_command_to_mouse)(uint8_t command) {
     fprintf(stderr, "%s failed while trying to execute command %x\n", __func__, command);
   }
 }
+
+bool (mouse_packet_ready)() {
+  return mouse_ready;
+}

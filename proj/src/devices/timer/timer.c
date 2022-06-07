@@ -3,12 +3,17 @@
 #include <stdint.h>
 
 #include "i8254.h"
+#include "timer.h"
 
 unsigned long counter;
 
 int32_t timer_global_hook_id;
 
 uint16_t(to_bcd)(uint16_t val);
+
+unsigned long (get_timer_get_counter)() {
+  return counter;
+}
 
 int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
   uint8_t st, IV_LSB, IV_MSB, write_cmd;

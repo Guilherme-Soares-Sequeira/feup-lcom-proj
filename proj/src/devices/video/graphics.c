@@ -149,7 +149,7 @@ int (buf_draw_xpm)(pixel_buffer const * const buf, const xpm_image_t xpm_info, p
   uint8_t* bytes = xpm_info.bytes;
 
   for (unsigned long int i = 0; i < (unsigned long) xpm_info.width * xpm_info.height; i++) {
-    if (bytes[i] != 255 && buf_draw_pixel(
+    if (bytes[i] != COLOR_TRANSPARENT && buf_draw_pixel(
       buf,
       (position) {pos.x + (i % xpm_info.width), pos.y + (i / xpm_info.width)},
       (uint8_t) *(bytes + i))
