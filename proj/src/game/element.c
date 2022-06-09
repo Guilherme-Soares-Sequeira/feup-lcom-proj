@@ -9,75 +9,101 @@ static uint8_t number_of_drawing_ies;
 void (load_ie_drawing)() {
   /* create elements */
   interactive_element black_color_button = {
-    (position) {20, 10},
+    (position) {974, 70},
     40,
     40,
+    COLOR_BLACK,
     3,
-    cursor_set_color_black
+    cursor_set_color
   };
 
   interactive_element blue_color_button = {
-    (position) {70, 10},
+    (position) {974, 120},
     40,
     40,
+    COLOR_BLUE,
     3,
-    cursor_set_color_blue
+    cursor_set_color
   };
 
   interactive_element green_color_button = {
-    (position) {120, 10},
+    (position) {974, 170},
     40,
     40,
+    COLOR_GREEN,
     3,
-    cursor_set_color_green
+    cursor_set_color
   };
 
   interactive_element red_color_button = {
-    (position) {170, 10},
+    (position) {974, 220},
     40,
     40,
+    COLOR_RED,
     3,
-    cursor_set_color_red
+    cursor_set_color
   };
   
   interactive_element brown_color_button = {
-    (position) {220, 10},
+    (position) {974, 270},
     40,
     40,
+    COLOR_BROWN,
     3,
-    cursor_set_color_brown
+    cursor_set_color
   };
 
   interactive_element yellow_color_button = {
-    (position) {270, 10},
+    (position) {974, 320},
     40,
     40,
+    COLOR_YELLOW,
     3,
-    cursor_set_color_yellow
+    cursor_set_color
   };
 
   interactive_element plus_button = {
-    (position) {10, 50},
+    (position) {10, 70},
     40,
     40,
+    COLOR_TRANSPARENT,
     3,
     cursor_increase_thickness
   };
 
+  interactive_element minus_button = {
+    (position) {10, 120},
+    40,
+    40,
+    COLOR_TRANSPARENT,
+    3,
+    cursor_decrease_thickness
+  };
+
+  interactive_element clear_canvas_button = {
+    (position) {10, 320},
+    40,
+    40,
+    COLOR_WHITE,
+    3,
+    canvas_fill
+  };
+
   interactive_element canvas = {
     (position) {CANVAS_TOP_VISIBLE_LIMIT, CANVAS_LEFT_VISIBLE_LIMIT},
-    CANVAS_RIGHT_VISIBLE_LIMIT - CANVAS_LEFT_VISIBLE_LIMIT,
-    CANVAS_BOTTOM_VISIBLE_LIMIT - CANVAS_TOP_VISIBLE_LIMIT,
+    CANVAS_WIDTH,
+    CANVAS_HEIGHT,
+    COLOR_TRANSPARENT,
     1,
     canvas_mouse_handler
   };
 
-  number_of_drawing_ies = 8;
+  number_of_drawing_ies = 10;
 
   drawing_ies = (interactive_element*)malloc(number_of_drawing_ies * sizeof(interactive_element));
 
-  memcpy(drawing_ies, (interactive_element[]){black_color_button, blue_color_button, green_color_button, red_color_button,
-  brown_color_button, yellow_color_button, plus_button, canvas}, number_of_drawing_ies * sizeof(interactive_element));
+  memcpy(drawing_ies, (interactive_element[]){canvas, black_color_button, blue_color_button, green_color_button, red_color_button,
+  brown_color_button, yellow_color_button, plus_button, minus_button, clear_canvas_button}, number_of_drawing_ies * sizeof(interactive_element));
   
 }
 

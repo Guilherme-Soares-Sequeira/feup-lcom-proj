@@ -81,9 +81,9 @@ uint8_t (cursor_get_thickness)();
  */
 void (cursor_set_thickness)(uint8_t thickness);
 
-void (cursor_increase_thickness)();
+void (cursor_increase_thickness)(uint8_t _);
 
-void (cursor_decrease_thickness)();
+void (cursor_decrease_thickness)(uint8_t _);
 
 /**
  * @brief Draws the cursor on screen
@@ -116,6 +116,7 @@ bool (cursor_lb_pressed)();
 
 uint8_t (cursor_get_color)();
 
+void (cursor_set_color)(uint8_t color);
 
 void (cursor_set_color_black)();
 

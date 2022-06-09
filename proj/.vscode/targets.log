@@ -8,7 +8,7 @@ Makefile:28: *** missing separator.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon Jun  6 19:09:17 2022
+# Make data base, printed on Thu Jun  9 21:35:49 2022
 
 # Variables
 
@@ -31,7 +31,7 @@ VSCODE_LOG_NATIVE = false
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # makefile (from 'Makefile', line 17)
-CPPFLAGS = -pedantic
+CPPFLAGS = -pedantic -D__LCOM_OPTIMIZED__
 # automatic
 @D = $(patsubst %/,%,$(dir $@))
 # environment
@@ -53,7 +53,7 @@ VTE_VERSION = 6003
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en","availableLanguages":{},"_languagePackSupport":true}
 # environment
-JOURNAL_STREAM = 8:44974
+JOURNAL_STREAM = 8:48881
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # environment
@@ -81,9 +81,9 @@ VSCODE_VERBOSE_LOGGING = true
 # environment
 LC_CTYPE = pt_PT.UTF-8
 # environment
-MANAGERPID = 1785
+MANAGERPID = 1807
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-22c32691-9db9-4508-872f-6ab349946a52.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-6e531201-b68a-4316-addc-11f1fa6ca3ac.sock
 # environment
 LC_NAME = pt_PT.UTF-8
 # environment
@@ -103,7 +103,7 @@ GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
 LSCOLORS = Gxfxcxdxbxegedabagacad
 # environment
-SESSION_MANAGER = local/pedro-ramalho:@/tmp/.ICE-unix/1991,unix/pedro-ramalho:/tmp/.ICE-unix/1991
+SESSION_MANAGER = local/pedro-ramalho:@/tmp/.ICE-unix/2012,unix/pedro-ramalho:/tmp/.ICE-unix/2012
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -121,7 +121,7 @@ DISABLE_WAYLAND = 1
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = 5c4307c14d8f4d6b8011be3d85e556fe
+INVOCATION_ID = 86846a68122e4a639d423d5cf4dea183
 # environment
 GDK_PIXBUF_MODULEDIR = /snap/code/97/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # default
@@ -151,7 +151,7 @@ PWD = /home/pedro/Desktop/MINIX-LCOM/shared/proj
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 1933
+SSH_AGENT_PID = 1953
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -271,11 +271,11 @@ PAGER = less
 # environment
 LC_ALL = C
 # environment
-GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/76ab86fe_835e_4549_a22f_4302080c8445
+GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/0283c3c7_0a7e_4f90_903e_83d2ab8ed5aa
 # automatic
 ^F = $(notdir $^)
 # environment
-GNOME_TERMINAL_SERVICE = :1.2706
+GNOME_TERMINAL_SERVICE = :1.2034
 # default
 SUFFIXES := 
 # environment
@@ -284,11 +284,11 @@ SNAP_REEXEC =
 CHROME_DESKTOP = code-url-handler.desktop
 # default
 .INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
- 
 # environment
 LC_IDENTIFICATION = pt_PT.UTF-8
 # default
 .RECIPEPREFIX := 
+ 
 # environment
 LC_ADDRESS = pt_PT.UTF-8
 # environment
@@ -296,7 +296,7 @@ LANG = C
 # environment
 TERM = xterm-256color
 # environment
-VSCODE_PID = 20075
+VSCODE_PID = 19035
 # variable set hash-table stats:
 # Load=142/1024=14%, Rehash=0, Collisions=17/164=10%
 
@@ -390,6 +390,6 @@ Makefile:
 # strcache performance: lookups = 51 / hit rate = 29%
 # hash-table stats:
 # Load=36/8192=0%, Rehash=0, Collisions=1/51=2%
-# Finished Make data base on Mon Jun  6 19:09:17 2022
+# Finished Make data base on Thu Jun  9 21:35:49 2022
 
  

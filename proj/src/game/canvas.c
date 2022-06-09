@@ -40,7 +40,7 @@ pixel_buffer const * (get_canvas_buffer)() {
   return &canvas_buffer;
 }
 
-void (canvas_mouse_handler)() {
+void (canvas_mouse_handler)(uint8_t _) {
   switch(cursor_get_style()) {
     case CURSOR_DSTATE_CIRCLE: canvas_draw_pencil_circle(); break;
     case CURSOR_DSTATE_SQUARE: break;

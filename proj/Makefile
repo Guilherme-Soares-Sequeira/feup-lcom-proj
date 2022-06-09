@@ -14,7 +14,7 @@ SRCS = proj.c kbc.c mouse.c timer.c video_gr.c utils.c cursor.c canvas.c element
 
 # additional compilation flags
 
-CPPFLAGS += -pedantic
+CPPFLAGS += -pedantic -D__LCOM_OPTIMIZED__
 
 
 # list of library dependencies (for Lab 2, only LCF library)

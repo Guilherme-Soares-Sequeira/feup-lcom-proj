@@ -17,9 +17,11 @@ typedef struct {
   uint16_t h_len;
   uint16_t v_len;
   
+  uint8_t color;
+
   int8_t event_priority; 
 
-  void (*mouse_event_handler)();
+  void (*mouse_event_handler)(uint8_t color);
 } interactive_element;
 
 xpm_image_t (get_button_plus)();

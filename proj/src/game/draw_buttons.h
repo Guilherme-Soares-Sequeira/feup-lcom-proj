@@ -3,6 +3,8 @@
 
 #include "../utils/position.h"
 #include "../xpm/buttons/button_plus_size.xpm"
+#include "../xpm/buttons/button_minus_size.xpm"
+#include "../xpm/buttons/button_clear_canvas.xpm"
 
 #include "pixel_buffer.h"
 #include "element.h"
@@ -18,29 +20,19 @@ void (draw_color_button)(pixel_buffer const * const buf, position topleft_pos, u
 
 void (load_button_xpms)();
 
-void (draw_black_color_button)();
+void (draw_plus_button)(pixel_buffer const * const buf, position topleft_pos);
 
-void (draw_blue_color_button)();
+void (draw_minus_button)(pixel_buffer const * const buf, position topleft_pos);
 
-void (draw_green_color_button)();
+void (draw_sel_line_button)(pixel_buffer const * const buf, position topleft_pos);
 
-void (draw_red_color_button)();
+void (draw_sel_square_button)(pixel_buffer const * const buf, position topleft_pos);
 
-void (draw_brown_color_button)();
+void (draw_sel_circle_button)(pixel_buffer const * const buf, position topleft_pos);
 
-void (draw_yellow_color_button)();
+void (draw_sel_eraser_button)(pixel_buffer const * const buf, position topleft_pos);
 
-void (draw_plus_button)();
-
-void (draw_minus_button)();
-
-void (draw_sel_line_button)();
-
-void (draw_sel_square_button)();
-
-void (draw_sel_circle_button)();
-
-void (draw_sel_eraser_button)();
+void (draw_clear_canvas_button)(pixel_buffer const * const buf, position topleft_pos);
 
 void (buttons_draw)();
 

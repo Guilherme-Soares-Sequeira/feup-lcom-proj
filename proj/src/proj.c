@@ -86,12 +86,12 @@ int(proj_main_loop)(int argc, char* argv[]) {
 
   /* timer initialization */ 
 
-  //timer_set_frequency(0, FPS); USE ONLY TO INCREASE FPS to more than 60    
+  timer_set_frequency(0, FPS); //USE ONLY TO INCREASE FPS to more than 60    
 
   /* video card initialization */
 
   // vg_init(VBE_MODE_1024x768_INDEXED);
-  vg_init(VBE_MODE_800x600_INDEXED);
+  vg_init(VBE_MODE_1024x768_INDEXED);
   // vg_init(VBE_MODE_1280x1024_FULL_COLOR);
 
   load_backbuffer();
@@ -123,9 +123,9 @@ int(proj_main_loop)(int argc, char* argv[]) {
             timer_int_handler();
 
             clear_screen(COLOR_BLUE);
-            
             canvas_draw();
             draw_menu();
+            
             cursor_draw();
 
             flip();
@@ -140,13 +140,13 @@ int(proj_main_loop)(int argc, char* argv[]) {
               if (mouse_packet.lb) {
                 for (int i = 0; i < num_ies; i++) {
                   if (is_hovered(drawing_ies[i])) {
-                    drawing_ies[i].mouse_event_handler();
+                    drawing_ies[i].mouse_event_handler(drawing_ies[i].color);
                     break;
                   }
                 }
 
-                if (!cursor_lb_pressed())
-                  cursor_set_lb(true);
+              if (!cursor_lb_pressed())
+                cursor_set_lb(true);
               }
               else {
                 cursor_set_lb(false);

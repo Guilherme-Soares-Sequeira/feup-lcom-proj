@@ -93,12 +93,16 @@ uint8_t (cursor_get_color)() {
   return cursor_color;
 }
 
-void (cursor_increase_thickness)() {
+void (cursor_increase_thickness)(uint8_t _) {
   cursor_thickness = cursor_thickness + 1 > MAX_THICKNESS ? MAX_THICKNESS : cursor_thickness + 1;
 }
 
-void (cursor_decrease_thickness)() {
+void (cursor_decrease_thickness)(uint8_t _) {
   cursor_thickness = cursor_thickness - 1 < MIN_THICKNESS ? MIN_THICKNESS : cursor_thickness - 1;
+}
+
+void (cursor_set_color)(uint8_t color) {
+  cursor_color = color;
 }
 
 void (cursor_set_color_black)() {

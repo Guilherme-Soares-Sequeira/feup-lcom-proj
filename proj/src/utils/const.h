@@ -1,4 +1,4 @@
 #include <lcom/lcf.h>
 
-#define H_RES 800
-#define V_RES 600
+#define H_RES 1024
+#define V_RES 768
