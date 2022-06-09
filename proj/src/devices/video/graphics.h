@@ -8,6 +8,7 @@
 #include "../../game/pixel_buffer.h"
 #include "../../utils/position.h"
 #include "../../utils/const.h"
+#include "../../utils/color.h"
 #include "video_gr.h"
 
 void (load_backbuffer)();

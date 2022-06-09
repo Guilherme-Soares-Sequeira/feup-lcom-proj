@@ -11,6 +11,7 @@
 #include "devices/kbc/mouse.h"
 #include "devices/video/vbe.h"
 #include "devices/video/video_gr.h"
+#include "devices/timer/timer.h"
 
 
 /* utils include */
@@ -33,21 +34,9 @@
 
 /* keyboard */
 
-extern int scancode_size;
-extern int scancode_type;
-
-extern uint8_t scancode;
 extern uint8_t *scancodes;
 
-extern bool ready, scancode_processed;
-
-/* mouse */
-
-struct packet mouse_packet;
-extern bool mouse_ready;
-
 #define FPS 60
-extern unsigned long counter;
 
 int main(int argc, char *argv[]) {
   // sets the language of LCF messages (can be either EN-US or PT-PT)
@@ -134,7 +123,10 @@ int(proj_main_loop)(int argc, char* argv[]) {
           if (msg.m_notify.interrupts & BIT(mouse_bit)) {
             mouse_ih();
 
-            if (mouse_ready) {
+            if (mouse_packet_ready()) {
+
+              mouse_packet_t mouse_packet = get_mouse_packet();
+
               cursor_move(mouse_packet.delta_x, mouse_packet.delta_y);
 
               if (mouse_packet.lb) {
@@ -157,13 +149,13 @@ int(proj_main_loop)(int argc, char* argv[]) {
           if (msg.m_notify.interrupts & BIT(keyboard_bit)) {
             kbc_ih();
       
-            if (scancode_size == 0) { 
-              scancode_processed = true;
+            if (get_scancode_size() == 0) { 
+              mark_scancode_processed();
               continue;
             }
 
-            if (ready) {
-              scancode_processed = true;
+            if (keyboard_ready()) {
+              mark_scancode_processed();
 
               if (scancodes[0] == ESC_KEY_BREAK) { 
                 run = false;

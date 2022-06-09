@@ -8,7 +8,7 @@ Makefile:28: *** missing separator.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu Jun  9 21:35:49 2022
+# Make data base, printed on Fri Jun 10 00:55:58 2022
 
 # Variables
 
@@ -53,7 +53,7 @@ VTE_VERSION = 6003
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en","availableLanguages":{},"_languagePackSupport":true}
 # environment
-JOURNAL_STREAM = 8:48881
+JOURNAL_STREAM = 8:49623
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # environment
@@ -81,9 +81,9 @@ VSCODE_VERBOSE_LOGGING = true
 # environment
 LC_CTYPE = pt_PT.UTF-8
 # environment
-MANAGERPID = 1807
+MANAGERPID = 1604
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-6e531201-b68a-4316-addc-11f1fa6ca3ac.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-e6a36951-a063-49b9-9a75-462400386e9c.sock
 # environment
 LC_NAME = pt_PT.UTF-8
 # environment
@@ -103,7 +103,7 @@ GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
 LSCOLORS = Gxfxcxdxbxegedabagacad
 # environment
-SESSION_MANAGER = local/pedro-ramalho:@/tmp/.ICE-unix/2012,unix/pedro-ramalho:/tmp/.ICE-unix/2012
+SESSION_MANAGER = local/pedro-ramalho:@/tmp/.ICE-unix/1950,unix/pedro-ramalho:/tmp/.ICE-unix/1950
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -121,7 +121,7 @@ DISABLE_WAYLAND = 1
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = 86846a68122e4a639d423d5cf4dea183
+INVOCATION_ID = d1a2c2fa7158422a98466259b137713c
 # environment
 GDK_PIXBUF_MODULEDIR = /snap/code/97/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # default
@@ -151,7 +151,7 @@ PWD = /home/pedro/Desktop/MINIX-LCOM/shared/proj
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 1953
+SSH_AGENT_PID = 1890
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -271,11 +271,11 @@ PAGER = less
 # environment
 LC_ALL = C
 # environment
-GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/0283c3c7_0a7e_4f90_903e_83d2ab8ed5aa
+GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/0ec3de80_59ca_4e84_8e78_f71ff481c36e
 # automatic
 ^F = $(notdir $^)
 # environment
-GNOME_TERMINAL_SERVICE = :1.2034
+GNOME_TERMINAL_SERVICE = :1.80
 # default
 SUFFIXES := 
 # environment
@@ -288,15 +288,15 @@ CHROME_DESKTOP = code-url-handler.desktop
 LC_IDENTIFICATION = pt_PT.UTF-8
 # default
 .RECIPEPREFIX := 
- 
 # environment
 LC_ADDRESS = pt_PT.UTF-8
+ 
 # environment
 LANG = C
 # environment
 TERM = xterm-256color
 # environment
-VSCODE_PID = 19035
+VSCODE_PID = 3368
 # variable set hash-table stats:
 # Load=142/1024=14%, Rehash=0, Collisions=17/164=10%
 
@@ -390,6 +390,6 @@ Makefile:
 # strcache performance: lookups = 51 / hit rate = 29%
 # hash-table stats:
 # Load=36/8192=0%, Rehash=0, Collisions=1/51=2%
-# Finished Make data base on Thu Jun  9 21:35:49 2022
+# Finished Make data base on Fri Jun 10 00:55:58 2022
 
  
