@@ -31,7 +31,8 @@ void (cursor_load)() {
   cursor_pos.y = V_RES/2;
 
   cursor_color = COLOR_BLACK;
-  cursor_thickness = MIN_THICKNESS;
+  cursor_thickness = (MIN_THICKNESS + MAX_THICKNESS) / 2;
+  cursor_style = CURSOR_DSTATE_CIRCLE;
   
   cursor_lb = false;
 }
@@ -61,8 +62,8 @@ void (cursor_clear)() {
   free(cursor_get_xpm().bytes);
 }
 
-void (cursor_set_style)(cursor_state_style_t style) {
-  cursor_style = style;
+void (cursor_set_style)(uint8_t style) {
+  cursor_style = (cursor_state_style_t) style;
 }
 
 cursor_state_style_t (cursor_get_style)() {
@@ -81,7 +82,7 @@ position (cursor_get_pos)() {
   return cursor_pos;
 }
 
-bool (cursor_lb_pressed)() {
+bool (cursor_lb_was_pressed)() {
   return cursor_lb;
 }
 
@@ -105,26 +106,3 @@ void (cursor_set_color)(uint8_t color) {
   cursor_color = color;
 }
 
-void (cursor_set_color_black)() {
-  cursor_color = COLOR_BLACK;
-}
-
-void (cursor_set_color_blue)() {
-  cursor_color = COLOR_BLUE;
-}
-
-void (cursor_set_color_green)() {
-  cursor_color = COLOR_GREEN;
-}
-
-void (cursor_set_color_red)() {
-  cursor_color = COLOR_RED;
-}
-
-void (cursor_set_color_brown)() {
-  cursor_color = COLOR_BROWN;
-}
-
-void (cursor_set_color_yellow)() {
-  cursor_color = COLOR_YELLOW;
-}

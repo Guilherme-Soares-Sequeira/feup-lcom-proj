@@ -42,15 +42,17 @@ void (draw_minus_button)(pixel_buffer const * const buf, position topleft_pos) {
 }
 
 void (draw_sel_line_button)(pixel_buffer const * const buf, position topleft_pos) {
-
+  draw_button_frame(buf, topleft_pos);
 }
 
 void (draw_sel_square_button)(pixel_buffer const * const buf, position topleft_pos) {
-
+  draw_button_frame(buf, topleft_pos);
+  buf_draw_rectangle(buf, (position) {topleft_pos.x + 12, topleft_pos.y + 12}, BUTTON_FRAME_WIDTH - 24, BUTTON_FRAME_HEIGHT - 24, COLOR_BLACK);
 }
 
 void (draw_sel_circle_button)(pixel_buffer const * const buf, position topleft_pos) {
-
+  draw_button_frame(buf, topleft_pos);
+  buf_draw_circle(buf, (position) {topleft_pos.x + 20 , topleft_pos.y + 20}, 9, COLOR_BLACK);
 }
 
 void (draw_sel_eraser_button)(pixel_buffer const * const buf, position topleft_pos) {
@@ -75,7 +77,8 @@ void (buttons_draw)() {
 
   draw_plus_button(buf, (position) {other_buttons_x, 70}); // y = CANVAS_TOP_VISIBLE_LIMIT + (CANVAS_MARGIN - BUTTON_FRAME_HEIGHT) / 2
   draw_minus_button(buf, (position) {other_buttons_x, 120}); // y = previous_y() + (CANVAS_MARGIN - BUTTON_FRAME_HEIGHT) / 2
-  
+  draw_sel_square_button(buf, (position) {other_buttons_x, 170});
+  draw_sel_circle_button(buf, (position) {other_buttons_x, 220});
   
   draw_clear_canvas_button(buf, (position) {other_buttons_x, 320}); // y = CANVAS_BOTTOM_VISIBLE_LIMIT - (CANVAS_MARGIN - BUTTON_FRAME_HEIGHT)/2 - BUTTON_FRAME_HEIGHT
 }

@@ -11,7 +11,7 @@
 #include "../utils/color.h"
 
 #define MIN_THICKNESS 1
-#define MAX_THICKNESS 16
+#define MAX_THICKNESS 24
 
 
 /**
@@ -63,7 +63,7 @@ cursor_state_style_t (cursor_get_style)();
  * @brief Set cursor state
  * @param state state to be set
  */
-void (cursor_set_style)(cursor_state_style_t style);
+void (cursor_set_style)(uint8_t style);
 
 
 /**
@@ -112,7 +112,7 @@ void (cursor_set_lb)(bool lb);
  * 
  * @return true if the left button was pressed, false otherwise
  */
-bool (cursor_lb_pressed)();
+bool (cursor_lb_was_pressed)();
 
 uint8_t (cursor_get_color)();
 

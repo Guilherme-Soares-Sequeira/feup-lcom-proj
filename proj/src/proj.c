@@ -131,14 +131,19 @@ int(proj_main_loop)(int argc, char* argv[]) {
               cursor_move(mouse_packet.delta_x, mouse_packet.delta_y);
               
               if (mouse_packet.lb) {
-                for (int i = 0; i < num_ies; i++) {
-                  if (is_hovered(drawing_ies[i])) {
-                    drawing_ies[i].mouse_event_handler(drawing_ies[i].color);
-                    break;
+                if (is_hovered(drawing_ies[0])) {
+                  drawing_ies[0].mouse_event_handler(drawing_ies[0].color);
+                }
+                else if (!cursor_lb_was_pressed()) {
+                  for (int i = 1; i < num_ies; i++) {
+                    if (is_hovered(drawing_ies[i])) {
+                      drawing_ies[i].mouse_event_handler(drawing_ies[i].color);
+                      break;
+                    }
                   }
                 }
 
-              if (!cursor_lb_pressed())
+              if (!cursor_lb_was_pressed())
                 cursor_set_lb(true);
               }
               else {

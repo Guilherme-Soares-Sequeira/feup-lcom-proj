@@ -79,6 +79,24 @@ void (load_ie_drawing)() {
     3,
     cursor_decrease_thickness
   };
+  
+  interactive_element square_button = {
+    (position) {10, 170},
+    40,
+    40,
+    CURSOR_DSTATE_SQUARE, // this will act as the enum...
+    3,
+    cursor_set_style
+  };
+
+  interactive_element circle_button = {
+    (position) {10, 220},
+    40,
+    40,
+    CURSOR_DSTATE_CIRCLE,
+    3,
+    cursor_set_style
+  };
 
   interactive_element clear_canvas_button = {
     (position) {10, 320},
@@ -98,12 +116,12 @@ void (load_ie_drawing)() {
     canvas_mouse_handler
   };
 
-  number_of_drawing_ies = 10;
+  number_of_drawing_ies = 12;
 
   drawing_ies = (interactive_element*)malloc(number_of_drawing_ies * sizeof(interactive_element));
 
   memcpy(drawing_ies, (interactive_element[]){canvas, black_color_button, blue_color_button, green_color_button, red_color_button,
-  brown_color_button, yellow_color_button, plus_button, minus_button, clear_canvas_button}, number_of_drawing_ies * sizeof(interactive_element));
+  brown_color_button, yellow_color_button, plus_button, minus_button, square_button, circle_button, clear_canvas_button}, number_of_drawing_ies * sizeof(interactive_element));
   
 }
 
