@@ -29,6 +29,7 @@
 #include "game/text.h"
 #include "game/element.h"
 #include "game/ui.h"
+#include "game/charset.h"
 
 /* global variables */
 
@@ -164,10 +165,7 @@ int(proj_main_loop)(int argc, char* argv[]) {
 
               if (get_scancode_type() == KBC_SCANCODE_BREAK) continue;
 
-              if (scancodes[0] == 0x0e)
-                remove_char_from_current_text();
-              else 
-                add_char_to_current_text('o');
+              process_scancode(scancodes, get_scancode_size(), get_scancode_type());
             }
           }
       }

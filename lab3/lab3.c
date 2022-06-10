@@ -81,6 +81,7 @@ int(kbd_test_scan)() {
       if (ready) { // need only to check if we are ready to print the scancode since errors should have been caught by the previous if statement
         kbd_print_scancode(scancode_type, scancode_size, scancodes);
         scancode_processed = true;
+        printf("In decimal: %d\n", scancodes[0]);
 
         // this should be inside this if because we can only safely verify a scan code when it is fully read
         if (scancodes[0] == ESC_KEY_BREAK_CODE) { // esc key was released

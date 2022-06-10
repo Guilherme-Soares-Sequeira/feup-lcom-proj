@@ -2,6 +2,7 @@
 
 #include "../devices/video/graphics.h"
 #include "draw_chat.h"
+#include "charset.h"
 #include "text.h"
 
 int text_size = 0;
@@ -16,10 +17,13 @@ void (add_char_to_current_text)(char c) {
 
     if (text_size >= INPUT_CHAR_SIZE) return;
 
+    if (c == NO_ADD_CHAR) return;
+
     text[text_size++] = c;
 }
 
 void (remove_char_from_current_text)() {
+
     if (text_size <= 0) return;
 
     text[--text_size] = 0;

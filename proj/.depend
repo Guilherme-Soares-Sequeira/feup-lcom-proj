@@ -1,0 +1,932 @@
+canvas.d canvas.ln canvas.o: /home/lcom/labs/proj/src/game/canvas.c /usr/include/lcom/lcf.h \
+  /usr/include/stdbool.h /usr/include/stdio.h /usr/include/sys/cdefs.h \
+  /usr/include/machine/cdefs.h /usr/include/sys/cdefs_elf.h \
+  /usr/include/sys/featuretest.h /usr/include/sys/ansi.h \
+  /usr/include/machine/ansi.h /usr/include/machine/int_types.h \
+  /usr/include/sys/common_int_types.h /usr/include/sys/null.h \
+  /usr/include/stdlib.h /usr/include/sys/types.h \
+  /usr/include/machine/types.h /usr/include/machine/endian.h \
+  /usr/include/sys/endian.h /usr/include/machine/endian_machdep.h \
+  /usr/include/machine/bswap.h /usr/include/machine/byte_swap.h \
+  /usr/include/sys/bswap.h /usr/include/sys/stdint.h \
+  /usr/include/machine/int_mwgwtypes.h \
+  /usr/include/sys/common_int_mwgwtypes.h \
+  /usr/include/machine/int_limits.h /usr/include/sys/common_int_limits.h \
+  /usr/include/machine/int_const.h /usr/include/sys/common_int_const.h \
+  /usr/include/machine/wchar_limits.h /usr/include/sys/fd_set.h \
+  /usr/include/time.h /usr/include/sys/time.h \
+  /usr/include/sys/timespec.h /usr/include/sys/select.h \
+  /usr/include/sys/sigtypes.h /usr/include/unistd.h \
+  /usr/include/sys/unistd.h /usr/include/machine/int86.h \
+  /usr/include/minix/const.h /usr/include/machine/archconst.h \
+  /usr/include/minix/driver.h /usr/include/minix/config.h \
+  /usr/include/minix/sys_config.h /usr/include/minix/type.h \
+  /usr/include/machine/multiboot.h /usr/include/stddef.h \
+  /usr/include/machine/interrupt.h /usr/include/minix/ipc.h \
+  /usr/include/minix/ipcconst.h /usr/include/machine/ipcconst.h \
+  /usr/include/sys/signal.h /usr/include/sys/siginfo.h \
+  /usr/include/machine/signal.h /usr/include/machine/fpu.h \
+  /usr/include/machine/trap.h /usr/include/x86/trap.h \
+  /usr/include/sys/ucontext.h /usr/include/machine/mcontext.h \
+  /usr/include/minix/com.h /usr/include/minix/callnr.h \
+  /usr/include/minix/syslib.h /usr/include/minix/u64.h \
+  /usr/include/minix/devio.h /usr/include/minix/safecopies.h \
+  /usr/include/minix/vm.h /usr/include/minix/endpoint.h \
+  /usr/include/limits.h /usr/include/machine/limits.h \
+  /usr/include/sys/syslimits.h /usr/include/minix/sef.h \
+  /usr/include/minix/sysutil.h /usr/include/string.h \
+  /usr/include/strings.h /usr/include/errno.h /usr/include/sys/errno.h \
+  /usr/include/sys/param.h /usr/include/sys/inttypes.h \
+  /usr/include/machine/int_fmtio.h /usr/include/sys/common_int_fmtio.h \
+  /usr/include/machine/param.h /usr/include/minix/partition.h \
+  /usr/include/sys/mman.h /usr/include/lcom/liblm.h \
+  /usr/include/lcom/lab2.h /usr/include/lcom/timer.h \
+  /usr/include/lcom/utils.h /usr/include/lcom/lab3.h \
+  /usr/include/lcom/lab4.h /usr/include/lcom/lab5.h \
+  /usr/include/lcom/pixmap.h /usr/include/lcom/xpm.h \
+  /usr/include/lcom/vbe.h /usr/include/lcom/video_gr.h \
+  /usr/include/lcom/proj.h /usr/include/lcom/types.h \
+  /home/lcom/labs/proj/src/game/canvas.h \
+  /home/lcom/labs/proj/src/game/pixel_buffer.h \
+  /home/lcom/labs/proj/src/game/../devices/video/video_gr.h \
+  /home/lcom/labs/proj/src/game/../devices/video/graphics.h \
+  /usr/include/math.h /usr/include/machine/math.h \
+  /usr/include/x86/math.h \
+  /home/lcom/labs/proj/src/game/../devices/video/../../utils/position.h \
+  /home/lcom/labs/proj/src/game/../devices/video/../../utils/const.h \
+  /home/lcom/labs/proj/src/game/../devices/video/../../utils/color.h \
+  /home/lcom/labs/proj/src/game/cursor.h \
+  /home/lcom/labs/proj/src/game/../utils/const.h
+charset.d charset.ln charset.o: /home/lcom/labs/proj/src/game/charset.c \
+  /usr/include/lcom/lcf.h /usr/include/stdbool.h /usr/include/stdio.h \
+  /usr/include/sys/cdefs.h /usr/include/machine/cdefs.h \
+  /usr/include/sys/cdefs_elf.h /usr/include/sys/featuretest.h \
+  /usr/include/sys/ansi.h /usr/include/machine/ansi.h \
+  /usr/include/machine/int_types.h /usr/include/sys/common_int_types.h \
+  /usr/include/sys/null.h /usr/include/stdlib.h /usr/include/sys/types.h \
+  /usr/include/machine/types.h /usr/include/machine/endian.h \
+  /usr/include/sys/endian.h /usr/include/machine/endian_machdep.h \
+  /usr/include/machine/bswap.h /usr/include/machine/byte_swap.h \
+  /usr/include/sys/bswap.h /usr/include/sys/stdint.h \
+  /usr/include/machine/int_mwgwtypes.h \
+  /usr/include/sys/common_int_mwgwtypes.h \
+  /usr/include/machine/int_limits.h /usr/include/sys/common_int_limits.h \
+  /usr/include/machine/int_const.h /usr/include/sys/common_int_const.h \
+  /usr/include/machine/wchar_limits.h /usr/include/sys/fd_set.h \
+  /usr/include/time.h /usr/include/sys/time.h \
+  /usr/include/sys/timespec.h /usr/include/sys/select.h \
+  /usr/include/sys/sigtypes.h /usr/include/unistd.h \
+  /usr/include/sys/unistd.h /usr/include/machine/int86.h \
+  /usr/include/minix/const.h /usr/include/machine/archconst.h \
+  /usr/include/minix/driver.h /usr/include/minix/config.h \
+  /usr/include/minix/sys_config.h /usr/include/minix/type.h \
+  /usr/include/machine/multiboot.h /usr/include/stddef.h \
+  /usr/include/machine/interrupt.h /usr/include/minix/ipc.h \
+  /usr/include/minix/ipcconst.h /usr/include/machine/ipcconst.h \
+  /usr/include/sys/signal.h /usr/include/sys/siginfo.h \
+  /usr/include/machine/signal.h /usr/include/machine/fpu.h \
+  /usr/include/machine/trap.h /usr/include/x86/trap.h \
+  /usr/include/sys/ucontext.h /usr/include/machine/mcontext.h \
+  /usr/include/minix/com.h /usr/include/minix/callnr.h \
+  /usr/include/minix/syslib.h /usr/include/minix/u64.h \
+  /usr/include/minix/devio.h /usr/include/minix/safecopies.h \
+  /usr/include/minix/vm.h /usr/include/minix/endpoint.h \
+  /usr/include/limits.h /usr/include/machine/limits.h \
+  /usr/include/sys/syslimits.h /usr/include/minix/sef.h \
+  /usr/include/minix/sysutil.h /usr/include/string.h \
+  /usr/include/strings.h /usr/include/errno.h /usr/include/sys/errno.h \
+  /usr/include/sys/param.h /usr/include/sys/inttypes.h \
+  /usr/include/machine/int_fmtio.h /usr/include/sys/common_int_fmtio.h \
+  /usr/include/machine/param.h /usr/include/minix/partition.h \
+  /usr/include/sys/mman.h /usr/include/lcom/liblm.h \
+  /usr/include/lcom/lab2.h /usr/include/lcom/timer.h \
+  /usr/include/lcom/utils.h /usr/include/lcom/lab3.h \
+  /usr/include/lcom/lab4.h /usr/include/lcom/lab5.h \
+  /usr/include/lcom/pixmap.h /usr/include/lcom/xpm.h \
+  /usr/include/lcom/vbe.h /usr/include/lcom/video_gr.h \
+  /usr/include/lcom/proj.h /usr/include/lcom/types.h \
+  /home/lcom/labs/proj/src/game/charset.h \
+  /home/lcom/labs/proj/src/game/draw_chat.h \
+  /home/lcom/labs/proj/src/game/../utils/position.h \
+  /home/lcom/labs/proj/src/game/pixel_buffer.h \
+  /home/lcom/labs/proj/src/game/element.h \
+  /home/lcom/labs/proj/src/game/cursor.h \
+  /home/lcom/labs/proj/src/game/../devices/video/video_gr.h \
+  /home/lcom/labs/proj/src/game/../utils/const.h \
+  /home/lcom/labs/proj/src/game/../utils/color.h \
+  /home/lcom/labs/proj/src/game/canvas.h \
+  /home/lcom/labs/proj/src/game/../devices/video/graphics.h \
+  /usr/include/math.h /usr/include/machine/math.h \
+  /usr/include/x86/math.h \
+  /home/lcom/labs/proj/src/game/../devices/video/../../utils/const.h \
+  /home/lcom/labs/proj/src/game/draw_buttons.h \
+  /home/lcom/labs/proj/src/game/../xpm/buttons/button_plus_size.xpm \
+  /home/lcom/labs/proj/src/game/../xpm/buttons/button_minus_size.xpm \
+  /home/lcom/labs/proj/src/game/../xpm/buttons/button_clear_canvas.xpm \
+  /home/lcom/labs/proj/src/game/../devices/kbc/i8042.h \
+  /home/lcom/labs/proj/src/game/../devices/kbc/../../utils/utils.h
+cursor.d cursor.ln cursor.o: /home/lcom/labs/proj/src/game/cursor.c /usr/include/lcom/lcf.h \
+  /usr/include/stdbool.h /usr/include/stdio.h /usr/include/sys/cdefs.h \
+  /usr/include/machine/cdefs.h /usr/include/sys/cdefs_elf.h \
+  /usr/include/sys/featuretest.h /usr/include/sys/ansi.h \
+  /usr/include/machine/ansi.h /usr/include/machine/int_types.h \
+  /usr/include/sys/common_int_types.h /usr/include/sys/null.h \
+  /usr/include/stdlib.h /usr/include/sys/types.h \
+  /usr/include/machine/types.h /usr/include/machine/endian.h \
+  /usr/include/sys/endian.h /usr/include/machine/endian_machdep.h \
+  /usr/include/machine/bswap.h /usr/include/machine/byte_swap.h \
+  /usr/include/sys/bswap.h /usr/include/sys/stdint.h \
+  /usr/include/machine/int_mwgwtypes.h \
+  /usr/include/sys/common_int_mwgwtypes.h \
+  /usr/include/machine/int_limits.h /usr/include/sys/common_int_limits.h \
+  /usr/include/machine/int_const.h /usr/include/sys/common_int_const.h \
+  /usr/include/machine/wchar_limits.h /usr/include/sys/fd_set.h \
+  /usr/include/time.h /usr/include/sys/time.h \
+  /usr/include/sys/timespec.h /usr/include/sys/select.h \
+  /usr/include/sys/sigtypes.h /usr/include/unistd.h \
+  /usr/include/sys/unistd.h /usr/include/machine/int86.h \
+  /usr/include/minix/const.h /usr/include/machine/archconst.h \
+  /usr/include/minix/driver.h /usr/include/minix/config.h \
+  /usr/include/minix/sys_config.h /usr/include/minix/type.h \
+  /usr/include/machine/multiboot.h /usr/include/stddef.h \
+  /usr/include/machine/interrupt.h /usr/include/minix/ipc.h \
+  /usr/include/minix/ipcconst.h /usr/include/machine/ipcconst.h \
+  /usr/include/sys/signal.h /usr/include/sys/siginfo.h \
+  /usr/include/machine/signal.h /usr/include/machine/fpu.h \
+  /usr/include/machine/trap.h /usr/include/x86/trap.h \
+  /usr/include/sys/ucontext.h /usr/include/machine/mcontext.h \
+  /usr/include/minix/com.h /usr/include/minix/callnr.h \
+  /usr/include/minix/syslib.h /usr/include/minix/u64.h \
+  /usr/include/minix/devio.h /usr/include/minix/safecopies.h \
+  /usr/include/minix/vm.h /usr/include/minix/endpoint.h \
+  /usr/include/limits.h /usr/include/machine/limits.h \
+  /usr/include/sys/syslimits.h /usr/include/minix/sef.h \
+  /usr/include/minix/sysutil.h /usr/include/string.h \
+  /usr/include/strings.h /usr/include/errno.h /usr/include/sys/errno.h \
+  /usr/include/sys/param.h /usr/include/sys/inttypes.h \
+  /usr/include/machine/int_fmtio.h /usr/include/sys/common_int_fmtio.h \
+  /usr/include/machine/param.h /usr/include/minix/partition.h \
+  /usr/include/sys/mman.h /usr/include/lcom/liblm.h \
+  /usr/include/lcom/lab2.h /usr/include/lcom/timer.h \
+  /usr/include/lcom/utils.h /usr/include/lcom/lab3.h \
+  /usr/include/lcom/lab4.h /usr/include/lcom/lab5.h \
+  /usr/include/lcom/pixmap.h /usr/include/lcom/xpm.h \
+  /usr/include/lcom/vbe.h /usr/include/lcom/video_gr.h \
+  /usr/include/lcom/proj.h /usr/include/lcom/types.h \
+  /home/lcom/labs/proj/src/game/../xpm/cursor.xpm \
+  /home/lcom/labs/proj/src/game/../xpm/bucket_cursor.xpm \
+  /home/lcom/labs/proj/src/game/cursor.h \
+  /home/lcom/labs/proj/src/game/../devices/video/video_gr.h \
+  /home/lcom/labs/proj/src/game/../utils/position.h \
+  /home/lcom/labs/proj/src/game/../utils/const.h \
+  /home/lcom/labs/proj/src/game/../utils/color.h
+draw_buttons.d draw_buttons.ln draw_buttons.o: /home/lcom/labs/proj/src/game/draw_buttons.c \
+  /usr/include/lcom/lcf.h /usr/include/stdbool.h /usr/include/stdio.h \
+  /usr/include/sys/cdefs.h /usr/include/machine/cdefs.h \
+  /usr/include/sys/cdefs_elf.h /usr/include/sys/featuretest.h \
+  /usr/include/sys/ansi.h /usr/include/machine/ansi.h \
+  /usr/include/machine/int_types.h /usr/include/sys/common_int_types.h \
+  /usr/include/sys/null.h /usr/include/stdlib.h /usr/include/sys/types.h \
+  /usr/include/machine/types.h /usr/include/machine/endian.h \
+  /usr/include/sys/endian.h /usr/include/machine/endian_machdep.h \
+  /usr/include/machine/bswap.h /usr/include/machine/byte_swap.h \
+  /usr/include/sys/bswap.h /usr/include/sys/stdint.h \
+  /usr/include/machine/int_mwgwtypes.h \
+  /usr/include/sys/common_int_mwgwtypes.h \
+  /usr/include/machine/int_limits.h /usr/include/sys/common_int_limits.h \
+  /usr/include/machine/int_const.h /usr/include/sys/common_int_const.h \
+  /usr/include/machine/wchar_limits.h /usr/include/sys/fd_set.h \
+  /usr/include/time.h /usr/include/sys/time.h \
+  /usr/include/sys/timespec.h /usr/include/sys/select.h \
+  /usr/include/sys/sigtypes.h /usr/include/unistd.h \
+  /usr/include/sys/unistd.h /usr/include/machine/int86.h \
+  /usr/include/minix/const.h /usr/include/machine/archconst.h \
+  /usr/include/minix/driver.h /usr/include/minix/config.h \
+  /usr/include/minix/sys_config.h /usr/include/minix/type.h \
+  /usr/include/machine/multiboot.h /usr/include/stddef.h \
+  /usr/include/machine/interrupt.h /usr/include/minix/ipc.h \
+  /usr/include/minix/ipcconst.h /usr/include/machine/ipcconst.h \
+  /usr/include/sys/signal.h /usr/include/sys/siginfo.h \
+  /usr/include/machine/signal.h /usr/include/machine/fpu.h \
+  /usr/include/machine/trap.h /usr/include/x86/trap.h \
+  /usr/include/sys/ucontext.h /usr/include/machine/mcontext.h \
+  /usr/include/minix/com.h /usr/include/minix/callnr.h \
+  /usr/include/minix/syslib.h /usr/include/minix/u64.h \
+  /usr/include/minix/devio.h /usr/include/minix/safecopies.h \
+  /usr/include/minix/vm.h /usr/include/minix/endpoint.h \
+  /usr/include/limits.h /usr/include/machine/limits.h \
+  /usr/include/sys/syslimits.h /usr/include/minix/sef.h \
+  /usr/include/minix/sysutil.h /usr/include/string.h \
+  /usr/include/strings.h /usr/include/errno.h /usr/include/sys/errno.h \
+  /usr/include/sys/param.h /usr/include/sys/inttypes.h \
+  /usr/include/machine/int_fmtio.h /usr/include/sys/common_int_fmtio.h \
+  /usr/include/machine/param.h /usr/include/minix/partition.h \
+  /usr/include/sys/mman.h /usr/include/lcom/liblm.h \
+  /usr/include/lcom/lab2.h /usr/include/lcom/timer.h \
+  /usr/include/lcom/utils.h /usr/include/lcom/lab3.h \
+  /usr/include/lcom/lab4.h /usr/include/lcom/lab5.h \
+  /usr/include/lcom/pixmap.h /usr/include/lcom/xpm.h \
+  /usr/include/lcom/vbe.h /usr/include/lcom/video_gr.h \
+  /usr/include/lcom/proj.h /usr/include/lcom/types.h \
+  /home/lcom/labs/proj/src/game/../devices/video/graphics.h \
+  /usr/include/math.h /usr/include/machine/math.h \
+  /usr/include/x86/math.h \
+  /home/lcom/labs/proj/src/game/../devices/video/../../game/pixel_buffer.h \
+  /home/lcom/labs/proj/src/game/../devices/video/../../utils/position.h \
+  /home/lcom/labs/proj/src/game/../devices/video/../../utils/const.h \
+  /home/lcom/labs/proj/src/game/../devices/video/../../utils/color.h \
+  /home/lcom/labs/proj/src/game/../devices/video/video_gr.h \
+  /home/lcom/labs/proj/src/game/draw_buttons.h \
+  /home/lcom/labs/proj/src/game/../xpm/buttons/button_plus_size.xpm \
+  /home/lcom/labs/proj/src/game/../xpm/buttons/button_minus_size.xpm \
+  /home/lcom/labs/proj/src/game/../xpm/buttons/button_clear_canvas.xpm \
+  /home/lcom/labs/proj/src/game/element.h \
+  /home/lcom/labs/proj/src/game/cursor.h \
+  /home/lcom/labs/proj/src/game/../utils/const.h \
+  /home/lcom/labs/proj/src/game/canvas.h
+draw_chat.d draw_chat.ln draw_chat.o: /home/lcom/labs/proj/src/game/draw_chat.c \
+  /usr/include/lcom/lcf.h /usr/include/stdbool.h /usr/include/stdio.h \
+  /usr/include/sys/cdefs.h /usr/include/machine/cdefs.h \
+  /usr/include/sys/cdefs_elf.h /usr/include/sys/featuretest.h \
+  /usr/include/sys/ansi.h /usr/include/machine/ansi.h \
+  /usr/include/machine/int_types.h /usr/include/sys/common_int_types.h \
+  /usr/include/sys/null.h /usr/include/stdlib.h /usr/include/sys/types.h \
+  /usr/include/machine/types.h /usr/include/machine/endian.h \
+  /usr/include/sys/endian.h /usr/include/machine/endian_machdep.h \
+  /usr/include/machine/bswap.h /usr/include/machine/byte_swap.h \
+  /usr/include/sys/bswap.h /usr/include/sys/stdint.h \
+  /usr/include/machine/int_mwgwtypes.h \
+  /usr/include/sys/common_int_mwgwtypes.h \
+  /usr/include/machine/int_limits.h /usr/include/sys/common_int_limits.h \
+  /usr/include/machine/int_const.h /usr/include/sys/common_int_const.h \
+  /usr/include/machine/wchar_limits.h /usr/include/sys/fd_set.h \
+  /usr/include/time.h /usr/include/sys/time.h \
+  /usr/include/sys/timespec.h /usr/include/sys/select.h \
+  /usr/include/sys/sigtypes.h /usr/include/unistd.h \
+  /usr/include/sys/unistd.h /usr/include/machine/int86.h \
+  /usr/include/minix/const.h /usr/include/machine/archconst.h \
+  /usr/include/minix/driver.h /usr/include/minix/config.h \
+  /usr/include/minix/sys_config.h /usr/include/minix/type.h \
+  /usr/include/machine/multiboot.h /usr/include/stddef.h \
+  /usr/include/machine/interrupt.h /usr/include/minix/ipc.h \
+  /usr/include/minix/ipcconst.h /usr/include/machine/ipcconst.h \
+  /usr/include/sys/signal.h /usr/include/sys/siginfo.h \
+  /usr/include/machine/signal.h /usr/include/machine/fpu.h \
+  /usr/include/machine/trap.h /usr/include/x86/trap.h \
+  /usr/include/sys/ucontext.h /usr/include/machine/mcontext.h \
+  /usr/include/minix/com.h /usr/include/minix/callnr.h \
+  /usr/include/minix/syslib.h /usr/include/minix/u64.h \
+  /usr/include/minix/devio.h /usr/include/minix/safecopies.h \
+  /usr/include/minix/vm.h /usr/include/minix/endpoint.h \
+  /usr/include/limits.h /usr/include/machine/limits.h \
+  /usr/include/sys/syslimits.h /usr/include/minix/sef.h \
+  /usr/include/minix/sysutil.h /usr/include/string.h \
+  /usr/include/strings.h /usr/include/errno.h /usr/include/sys/errno.h \
+  /usr/include/sys/param.h /usr/include/sys/inttypes.h \
+  /usr/include/machine/int_fmtio.h /usr/include/sys/common_int_fmtio.h \
+  /usr/include/machine/param.h /usr/include/minix/partition.h \
+  /usr/include/sys/mman.h /usr/include/lcom/liblm.h \
+  /usr/include/lcom/lab2.h /usr/include/lcom/timer.h \
+  /usr/include/lcom/utils.h /usr/include/lcom/lab3.h \
+  /usr/include/lcom/lab4.h /usr/include/lcom/lab5.h \
+  /usr/include/lcom/pixmap.h /usr/include/lcom/xpm.h \
+  /usr/include/lcom/vbe.h /usr/include/lcom/video_gr.h \
+  /usr/include/lcom/proj.h /usr/include/lcom/types.h \
+  /home/lcom/labs/proj/src/game/../devices/video/graphics.h \
+  /usr/include/math.h /usr/include/machine/math.h \
+  /usr/include/x86/math.h \
+  /home/lcom/labs/proj/src/game/../devices/video/../../game/pixel_buffer.h \
+  /home/lcom/labs/proj/src/game/../devices/video/../../utils/position.h \
+  /home/lcom/labs/proj/src/game/../devices/video/../../utils/const.h \
+  /home/lcom/labs/proj/src/game/../devices/video/../../utils/color.h \
+  /home/lcom/labs/proj/src/game/../devices/video/video_gr.h \
+  /home/lcom/labs/proj/src/game/draw_chat.h \
+  /home/lcom/labs/proj/src/game/element.h \
+  /home/lcom/labs/proj/src/game/cursor.h \
+  /home/lcom/labs/proj/src/game/../utils/const.h \
+  /home/lcom/labs/proj/src/game/canvas.h \
+  /home/lcom/labs/proj/src/game/draw_buttons.h \
+  /home/lcom/labs/proj/src/game/../xpm/buttons/button_plus_size.xpm \
+  /home/lcom/labs/proj/src/game/../xpm/buttons/button_minus_size.xpm \
+  /home/lcom/labs/proj/src/game/../xpm/buttons/button_clear_canvas.xpm \
+  /home/lcom/labs/proj/src/game/charset.h \
+  /home/lcom/labs/proj/src/game/text.h
+element.d element.ln element.o: /home/lcom/labs/proj/src/game/element.c \
+  /usr/include/lcom/lcf.h /usr/include/stdbool.h /usr/include/stdio.h \
+  /usr/include/sys/cdefs.h /usr/include/machine/cdefs.h \
+  /usr/include/sys/cdefs_elf.h /usr/include/sys/featuretest.h \
+  /usr/include/sys/ansi.h /usr/include/machine/ansi.h \
+  /usr/include/machine/int_types.h /usr/include/sys/common_int_types.h \
+  /usr/include/sys/null.h /usr/include/stdlib.h /usr/include/sys/types.h \
+  /usr/include/machine/types.h /usr/include/machine/endian.h \
+  /usr/include/sys/endian.h /usr/include/machine/endian_machdep.h \
+  /usr/include/machine/bswap.h /usr/include/machine/byte_swap.h \
+  /usr/include/sys/bswap.h /usr/include/sys/stdint.h \
+  /usr/include/machine/int_mwgwtypes.h \
+  /usr/include/sys/common_int_mwgwtypes.h \
+  /usr/include/machine/int_limits.h /usr/include/sys/common_int_limits.h \
+  /usr/include/machine/int_const.h /usr/include/sys/common_int_const.h \
+  /usr/include/machine/wchar_limits.h /usr/include/sys/fd_set.h \
+  /usr/include/time.h /usr/include/sys/time.h \
+  /usr/include/sys/timespec.h /usr/include/sys/select.h \
+  /usr/include/sys/sigtypes.h /usr/include/unistd.h \
+  /usr/include/sys/unistd.h /usr/include/machine/int86.h \
+  /usr/include/minix/const.h /usr/include/machine/archconst.h \
+  /usr/include/minix/driver.h /usr/include/minix/config.h \
+  /usr/include/minix/sys_config.h /usr/include/minix/type.h \
+  /usr/include/machine/multiboot.h /usr/include/stddef.h \
+  /usr/include/machine/interrupt.h /usr/include/minix/ipc.h \
+  /usr/include/minix/ipcconst.h /usr/include/machine/ipcconst.h \
+  /usr/include/sys/signal.h /usr/include/sys/siginfo.h \
+  /usr/include/machine/signal.h /usr/include/machine/fpu.h \
+  /usr/include/machine/trap.h /usr/include/x86/trap.h \
+  /usr/include/sys/ucontext.h /usr/include/machine/mcontext.h \
+  /usr/include/minix/com.h /usr/include/minix/callnr.h \
+  /usr/include/minix/syslib.h /usr/include/minix/u64.h \
+  /usr/include/minix/devio.h /usr/include/minix/safecopies.h \
+  /usr/include/minix/vm.h /usr/include/minix/endpoint.h \
+  /usr/include/limits.h /usr/include/machine/limits.h \
+  /usr/include/sys/syslimits.h /usr/include/minix/sef.h \
+  /usr/include/minix/sysutil.h /usr/include/string.h \
+  /usr/include/strings.h /usr/include/errno.h /usr/include/sys/errno.h \
+  /usr/include/sys/param.h /usr/include/sys/inttypes.h \
+  /usr/include/machine/int_fmtio.h /usr/include/sys/common_int_fmtio.h \
+  /usr/include/machine/param.h /usr/include/minix/partition.h \
+  /usr/include/sys/mman.h /usr/include/lcom/liblm.h \
+  /usr/include/lcom/lab2.h /usr/include/lcom/timer.h \
+  /usr/include/lcom/utils.h /usr/include/lcom/lab3.h \
+  /usr/include/lcom/lab4.h /usr/include/lcom/lab5.h \
+  /usr/include/lcom/pixmap.h /usr/include/lcom/xpm.h \
+  /usr/include/lcom/vbe.h /usr/include/lcom/video_gr.h \
+  /usr/include/lcom/proj.h /usr/include/lcom/types.h \
+  /home/lcom/labs/proj/src/game/element.h \
+  /home/lcom/labs/proj/src/game/cursor.h \
+  /home/lcom/labs/proj/src/game/../devices/video/video_gr.h \
+  /home/lcom/labs/proj/src/game/../utils/position.h \
+  /home/lcom/labs/proj/src/game/../utils/const.h \
+  /home/lcom/labs/proj/src/game/../utils/color.h \
+  /home/lcom/labs/proj/src/game/canvas.h \
+  /home/lcom/labs/proj/src/game/pixel_buffer.h \
+  /home/lcom/labs/proj/src/game/../devices/video/graphics.h \
+  /usr/include/math.h /usr/include/machine/math.h \
+  /usr/include/x86/math.h \
+  /home/lcom/labs/proj/src/game/../devices/video/../../utils/const.h \
+  /home/lcom/labs/proj/src/game/draw_buttons.h \
+  /home/lcom/labs/proj/src/game/../xpm/buttons/button_plus_size.xpm \
+  /home/lcom/labs/proj/src/game/../xpm/buttons/button_minus_size.xpm \
+  /home/lcom/labs/proj/src/game/../xpm/buttons/button_clear_canvas.xpm
+graphics.d graphics.ln graphics.o: /home/lcom/labs/proj/src/devices/video/graphics.c \
+  /usr/include/lcom/lcf.h /usr/include/stdbool.h /usr/include/stdio.h \
+  /usr/include/sys/cdefs.h /usr/include/machine/cdefs.h \
+  /usr/include/sys/cdefs_elf.h /usr/include/sys/featuretest.h \
+  /usr/include/sys/ansi.h /usr/include/machine/ansi.h \
+  /usr/include/machine/int_types.h /usr/include/sys/common_int_types.h \
+  /usr/include/sys/null.h /usr/include/stdlib.h /usr/include/sys/types.h \
+  /usr/include/machine/types.h /usr/include/machine/endian.h \
+  /usr/include/sys/endian.h /usr/include/machine/endian_machdep.h \
+  /usr/include/machine/bswap.h /usr/include/machine/byte_swap.h \
+  /usr/include/sys/bswap.h /usr/include/sys/stdint.h \
+  /usr/include/machine/int_mwgwtypes.h \
+  /usr/include/sys/common_int_mwgwtypes.h \
+  /usr/include/machine/int_limits.h /usr/include/sys/common_int_limits.h \
+  /usr/include/machine/int_const.h /usr/include/sys/common_int_const.h \
+  /usr/include/machine/wchar_limits.h /usr/include/sys/fd_set.h \
+  /usr/include/time.h /usr/include/sys/time.h \
+  /usr/include/sys/timespec.h /usr/include/sys/select.h \
+  /usr/include/sys/sigtypes.h /usr/include/unistd.h \
+  /usr/include/sys/unistd.h /usr/include/machine/int86.h \
+  /usr/include/minix/const.h /usr/include/machine/archconst.h \
+  /usr/include/minix/driver.h /usr/include/minix/config.h \
+  /usr/include/minix/sys_config.h /usr/include/minix/type.h \
+  /usr/include/machine/multiboot.h /usr/include/stddef.h \
+  /usr/include/machine/interrupt.h /usr/include/minix/ipc.h \
+  /usr/include/minix/ipcconst.h /usr/include/machine/ipcconst.h \
+  /usr/include/sys/signal.h /usr/include/sys/siginfo.h \
+  /usr/include/machine/signal.h /usr/include/machine/fpu.h \
+  /usr/include/machine/trap.h /usr/include/x86/trap.h \
+  /usr/include/sys/ucontext.h /usr/include/machine/mcontext.h \
+  /usr/include/minix/com.h /usr/include/minix/callnr.h \
+  /usr/include/minix/syslib.h /usr/include/minix/u64.h \
+  /usr/include/minix/devio.h /usr/include/minix/safecopies.h \
+  /usr/include/minix/vm.h /usr/include/minix/endpoint.h \
+  /usr/include/limits.h /usr/include/machine/limits.h \
+  /usr/include/sys/syslimits.h /usr/include/minix/sef.h \
+  /usr/include/minix/sysutil.h /usr/include/string.h \
+  /usr/include/strings.h /usr/include/errno.h /usr/include/sys/errno.h \
+  /usr/include/sys/param.h /usr/include/sys/inttypes.h \
+  /usr/include/machine/int_fmtio.h /usr/include/sys/common_int_fmtio.h \
+  /usr/include/machine/param.h /usr/include/minix/partition.h \
+  /usr/include/sys/mman.h /usr/include/lcom/liblm.h \
+  /usr/include/lcom/lab2.h /usr/include/lcom/timer.h \
+  /usr/include/lcom/utils.h /usr/include/lcom/lab3.h \
+  /usr/include/lcom/lab4.h /usr/include/lcom/lab5.h \
+  /usr/include/lcom/pixmap.h /usr/include/lcom/xpm.h \
+  /usr/include/lcom/vbe.h /usr/include/lcom/video_gr.h \
+  /usr/include/lcom/proj.h /usr/include/lcom/types.h \
+  /home/lcom/labs/proj/src/devices/video/graphics.h /usr/include/math.h \
+  /usr/include/machine/math.h /usr/include/x86/math.h \
+  /home/lcom/labs/proj/src/devices/video/../../game/pixel_buffer.h \
+  /home/lcom/labs/proj/src/devices/video/../../utils/position.h \
+  /home/lcom/labs/proj/src/devices/video/../../utils/const.h \
+  /home/lcom/labs/proj/src/devices/video/../../utils/color.h \
+  /home/lcom/labs/proj/src/devices/video/video_gr.h
+kbc.d kbc.ln kbc.o: /home/lcom/labs/proj/src/devices/kbc/kbc.c /usr/include/lcom/lcf.h \
+  /usr/include/stdbool.h /usr/include/stdio.h /usr/include/sys/cdefs.h \
+  /usr/include/machine/cdefs.h /usr/include/sys/cdefs_elf.h \
+  /usr/include/sys/featuretest.h /usr/include/sys/ansi.h \
+  /usr/include/machine/ansi.h /usr/include/machine/int_types.h \
+  /usr/include/sys/common_int_types.h /usr/include/sys/null.h \
+  /usr/include/stdlib.h /usr/include/sys/types.h \
+  /usr/include/machine/types.h /usr/include/machine/endian.h \
+  /usr/include/sys/endian.h /usr/include/machine/endian_machdep.h \
+  /usr/include/machine/bswap.h /usr/include/machine/byte_swap.h \
+  /usr/include/sys/bswap.h /usr/include/sys/stdint.h \
+  /usr/include/machine/int_mwgwtypes.h \
+  /usr/include/sys/common_int_mwgwtypes.h \
+  /usr/include/machine/int_limits.h /usr/include/sys/common_int_limits.h \
+  /usr/include/machine/int_const.h /usr/include/sys/common_int_const.h \
+  /usr/include/machine/wchar_limits.h /usr/include/sys/fd_set.h \
+  /usr/include/time.h /usr/include/sys/time.h \
+  /usr/include/sys/timespec.h /usr/include/sys/select.h \
+  /usr/include/sys/sigtypes.h /usr/include/unistd.h \
+  /usr/include/sys/unistd.h /usr/include/machine/int86.h \
+  /usr/include/minix/const.h /usr/include/machine/archconst.h \
+  /usr/include/minix/driver.h /usr/include/minix/config.h \
+  /usr/include/minix/sys_config.h /usr/include/minix/type.h \
+  /usr/include/machine/multiboot.h /usr/include/stddef.h \
+  /usr/include/machine/interrupt.h /usr/include/minix/ipc.h \
+  /usr/include/minix/ipcconst.h /usr/include/machine/ipcconst.h \
+  /usr/include/sys/signal.h /usr/include/sys/siginfo.h \
+  /usr/include/machine/signal.h /usr/include/machine/fpu.h \
+  /usr/include/machine/trap.h /usr/include/x86/trap.h \
+  /usr/include/sys/ucontext.h /usr/include/machine/mcontext.h \
+  /usr/include/minix/com.h /usr/include/minix/callnr.h \
+  /usr/include/minix/syslib.h /usr/include/minix/u64.h \
+  /usr/include/minix/devio.h /usr/include/minix/safecopies.h \
+  /usr/include/minix/vm.h /usr/include/minix/endpoint.h \
+  /usr/include/limits.h /usr/include/machine/limits.h \
+  /usr/include/sys/syslimits.h /usr/include/minix/sef.h \
+  /usr/include/minix/sysutil.h /usr/include/string.h \
+  /usr/include/strings.h /usr/include/errno.h /usr/include/sys/errno.h \
+  /usr/include/sys/param.h /usr/include/sys/inttypes.h \
+  /usr/include/machine/int_fmtio.h /usr/include/sys/common_int_fmtio.h \
+  /usr/include/machine/param.h /usr/include/minix/partition.h \
+  /usr/include/sys/mman.h /usr/include/lcom/liblm.h \
+  /usr/include/lcom/lab2.h /usr/include/lcom/timer.h \
+  /usr/include/lcom/utils.h /usr/include/lcom/lab3.h \
+  /usr/include/lcom/lab4.h /usr/include/lcom/lab5.h \
+  /usr/include/lcom/pixmap.h /usr/include/lcom/xpm.h \
+  /usr/include/lcom/vbe.h /usr/include/lcom/video_gr.h \
+  /usr/include/lcom/proj.h /usr/include/lcom/types.h \
+  /home/lcom/labs/proj/src/devices/kbc/i8042.h \
+  /home/lcom/labs/proj/src/devices/kbc/../../utils/utils.h
+mouse.d mouse.ln mouse.o: /home/lcom/labs/proj/src/devices/kbc/mouse.c \
+  /usr/include/lcom/lcf.h /usr/include/stdbool.h /usr/include/stdio.h \
+  /usr/include/sys/cdefs.h /usr/include/machine/cdefs.h \
+  /usr/include/sys/cdefs_elf.h /usr/include/sys/featuretest.h \
+  /usr/include/sys/ansi.h /usr/include/machine/ansi.h \
+  /usr/include/machine/int_types.h /usr/include/sys/common_int_types.h \
+  /usr/include/sys/null.h /usr/include/stdlib.h /usr/include/sys/types.h \
+  /usr/include/machine/types.h /usr/include/machine/endian.h \
+  /usr/include/sys/endian.h /usr/include/machine/endian_machdep.h \
+  /usr/include/machine/bswap.h /usr/include/machine/byte_swap.h \
+  /usr/include/sys/bswap.h /usr/include/sys/stdint.h \
+  /usr/include/machine/int_mwgwtypes.h \
+  /usr/include/sys/common_int_mwgwtypes.h \
+  /usr/include/machine/int_limits.h /usr/include/sys/common_int_limits.h \
+  /usr/include/machine/int_const.h /usr/include/sys/common_int_const.h \
+  /usr/include/machine/wchar_limits.h /usr/include/sys/fd_set.h \
+  /usr/include/time.h /usr/include/sys/time.h \
+  /usr/include/sys/timespec.h /usr/include/sys/select.h \
+  /usr/include/sys/sigtypes.h /usr/include/unistd.h \
+  /usr/include/sys/unistd.h /usr/include/machine/int86.h \
+  /usr/include/minix/const.h /usr/include/machine/archconst.h \
+  /usr/include/minix/driver.h /usr/include/minix/config.h \
+  /usr/include/minix/sys_config.h /usr/include/minix/type.h \
+  /usr/include/machine/multiboot.h /usr/include/stddef.h \
+  /usr/include/machine/interrupt.h /usr/include/minix/ipc.h \
+  /usr/include/minix/ipcconst.h /usr/include/machine/ipcconst.h \
+  /usr/include/sys/signal.h /usr/include/sys/siginfo.h \
+  /usr/include/machine/signal.h /usr/include/machine/fpu.h \
+  /usr/include/machine/trap.h /usr/include/x86/trap.h \
+  /usr/include/sys/ucontext.h /usr/include/machine/mcontext.h \
+  /usr/include/minix/com.h /usr/include/minix/callnr.h \
+  /usr/include/minix/syslib.h /usr/include/minix/u64.h \
+  /usr/include/minix/devio.h /usr/include/minix/safecopies.h \
+  /usr/include/minix/vm.h /usr/include/minix/endpoint.h \
+  /usr/include/limits.h /usr/include/machine/limits.h \
+  /usr/include/sys/syslimits.h /usr/include/minix/sef.h \
+  /usr/include/minix/sysutil.h /usr/include/string.h \
+  /usr/include/strings.h /usr/include/errno.h /usr/include/sys/errno.h \
+  /usr/include/sys/param.h /usr/include/sys/inttypes.h \
+  /usr/include/machine/int_fmtio.h /usr/include/sys/common_int_fmtio.h \
+  /usr/include/machine/param.h /usr/include/minix/partition.h \
+  /usr/include/sys/mman.h /usr/include/lcom/liblm.h \
+  /usr/include/lcom/lab2.h /usr/include/lcom/timer.h \
+  /usr/include/lcom/utils.h /usr/include/lcom/lab3.h \
+  /usr/include/lcom/lab4.h /usr/include/lcom/lab5.h \
+  /usr/include/lcom/pixmap.h /usr/include/lcom/xpm.h \
+  /usr/include/lcom/vbe.h /usr/include/lcom/video_gr.h \
+  /usr/include/lcom/proj.h /usr/include/lcom/types.h \
+  /home/lcom/labs/proj/src/devices/kbc/i8042.h \
+  /home/lcom/labs/proj/src/devices/kbc/../../utils/utils.h \
+  /home/lcom/labs/proj/src/devices/kbc/mouse.h \
+  /home/lcom/labs/proj/src/devices/kbc/PS2.h
+pixel_buffer.d pixel_buffer.ln pixel_buffer.o: /home/lcom/labs/proj/src/game/pixel_buffer.c \
+  /usr/include/lcom/lcf.h /usr/include/stdbool.h /usr/include/stdio.h \
+  /usr/include/sys/cdefs.h /usr/include/machine/cdefs.h \
+  /usr/include/sys/cdefs_elf.h /usr/include/sys/featuretest.h \
+  /usr/include/sys/ansi.h /usr/include/machine/ansi.h \
+  /usr/include/machine/int_types.h /usr/include/sys/common_int_types.h \
+  /usr/include/sys/null.h /usr/include/stdlib.h /usr/include/sys/types.h \
+  /usr/include/machine/types.h /usr/include/machine/endian.h \
+  /usr/include/sys/endian.h /usr/include/machine/endian_machdep.h \
+  /usr/include/machine/bswap.h /usr/include/machine/byte_swap.h \
+  /usr/include/sys/bswap.h /usr/include/sys/stdint.h \
+  /usr/include/machine/int_mwgwtypes.h \
+  /usr/include/sys/common_int_mwgwtypes.h \
+  /usr/include/machine/int_limits.h /usr/include/sys/common_int_limits.h \
+  /usr/include/machine/int_const.h /usr/include/sys/common_int_const.h \
+  /usr/include/machine/wchar_limits.h /usr/include/sys/fd_set.h \
+  /usr/include/time.h /usr/include/sys/time.h \
+  /usr/include/sys/timespec.h /usr/include/sys/select.h \
+  /usr/include/sys/sigtypes.h /usr/include/unistd.h \
+  /usr/include/sys/unistd.h /usr/include/machine/int86.h \
+  /usr/include/minix/const.h /usr/include/machine/archconst.h \
+  /usr/include/minix/driver.h /usr/include/minix/config.h \
+  /usr/include/minix/sys_config.h /usr/include/minix/type.h \
+  /usr/include/machine/multiboot.h /usr/include/stddef.h \
+  /usr/include/machine/interrupt.h /usr/include/minix/ipc.h \
+  /usr/include/minix/ipcconst.h /usr/include/machine/ipcconst.h \
+  /usr/include/sys/signal.h /usr/include/sys/siginfo.h \
+  /usr/include/machine/signal.h /usr/include/machine/fpu.h \
+  /usr/include/machine/trap.h /usr/include/x86/trap.h \
+  /usr/include/sys/ucontext.h /usr/include/machine/mcontext.h \
+  /usr/include/minix/com.h /usr/include/minix/callnr.h \
+  /usr/include/minix/syslib.h /usr/include/minix/u64.h \
+  /usr/include/minix/devio.h /usr/include/minix/safecopies.h \
+  /usr/include/minix/vm.h /usr/include/minix/endpoint.h \
+  /usr/include/limits.h /usr/include/machine/limits.h \
+  /usr/include/sys/syslimits.h /usr/include/minix/sef.h \
+  /usr/include/minix/sysutil.h /usr/include/string.h \
+  /usr/include/strings.h /usr/include/errno.h /usr/include/sys/errno.h \
+  /usr/include/sys/param.h /usr/include/sys/inttypes.h \
+  /usr/include/machine/int_fmtio.h /usr/include/sys/common_int_fmtio.h \
+  /usr/include/machine/param.h /usr/include/minix/partition.h \
+  /usr/include/sys/mman.h /usr/include/lcom/liblm.h \
+  /usr/include/lcom/lab2.h /usr/include/lcom/timer.h \
+  /usr/include/lcom/utils.h /usr/include/lcom/lab3.h \
+  /usr/include/lcom/lab4.h /usr/include/lcom/lab5.h \
+  /usr/include/lcom/pixmap.h /usr/include/lcom/xpm.h \
+  /usr/include/lcom/vbe.h /usr/include/lcom/video_gr.h \
+  /usr/include/lcom/proj.h /usr/include/lcom/types.h \
+  /home/lcom/labs/proj/src/game/pixel_buffer.h
+proj.d proj.ln proj.o: /home/lcom/labs/proj/src/proj.c /usr/include/lcom/lcf.h \
+  /usr/include/stdbool.h /usr/include/stdio.h /usr/include/sys/cdefs.h \
+  /usr/include/machine/cdefs.h /usr/include/sys/cdefs_elf.h \
+  /usr/include/sys/featuretest.h /usr/include/sys/ansi.h \
+  /usr/include/machine/ansi.h /usr/include/machine/int_types.h \
+  /usr/include/sys/common_int_types.h /usr/include/sys/null.h \
+  /usr/include/stdlib.h /usr/include/sys/types.h \
+  /usr/include/machine/types.h /usr/include/machine/endian.h \
+  /usr/include/sys/endian.h /usr/include/machine/endian_machdep.h \
+  /usr/include/machine/bswap.h /usr/include/machine/byte_swap.h \
+  /usr/include/sys/bswap.h /usr/include/sys/stdint.h \
+  /usr/include/machine/int_mwgwtypes.h \
+  /usr/include/sys/common_int_mwgwtypes.h \
+  /usr/include/machine/int_limits.h /usr/include/sys/common_int_limits.h \
+  /usr/include/machine/int_const.h /usr/include/sys/common_int_const.h \
+  /usr/include/machine/wchar_limits.h /usr/include/sys/fd_set.h \
+  /usr/include/time.h /usr/include/sys/time.h \
+  /usr/include/sys/timespec.h /usr/include/sys/select.h \
+  /usr/include/sys/sigtypes.h /usr/include/unistd.h \
+  /usr/include/sys/unistd.h /usr/include/machine/int86.h \
+  /usr/include/minix/const.h /usr/include/machine/archconst.h \
+  /usr/include/minix/driver.h /usr/include/minix/config.h \
+  /usr/include/minix/sys_config.h /usr/include/minix/type.h \
+  /usr/include/machine/multiboot.h /usr/include/stddef.h \
+  /usr/include/machine/interrupt.h /usr/include/minix/ipc.h \
+  /usr/include/minix/ipcconst.h /usr/include/machine/ipcconst.h \
+  /usr/include/sys/signal.h /usr/include/sys/siginfo.h \
+  /usr/include/machine/signal.h /usr/include/machine/fpu.h \
+  /usr/include/machine/trap.h /usr/include/x86/trap.h \
+  /usr/include/sys/ucontext.h /usr/include/machine/mcontext.h \
+  /usr/include/minix/com.h /usr/include/minix/callnr.h \
+  /usr/include/minix/syslib.h /usr/include/minix/u64.h \
+  /usr/include/minix/devio.h /usr/include/minix/safecopies.h \
+  /usr/include/minix/vm.h /usr/include/minix/endpoint.h \
+  /usr/include/limits.h /usr/include/machine/limits.h \
+  /usr/include/sys/syslimits.h /usr/include/minix/sef.h \
+  /usr/include/minix/sysutil.h /usr/include/string.h \
+  /usr/include/strings.h /usr/include/errno.h /usr/include/sys/errno.h \
+  /usr/include/sys/param.h /usr/include/sys/inttypes.h \
+  /usr/include/machine/int_fmtio.h /usr/include/sys/common_int_fmtio.h \
+  /usr/include/machine/param.h /usr/include/minix/partition.h \
+  /usr/include/sys/mman.h /usr/include/lcom/liblm.h \
+  /usr/include/lcom/lab2.h /usr/include/lcom/timer.h \
+  /usr/include/lcom/utils.h /usr/include/lcom/lab3.h \
+  /usr/include/lcom/lab4.h /usr/include/lcom/lab5.h \
+  /usr/include/lcom/pixmap.h /usr/include/lcom/xpm.h \
+  /usr/include/lcom/vbe.h /usr/include/lcom/video_gr.h \
+  /usr/include/lcom/proj.h /usr/include/lcom/types.h \
+  /home/lcom/labs/proj/src/devices/kbc/kbc.h \
+  /home/lcom/labs/proj/src/devices/kbc/mouse.h \
+  /home/lcom/labs/proj/src/devices/kbc/PS2.h \
+  /home/lcom/labs/proj/src/devices/kbc/i8042.h \
+  /home/lcom/labs/proj/src/devices/kbc/../../utils/utils.h \
+  /home/lcom/labs/proj/src/devices/video/vbe.h \
+  /home/lcom/labs/proj/src/devices/video/../../utils/utils.h \
+  /home/lcom/labs/proj/src/devices/video/video_gr.h \
+  /home/lcom/labs/proj/src/devices/timer/timer.h \
+  /home/lcom/labs/proj/src/utils/utils.h \
+  /home/lcom/labs/proj/src/utils/color.h \
+  /home/lcom/labs/proj/src/game/cursor.h \
+  /home/lcom/labs/proj/src/game/../devices/video/video_gr.h \
+  /home/lcom/labs/proj/src/game/../utils/position.h \
+  /home/lcom/labs/proj/src/game/../utils/const.h \
+  /home/lcom/labs/proj/src/xpm/cursor.xpm \
+  /home/lcom/labs/proj/src/game/canvas.h \
+  /home/lcom/labs/proj/src/game/pixel_buffer.h \
+  /home/lcom/labs/proj/src/game/../devices/video/graphics.h \
+  /usr/include/math.h /usr/include/machine/math.h \
+  /usr/include/x86/math.h \
+  /home/lcom/labs/proj/src/devices/video/../../utils/const.h \
+  /home/lcom/labs/proj/src/game/text.h \
+  /home/lcom/labs/proj/src/game/element.h \
+  /home/lcom/labs/proj/src/game/draw_buttons.h \
+  /home/lcom/labs/proj/src/game/../xpm/buttons/button_plus_size.xpm \
+  /home/lcom/labs/proj/src/game/../xpm/buttons/button_minus_size.xpm \
+  /home/lcom/labs/proj/src/game/../xpm/buttons/button_clear_canvas.xpm \
+  /home/lcom/labs/proj/src/game/ui.h \
+  /home/lcom/labs/proj/src/game/draw_chat.h \
+  /home/lcom/labs/proj/src/game/charset.h
+text.d text.ln text.o: /home/lcom/labs/proj/src/game/text.c /usr/include/lcom/lcf.h \
+  /usr/include/stdbool.h /usr/include/stdio.h /usr/include/sys/cdefs.h \
+  /usr/include/machine/cdefs.h /usr/include/sys/cdefs_elf.h \
+  /usr/include/sys/featuretest.h /usr/include/sys/ansi.h \
+  /usr/include/machine/ansi.h /usr/include/machine/int_types.h \
+  /usr/include/sys/common_int_types.h /usr/include/sys/null.h \
+  /usr/include/stdlib.h /usr/include/sys/types.h \
+  /usr/include/machine/types.h /usr/include/machine/endian.h \
+  /usr/include/sys/endian.h /usr/include/machine/endian_machdep.h \
+  /usr/include/machine/bswap.h /usr/include/machine/byte_swap.h \
+  /usr/include/sys/bswap.h /usr/include/sys/stdint.h \
+  /usr/include/machine/int_mwgwtypes.h \
+  /usr/include/sys/common_int_mwgwtypes.h \
+  /usr/include/machine/int_limits.h /usr/include/sys/common_int_limits.h \
+  /usr/include/machine/int_const.h /usr/include/sys/common_int_const.h \
+  /usr/include/machine/wchar_limits.h /usr/include/sys/fd_set.h \
+  /usr/include/time.h /usr/include/sys/time.h \
+  /usr/include/sys/timespec.h /usr/include/sys/select.h \
+  /usr/include/sys/sigtypes.h /usr/include/unistd.h \
+  /usr/include/sys/unistd.h /usr/include/machine/int86.h \
+  /usr/include/minix/const.h /usr/include/machine/archconst.h \
+  /usr/include/minix/driver.h /usr/include/minix/config.h \
+  /usr/include/minix/sys_config.h /usr/include/minix/type.h \
+  /usr/include/machine/multiboot.h /usr/include/stddef.h \
+  /usr/include/machine/interrupt.h /usr/include/minix/ipc.h \
+  /usr/include/minix/ipcconst.h /usr/include/machine/ipcconst.h \
+  /usr/include/sys/signal.h /usr/include/sys/siginfo.h \
+  /usr/include/machine/signal.h /usr/include/machine/fpu.h \
+  /usr/include/machine/trap.h /usr/include/x86/trap.h \
+  /usr/include/sys/ucontext.h /usr/include/machine/mcontext.h \
+  /usr/include/minix/com.h /usr/include/minix/callnr.h \
+  /usr/include/minix/syslib.h /usr/include/minix/u64.h \
+  /usr/include/minix/devio.h /usr/include/minix/safecopies.h \
+  /usr/include/minix/vm.h /usr/include/minix/endpoint.h \
+  /usr/include/limits.h /usr/include/machine/limits.h \
+  /usr/include/sys/syslimits.h /usr/include/minix/sef.h \
+  /usr/include/minix/sysutil.h /usr/include/string.h \
+  /usr/include/strings.h /usr/include/errno.h /usr/include/sys/errno.h \
+  /usr/include/sys/param.h /usr/include/sys/inttypes.h \
+  /usr/include/machine/int_fmtio.h /usr/include/sys/common_int_fmtio.h \
+  /usr/include/machine/param.h /usr/include/minix/partition.h \
+  /usr/include/sys/mman.h /usr/include/lcom/liblm.h \
+  /usr/include/lcom/lab2.h /usr/include/lcom/timer.h \
+  /usr/include/lcom/utils.h /usr/include/lcom/lab3.h \
+  /usr/include/lcom/lab4.h /usr/include/lcom/lab5.h \
+  /usr/include/lcom/pixmap.h /usr/include/lcom/xpm.h \
+  /usr/include/lcom/vbe.h /usr/include/lcom/video_gr.h \
+  /usr/include/lcom/proj.h /usr/include/lcom/types.h \
+  /home/lcom/labs/proj/src/game/../xpm/font.xpm \
+  /home/lcom/labs/proj/src/game/text.h \
+  /home/lcom/labs/proj/src/game/../devices/video/video_gr.h
+timer.d timer.ln timer.o: /home/lcom/labs/proj/src/devices/timer/timer.c \
+  /usr/include/lcom/lcf.h /usr/include/stdbool.h /usr/include/stdio.h \
+  /usr/include/sys/cdefs.h /usr/include/machine/cdefs.h \
+  /usr/include/sys/cdefs_elf.h /usr/include/sys/featuretest.h \
+  /usr/include/sys/ansi.h /usr/include/machine/ansi.h \
+  /usr/include/machine/int_types.h /usr/include/sys/common_int_types.h \
+  /usr/include/sys/null.h /usr/include/stdlib.h /usr/include/sys/types.h \
+  /usr/include/machine/types.h /usr/include/machine/endian.h \
+  /usr/include/sys/endian.h /usr/include/machine/endian_machdep.h \
+  /usr/include/machine/bswap.h /usr/include/machine/byte_swap.h \
+  /usr/include/sys/bswap.h /usr/include/sys/stdint.h \
+  /usr/include/machine/int_mwgwtypes.h \
+  /usr/include/sys/common_int_mwgwtypes.h \
+  /usr/include/machine/int_limits.h /usr/include/sys/common_int_limits.h \
+  /usr/include/machine/int_const.h /usr/include/sys/common_int_const.h \
+  /usr/include/machine/wchar_limits.h /usr/include/sys/fd_set.h \
+  /usr/include/time.h /usr/include/sys/time.h \
+  /usr/include/sys/timespec.h /usr/include/sys/select.h \
+  /usr/include/sys/sigtypes.h /usr/include/unistd.h \
+  /usr/include/sys/unistd.h /usr/include/machine/int86.h \
+  /usr/include/minix/const.h /usr/include/machine/archconst.h \
+  /usr/include/minix/driver.h /usr/include/minix/config.h \
+  /usr/include/minix/sys_config.h /usr/include/minix/type.h \
+  /usr/include/machine/multiboot.h /usr/include/stddef.h \
+  /usr/include/machine/interrupt.h /usr/include/minix/ipc.h \
+  /usr/include/minix/ipcconst.h /usr/include/machine/ipcconst.h \
+  /usr/include/sys/signal.h /usr/include/sys/siginfo.h \
+  /usr/include/machine/signal.h /usr/include/machine/fpu.h \
+  /usr/include/machine/trap.h /usr/include/x86/trap.h \
+  /usr/include/sys/ucontext.h /usr/include/machine/mcontext.h \
+  /usr/include/minix/com.h /usr/include/minix/callnr.h \
+  /usr/include/minix/syslib.h /usr/include/minix/u64.h \
+  /usr/include/minix/devio.h /usr/include/minix/safecopies.h \
+  /usr/include/minix/vm.h /usr/include/minix/endpoint.h \
+  /usr/include/limits.h /usr/include/machine/limits.h \
+  /usr/include/sys/syslimits.h /usr/include/minix/sef.h \
+  /usr/include/minix/sysutil.h /usr/include/string.h \
+  /usr/include/strings.h /usr/include/errno.h /usr/include/sys/errno.h \
+  /usr/include/sys/param.h /usr/include/sys/inttypes.h \
+  /usr/include/machine/int_fmtio.h /usr/include/sys/common_int_fmtio.h \
+  /usr/include/machine/param.h /usr/include/minix/partition.h \
+  /usr/include/sys/mman.h /usr/include/lcom/liblm.h \
+  /usr/include/lcom/lab2.h /usr/include/lcom/timer.h \
+  /usr/include/lcom/utils.h /usr/include/lcom/lab3.h \
+  /usr/include/lcom/lab4.h /usr/include/lcom/lab5.h \
+  /usr/include/lcom/pixmap.h /usr/include/lcom/xpm.h \
+  /usr/include/lcom/vbe.h /usr/include/lcom/video_gr.h \
+  /usr/include/lcom/proj.h /usr/include/lcom/types.h \
+  /home/lcom/labs/proj/src/devices/timer/i8254.h \
+  /home/lcom/labs/proj/src/devices/timer/../../utils/utils.h \
+  /home/lcom/labs/proj/src/devices/timer/timer.h
+ui.d ui.ln ui.o: /home/lcom/labs/proj/src/game/ui.c \
+  /home/lcom/labs/proj/src/game/ui.h /usr/include/lcom/lcf.h \
+  /usr/include/stdbool.h /usr/include/stdio.h /usr/include/sys/cdefs.h \
+  /usr/include/machine/cdefs.h /usr/include/sys/cdefs_elf.h \
+  /usr/include/sys/featuretest.h /usr/include/sys/ansi.h \
+  /usr/include/machine/ansi.h /usr/include/machine/int_types.h \
+  /usr/include/sys/common_int_types.h /usr/include/sys/null.h \
+  /usr/include/stdlib.h /usr/include/sys/types.h \
+  /usr/include/machine/types.h /usr/include/machine/endian.h \
+  /usr/include/sys/endian.h /usr/include/machine/endian_machdep.h \
+  /usr/include/machine/bswap.h /usr/include/machine/byte_swap.h \
+  /usr/include/sys/bswap.h /usr/include/sys/stdint.h \
+  /usr/include/machine/int_mwgwtypes.h \
+  /usr/include/sys/common_int_mwgwtypes.h \
+  /usr/include/machine/int_limits.h /usr/include/sys/common_int_limits.h \
+  /usr/include/machine/int_const.h /usr/include/sys/common_int_const.h \
+  /usr/include/machine/wchar_limits.h /usr/include/sys/fd_set.h \
+  /usr/include/time.h /usr/include/sys/time.h \
+  /usr/include/sys/timespec.h /usr/include/sys/select.h \
+  /usr/include/sys/sigtypes.h /usr/include/unistd.h \
+  /usr/include/sys/unistd.h /usr/include/machine/int86.h \
+  /usr/include/minix/const.h /usr/include/machine/archconst.h \
+  /usr/include/minix/driver.h /usr/include/minix/config.h \
+  /usr/include/minix/sys_config.h /usr/include/minix/type.h \
+  /usr/include/machine/multiboot.h /usr/include/stddef.h \
+  /usr/include/machine/interrupt.h /usr/include/minix/ipc.h \
+  /usr/include/minix/ipcconst.h /usr/include/machine/ipcconst.h \
+  /usr/include/sys/signal.h /usr/include/sys/siginfo.h \
+  /usr/include/machine/signal.h /usr/include/machine/fpu.h \
+  /usr/include/machine/trap.h /usr/include/x86/trap.h \
+  /usr/include/sys/ucontext.h /usr/include/machine/mcontext.h \
+  /usr/include/minix/com.h /usr/include/minix/callnr.h \
+  /usr/include/minix/syslib.h /usr/include/minix/u64.h \
+  /usr/include/minix/devio.h /usr/include/minix/safecopies.h \
+  /usr/include/minix/vm.h /usr/include/minix/endpoint.h \
+  /usr/include/limits.h /usr/include/machine/limits.h \
+  /usr/include/sys/syslimits.h /usr/include/minix/sef.h \
+  /usr/include/minix/sysutil.h /usr/include/string.h \
+  /usr/include/strings.h /usr/include/errno.h /usr/include/sys/errno.h \
+  /usr/include/sys/param.h /usr/include/sys/inttypes.h \
+  /usr/include/machine/int_fmtio.h /usr/include/sys/common_int_fmtio.h \
+  /usr/include/machine/param.h /usr/include/minix/partition.h \
+  /usr/include/sys/mman.h /usr/include/lcom/liblm.h \
+  /usr/include/lcom/lab2.h /usr/include/lcom/timer.h \
+  /usr/include/lcom/utils.h /usr/include/lcom/lab3.h \
+  /usr/include/lcom/lab4.h /usr/include/lcom/lab5.h \
+  /usr/include/lcom/pixmap.h /usr/include/lcom/xpm.h \
+  /usr/include/lcom/vbe.h /usr/include/lcom/video_gr.h \
+  /usr/include/lcom/proj.h /usr/include/lcom/types.h \
+  /home/lcom/labs/proj/src/game/draw_buttons.h \
+  /home/lcom/labs/proj/src/game/../utils/position.h \
+  /home/lcom/labs/proj/src/game/../xpm/buttons/button_plus_size.xpm \
+  /home/lcom/labs/proj/src/game/../xpm/buttons/button_minus_size.xpm \
+  /home/lcom/labs/proj/src/game/../xpm/buttons/button_clear_canvas.xpm \
+  /home/lcom/labs/proj/src/game/pixel_buffer.h \
+  /home/lcom/labs/proj/src/game/element.h \
+  /home/lcom/labs/proj/src/game/cursor.h \
+  /home/lcom/labs/proj/src/game/../devices/video/video_gr.h \
+  /home/lcom/labs/proj/src/game/../utils/const.h \
+  /home/lcom/labs/proj/src/game/../utils/color.h \
+  /home/lcom/labs/proj/src/game/canvas.h \
+  /home/lcom/labs/proj/src/game/../devices/video/graphics.h \
+  /usr/include/math.h /usr/include/machine/math.h \
+  /usr/include/x86/math.h \
+  /home/lcom/labs/proj/src/game/../devices/video/../../utils/const.h \
+  /home/lcom/labs/proj/src/game/draw_chat.h \
+  /home/lcom/labs/proj/src/game/text.h
+utils.d utils.ln utils.o: /home/lcom/labs/proj/src/utils/utils.c \
+  /home/lcom/labs/proj/src/utils/utils.h /usr/include/lcom/lcf.h \
+  /usr/include/stdbool.h /usr/include/stdio.h /usr/include/sys/cdefs.h \
+  /usr/include/machine/cdefs.h /usr/include/sys/cdefs_elf.h \
+  /usr/include/sys/featuretest.h /usr/include/sys/ansi.h \
+  /usr/include/machine/ansi.h /usr/include/machine/int_types.h \
+  /usr/include/sys/common_int_types.h /usr/include/sys/null.h \
+  /usr/include/stdlib.h /usr/include/sys/types.h \
+  /usr/include/machine/types.h /usr/include/machine/endian.h \
+  /usr/include/sys/endian.h /usr/include/machine/endian_machdep.h \
+  /usr/include/machine/bswap.h /usr/include/machine/byte_swap.h \
+  /usr/include/sys/bswap.h /usr/include/sys/stdint.h \
+  /usr/include/machine/int_mwgwtypes.h \
+  /usr/include/sys/common_int_mwgwtypes.h \
+  /usr/include/machine/int_limits.h /usr/include/sys/common_int_limits.h \
+  /usr/include/machine/int_const.h /usr/include/sys/common_int_const.h \
+  /usr/include/machine/wchar_limits.h /usr/include/sys/fd_set.h \
+  /usr/include/time.h /usr/include/sys/time.h \
+  /usr/include/sys/timespec.h /usr/include/sys/select.h \
+  /usr/include/sys/sigtypes.h /usr/include/unistd.h \
+  /usr/include/sys/unistd.h /usr/include/machine/int86.h \
+  /usr/include/minix/const.h /usr/include/machine/archconst.h \
+  /usr/include/minix/driver.h /usr/include/minix/config.h \
+  /usr/include/minix/sys_config.h /usr/include/minix/type.h \
+  /usr/include/machine/multiboot.h /usr/include/stddef.h \
+  /usr/include/machine/interrupt.h /usr/include/minix/ipc.h \
+  /usr/include/minix/ipcconst.h /usr/include/machine/ipcconst.h \
+  /usr/include/sys/signal.h /usr/include/sys/siginfo.h \
+  /usr/include/machine/signal.h /usr/include/machine/fpu.h \
+  /usr/include/machine/trap.h /usr/include/x86/trap.h \
+  /usr/include/sys/ucontext.h /usr/include/machine/mcontext.h \
+  /usr/include/minix/com.h /usr/include/minix/callnr.h \
+  /usr/include/minix/syslib.h /usr/include/minix/u64.h \
+  /usr/include/minix/devio.h /usr/include/minix/safecopies.h \
+  /usr/include/minix/vm.h /usr/include/minix/endpoint.h \
+  /usr/include/limits.h /usr/include/machine/limits.h \
+  /usr/include/sys/syslimits.h /usr/include/minix/sef.h \
+  /usr/include/minix/sysutil.h /usr/include/string.h \
+  /usr/include/strings.h /usr/include/errno.h /usr/include/sys/errno.h \
+  /usr/include/sys/param.h /usr/include/sys/inttypes.h \
+  /usr/include/machine/int_fmtio.h /usr/include/sys/common_int_fmtio.h \
+  /usr/include/machine/param.h /usr/include/minix/partition.h \
+  /usr/include/sys/mman.h /usr/include/lcom/liblm.h \
+  /usr/include/lcom/lab2.h /usr/include/lcom/timer.h \
+  /usr/include/lcom/utils.h /usr/include/lcom/lab3.h \
+  /usr/include/lcom/lab4.h /usr/include/lcom/lab5.h \
+  /usr/include/lcom/pixmap.h /usr/include/lcom/xpm.h \
+  /usr/include/lcom/vbe.h /usr/include/lcom/video_gr.h \
+  /usr/include/lcom/proj.h /usr/include/lcom/types.h
+video_gr.d video_gr.ln video_gr.o: /home/lcom/labs/proj/src/devices/video/video_gr.c \
+  /usr/include/lcom/lcf.h /usr/include/stdbool.h /usr/include/stdio.h \
+  /usr/include/sys/cdefs.h /usr/include/machine/cdefs.h \
+  /usr/include/sys/cdefs_elf.h /usr/include/sys/featuretest.h \
+  /usr/include/sys/ansi.h /usr/include/machine/ansi.h \
+  /usr/include/machine/int_types.h /usr/include/sys/common_int_types.h \
+  /usr/include/sys/null.h /usr/include/stdlib.h /usr/include/sys/types.h \
+  /usr/include/machine/types.h /usr/include/machine/endian.h \
+  /usr/include/sys/endian.h /usr/include/machine/endian_machdep.h \
+  /usr/include/machine/bswap.h /usr/include/machine/byte_swap.h \
+  /usr/include/sys/bswap.h /usr/include/sys/stdint.h \
+  /usr/include/machine/int_mwgwtypes.h \
+  /usr/include/sys/common_int_mwgwtypes.h \
+  /usr/include/machine/int_limits.h /usr/include/sys/common_int_limits.h \
+  /usr/include/machine/int_const.h /usr/include/sys/common_int_const.h \
+  /usr/include/machine/wchar_limits.h /usr/include/sys/fd_set.h \
+  /usr/include/time.h /usr/include/sys/time.h \
+  /usr/include/sys/timespec.h /usr/include/sys/select.h \
+  /usr/include/sys/sigtypes.h /usr/include/unistd.h \
+  /usr/include/sys/unistd.h /usr/include/machine/int86.h \
+  /usr/include/minix/const.h /usr/include/machine/archconst.h \
+  /usr/include/minix/driver.h /usr/include/minix/config.h \
+  /usr/include/minix/sys_config.h /usr/include/minix/type.h \
+  /usr/include/machine/multiboot.h /usr/include/stddef.h \
+  /usr/include/machine/interrupt.h /usr/include/minix/ipc.h \
+  /usr/include/minix/ipcconst.h /usr/include/machine/ipcconst.h \
+  /usr/include/sys/signal.h /usr/include/sys/siginfo.h \
+  /usr/include/machine/signal.h /usr/include/machine/fpu.h \
+  /usr/include/machine/trap.h /usr/include/x86/trap.h \
+  /usr/include/sys/ucontext.h /usr/include/machine/mcontext.h \
+  /usr/include/minix/com.h /usr/include/minix/callnr.h \
+  /usr/include/minix/syslib.h /usr/include/minix/u64.h \
+  /usr/include/minix/devio.h /usr/include/minix/safecopies.h \
+  /usr/include/minix/vm.h /usr/include/minix/endpoint.h \
+  /usr/include/limits.h /usr/include/machine/limits.h \
+  /usr/include/sys/syslimits.h /usr/include/minix/sef.h \
+  /usr/include/minix/sysutil.h /usr/include/string.h \
+  /usr/include/strings.h /usr/include/errno.h /usr/include/sys/errno.h \
+  /usr/include/sys/param.h /usr/include/sys/inttypes.h \
+  /usr/include/machine/int_fmtio.h /usr/include/sys/common_int_fmtio.h \
+  /usr/include/machine/param.h /usr/include/minix/partition.h \
+  /usr/include/sys/mman.h /usr/include/lcom/liblm.h \
+  /usr/include/lcom/lab2.h /usr/include/lcom/timer.h \
+  /usr/include/lcom/utils.h /usr/include/lcom/lab3.h \
+  /usr/include/lcom/lab4.h /usr/include/lcom/lab5.h \
+  /usr/include/lcom/pixmap.h /usr/include/lcom/xpm.h \
+  /usr/include/lcom/vbe.h /usr/include/lcom/video_gr.h \
+  /usr/include/lcom/proj.h /usr/include/lcom/types.h /usr/include/math.h \
+  /usr/include/machine/math.h /usr/include/x86/math.h \
+  /home/lcom/labs/proj/src/devices/video/vbe.h \
+  /home/lcom/labs/proj/src/devices/video/../../utils/utils.h \
+  /home/lcom/labs/proj/src/devices/video/../../utils/color.h
