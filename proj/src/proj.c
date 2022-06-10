@@ -129,7 +129,7 @@ int(proj_main_loop)(int argc, char* argv[]) {
               mouse_packet_t mouse_packet = get_mouse_packet();
 
               cursor_move(mouse_packet.delta_x, mouse_packet.delta_y);
-
+              
               if (mouse_packet.lb) {
                 for (int i = 0; i < num_ies; i++) {
                   if (is_hovered(drawing_ies[i])) {

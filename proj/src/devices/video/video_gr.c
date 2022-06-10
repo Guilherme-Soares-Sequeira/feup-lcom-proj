@@ -145,7 +145,7 @@ int(vg_draw_circle)(uint16_t x, uint16_t y, uint16_t radius, uint32_t color) {
   return 0;
 }
 
-int(_vg_draw_line_low)(uint16_t from_x, uint16_t from_y, uint16_t to_x, uint16_t to_y, uint16_t dx, uint16_t dy, int color) {
+int(_vg_draw_line_low)(uint16_t from_x, uint16_t from_y, uint16_t to_x, uint16_t to_y, int16_t dx, int16_t dy, int color) {
   int yi = 1;
 
   if (dy < 0) {
@@ -171,7 +171,7 @@ int(_vg_draw_line_low)(uint16_t from_x, uint16_t from_y, uint16_t to_x, uint16_t
   return OK;
 }
 
-int(_vg_draw_line_high)(uint16_t from_x, uint16_t from_y, uint16_t to_x, uint16_t to_y, uint16_t dx, uint16_t dy, int color) {
+int(_vg_draw_line_high)(uint16_t from_x, uint16_t from_y, uint16_t to_x, int16_t to_y, int16_t dx, int16_t dy, int color) {
   int xi = 1;
 
   if (dx < 0) {
@@ -198,15 +198,15 @@ int(_vg_draw_line_high)(uint16_t from_x, uint16_t from_y, uint16_t to_x, uint16_
 }
 
 int(vg_draw_line)(uint16_t from_x, uint16_t from_y, uint16_t to_x, uint16_t to_y, int color) {
-  uint16_t dx = to_x - from_x;
-  uint16_t dy = to_y - from_y;
+  int16_t dx = to_x - from_x;
+  int16_t dy = to_y - from_y;
   if (abs(dy) < abs(dx))
     if (from_x > to_x)
-      return _vg_draw_line_low(to_x, to_y, from_x, from_y, dx, dy, color);
+      return _vg_draw_line_low(to_x, to_y, from_x, from_y, -dx, -dy, color);
     else
       return _vg_draw_line_low(from_x, from_y, to_x, to_y, dx, dy, color);
   else if (from_y > to_y)
-    return _vg_draw_line_high(to_x, to_y, from_x, from_y, dx, dy, color);
+    return _vg_draw_line_high(to_x, to_y, from_x, from_y, -dx, -dy, color);
   else
     return _vg_draw_line_high(from_x, from_y, to_x, to_y, dx, dy, color);
 }

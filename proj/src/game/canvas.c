@@ -24,8 +24,149 @@ void (canvas_fill)(uint8_t color) {
   memset(canvas_buffer.buffer_start, color, canvas_get_buffer_size());
 }
 
+int(canvas_draw_line_low)(position from_pos, position to_pos, int16_t dx, int16_t dy) {
+  int yi = 1;
+
+  uint8_t radius = cursor_get_thickness();
+
+  if (dy < 0) {
+    yi = -1;
+    dy = -dy;
+  }
+
+  int D = 2 * dy - dx;
+  int y = from_pos.y;
+
+  for (int x = from_pos.x; x <= to_pos.x; x++) {
+    if ((x - from_pos.x) % radius == 0) {
+      if (cursor_get_style() == CURSOR_DSTATE_CIRCLE) {
+        if (buf_draw_circle(&canvas_buffer, (position) {x, y}, cursor_get_thickness(), cursor_get_color()))
+          return 1;
+      }
+      else {
+
+      }
+    }
+    if (D > 0) {
+      y += yi;
+      D += 2 * (dy - dx);
+    }
+    else
+      D += 2 * dy;
+  }
+
+  return OK;
+}
+
+int(canvas_draw_line_high)(position from_pos, position to_pos, int16_t dx, int16_t dy) {
+  int xi = 1;
+
+  uint8_t radius = cursor_get_thickness();
+
+  if (dx < 0) {
+    xi = -1;
+    dx = -dx;
+  }
+
+  int D = 2 * dx - dy;
+  int x = from_pos.x;
+
+  for (int y = from_pos.y; y <= to_pos.y; y++) {
+    if ((y - from_pos.y) % radius == 0) {
+      if (cursor_get_style() == CURSOR_DSTATE_CIRCLE) {
+        if (buf_draw_circle(&canvas_buffer, (position) {x, y}, cursor_get_thickness(), cursor_get_color()))
+          return 1;
+      }
+      else {
+
+      }
+    }
+
+    if (D > 0) {
+      x += xi;
+      D += 2 * (dx - dy);
+    }
+    else
+      D += 2 * dx;
+  }
+
+  return OK;
+}
+
+int(canvas_draw_line)(position from_pos, position to_pos) {
+  int16_t dx = to_pos.x - from_pos.x;
+  int16_t dy = to_pos.y - from_pos.y;
+  if (abs(dy) < abs(dx))
+    if (from_pos.x > to_pos.x)
+      return canvas_draw_line_low(to_pos, from_pos, -dx, -dy);
+    else
+      return canvas_draw_line_low(from_pos, to_pos, dx, dy);
+  else if (from_pos.y > to_pos.y)
+    return canvas_draw_line_high(to_pos, from_pos, -dx, -dy);
+  else
+    return canvas_draw_line_high(from_pos, to_pos, dx, dy);
+}
+
+/*
+  This also works. It's known as the Bresenham's line algorithm
+  More information here: https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
+*/
+
+// int (canvas_draw_test)(position from_pos, position to_pos) {
+//   int16_t x0 = from_pos.x, y0 = from_pos.y;
+//   int16_t x1 = to_pos.x, y1 = to_pos.y;
+
+//   int16_t dx = abs(x1 - x0);
+//   int16_t sx = x0 < x1 ? 1 : -1;
+//   int16_t dy = -abs(y1 - y0);
+//   int16_t sy = y0 < y1 ? 1 : -1;
+  
+//   int32_t error = dx + dy;
+
+//   while (true) {
+//     if (buf_draw_circle(&canvas_buffer, (position) {x0, y0}, cursor_get_thickness(), cursor_get_color()) != OK)
+//       return EXIT_FAILURE;
+
+//     if (x0 == x1 && y0 == y1) 
+//       break;
+
+//     int32_t error2 = 2 * error;
+
+//     if (error2 >= dy) {
+//       if (x0 == x1) break;
+//       error += dy;
+//       x0 += sx;
+//     }
+
+//     if (error2 <= dx) {
+//       if (y0 == y1) break;
+//       error += dx;
+//       y0 += sy;
+//     }
+//   }
+
+//   return OK; 
+// }
+
 int (canvas_draw_pencil_circle)() {
-  return buf_draw_circle(&canvas_buffer, cursor_get_pos(), cursor_get_thickness(), cursor_get_color());
+  int ret = 0;
+  
+  uint8_t thickness = cursor_get_thickness();
+  uint8_t color = cursor_get_color();
+  
+  mouse_packet_t mouse_packet = get_mouse_packet();
+  position final_position = cursor_get_pos();
+  position initial_position = (position) {final_position.x - mouse_packet.delta_x, final_position.y + mouse_packet.delta_y};  
+
+  if (abs(mouse_packet.delta_x) + abs(mouse_packet.delta_y) >= 2*thickness) {
+    ret = canvas_draw_line(initial_position, final_position) || ret;
+  }
+  else {
+    ret = buf_draw_circle(&canvas_buffer, final_position, thickness, color) || ret;
+    ret = buf_draw_circle(&canvas_buffer, initial_position, thickness, color) || ret;
+  }
+
+  return ret;
 }
 
 void (canvas_clear)() {

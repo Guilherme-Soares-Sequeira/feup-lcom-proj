@@ -7,6 +7,7 @@
 #include "../devices/video/video_gr.h"
 #include "../devices/video/graphics.h"
 #include "../utils/color.h"
+#include "../devices/kbc/mouse.h"
 #include "cursor.h"
 
 #define CANVAS_MARGIN 60
