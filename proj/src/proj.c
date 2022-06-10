@@ -155,12 +155,19 @@ int(proj_main_loop)(int argc, char* argv[]) {
             }
 
             if (keyboard_ready()) {
-              mark_scancode_processed();
-
-              if (scancodes[0] == ESC_KEY_BREAK) { 
+              if (scancodes[0] == ESC_KEY_BREAK) { // check early for exit 
                 run = false;
                 free(scancodes);        
               }
+
+              mark_scancode_processed();
+
+              if (get_scancode_type() == KBC_SCANCODE_BREAK) continue;
+
+              if (scancodes[0] == 0x0e)
+                remove_char_from_current_text();
+              else 
+                add_char_to_current_text('o');
             }
           }
       }

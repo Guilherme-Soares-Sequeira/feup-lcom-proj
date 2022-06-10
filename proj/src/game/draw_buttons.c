@@ -1,3 +1,5 @@
+#include <lcom/lcf.h>
+
 #include "../devices/video/graphics.h"
 #include "draw_buttons.h"
 

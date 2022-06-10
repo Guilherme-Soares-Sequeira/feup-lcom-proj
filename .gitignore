@@ -1,5 +1,6 @@
 **/.gdbinit
 **/*.o
+**/*.d
 output.txt
 trace.txt
 

@@ -1,4 +1,4 @@
-static xpm_row_t const xpm_button_clear_screen[] = {
+static xpm_row_t const xpm_button_clear_canvas[] = {
   "40 40 3",
   "  255",
   "` 63",
