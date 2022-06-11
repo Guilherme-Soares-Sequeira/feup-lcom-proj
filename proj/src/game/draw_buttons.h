@@ -16,7 +16,7 @@
 
 void (draw_button_frame)(pixel_buffer const * const buf, position topleft_pos);
 
-void (draw_color_button)(pixel_buffer const * const buf, position topleft_pos, uint8_t color);
+int (draw_color_button)(pixel_buffer const * const buf, position topleft_pos, uint8_t color);
 
 void (load_button_xpms)();
 
@@ -24,16 +24,16 @@ void (draw_plus_button)(pixel_buffer const * const buf, position topleft_pos);
 
 void (draw_minus_button)(pixel_buffer const * const buf, position topleft_pos);
 
-void (draw_sel_line_button)(pixel_buffer const * const buf, position topleft_pos);
+int (draw_sel_line_button)(pixel_buffer const * const buf, position topleft_pos);
 
-void (draw_sel_square_button)(pixel_buffer const * const buf, position topleft_pos);
+int (draw_sel_square_button)(pixel_buffer const * const buf, position topleft_pos);
 
-void (draw_sel_circle_button)(pixel_buffer const * const buf, position topleft_pos);
+int (draw_sel_circle_button)(pixel_buffer const * const buf, position topleft_pos);
 
 void (draw_sel_eraser_button)(pixel_buffer const * const buf, position topleft_pos);
 
 void (draw_clear_canvas_button)(pixel_buffer const * const buf, position topleft_pos);
 
-void (buttons_draw)();
+int (buttons_draw)();
 
 #endif

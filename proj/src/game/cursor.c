@@ -5,20 +5,19 @@
 #include "../xpm/bucket_cursor.xpm"
 #include "cursor.h"
 
-/* xpm images */
-
 static xpm_image_t cursor_default_xpm; /**< @brief default cursor xpm */
 static xpm_image_t cursor_bucket_xpm;  /**< @brief bucket cursor xpm */
 
-
-/* cursor position */
 
 static position cursor_pos = {0, 0}; /**< @brief cursor_position of the cursor */
 
 static cursor_state_style_t cursor_style; /**< @brief style of the cursor */
 
-static uint8_t cursor_color;
-static uint8_t cursor_thickness;
+static uint8_t cursor_color; /**< @brief color of the cursor */
+static uint8_t cursor_thickness; /**< @brief thickness of the cursor */
+static uint8_t cursor_line_counter; /**< @brief line counter */
+
+static position line_initial_position; /**< @brief initial position of the line to be drawn */
 
 static bool cursor_lb; /**< @brief indicates whether the mouse left button was already pressed or not */
 
@@ -30,6 +29,8 @@ void (cursor_load)() {
   cursor_pos.x = H_RES/2;
   cursor_pos.y = V_RES/2;
 
+
+  cursor_line_counter = 0;
   cursor_color = COLOR_BLACK;
   cursor_thickness = (MIN_THICKNESS + MAX_THICKNESS) / 2;
   cursor_style = CURSOR_DSTATE_CIRCLE;
@@ -55,15 +56,38 @@ void (cursor_move)(int16_t delta_x, int16_t delta_y) {
 }
 
 void (cursor_draw)() {
-  vg_draw_xpm(cursor_get_xpm(), cursor_pos.x, cursor_pos.y);
+  if (vg_draw_xpm(cursor_get_xpm(), cursor_pos.x, cursor_pos.y) != OK) {
+    fprintf(stderr, "There was an error drawing an xpm at %s!\n", __func__);
+    exit(EXIT_FAILURE);
+  }
 }
 
 void (cursor_clear)() {
   free(cursor_get_xpm().bytes);
 }
 
+void (cursor_set_initial_line_position)(position pos) {
+  line_initial_position = pos;
+}
+
+position (cursor_get_initial_line_position)() {
+  return line_initial_position;
+}
+
 void (cursor_set_style)(uint8_t style) {
+  if ((cursor_state_style_t) style == CURSOR_DSTATE_LINE) {
+    cursor_line_counter = 0;
+  }
+    
   cursor_style = (cursor_state_style_t) style;
+}
+
+void (cursor_increase_line_counter)() {
+  cursor_line_counter = (cursor_line_counter + 1) % 2;
+}
+
+uint8_t (cursor_get_line_counter)() {
+  return cursor_line_counter;
 }
 
 cursor_state_style_t (cursor_get_style)() {

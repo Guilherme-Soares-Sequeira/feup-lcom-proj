@@ -63,6 +63,37 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
+
+/**
+ * @brief Loads the necessary assets
+ * 
+ */
+void (load_assets)() {
+  load_backbuffer();
+  
+  cursor_load();
+  canvas_load();
+  text_load();
+
+  load_button_xpms();
+  load_ie_drawing();
+}
+
+
+/**
+ * @brief Draws the program assets on screen
+ * 
+ */
+void (draw_assets)() {
+  clear_screen(COLOR_BLUE);
+  
+  canvas_draw();
+  draw_menu();
+  
+  cursor_draw();
+}
+
+
 int(proj_main_loop)(int argc, char* argv[]) {
   uint8_t keyboard_bit, mouse_bit, timer_bit;
 
@@ -70,15 +101,23 @@ int(proj_main_loop)(int argc, char* argv[]) {
 
   /* subscribe interrupts */
 
-  timer_subscribe_int(&timer_bit);
-  kbc_subscribe_int(&keyboard_bit);
-  mouse_subscribe_int(&mouse_bit);
+  if (timer_subscribe_int(&timer_bit) != OK) {
+    fprintf(stderr, "There was an error subscribing timer interrupts!\n");
+    return EXIT_FAILURE;
+  }
 
-  /* timer initialization */ 
+  if (kbc_subscribe_int(&keyboard_bit) != OK) {
+    fprintf(stderr, "There was an error subscribing keyboard interrupts!\n");
+    return EXIT_FAILURE;
+  }
 
-  timer_set_frequency(0, FPS); //USE ONLY TO INCREASE FPS to more than 60    
+  if (mouse_subscribe_int(&mouse_bit) != OK) {
+    fprintf(stderr, "There was an error subscribing mouse interrupts!\n");
+    return EXIT_FAILURE;
+  }
 
-  /* video card initialization */
+
+  /* initialize graphics card */
 
   // vg_init(VBE_MODE_1024x768_INDEXED);
   vg_init(VBE_MODE_1024x768_INDEXED);
@@ -91,6 +130,7 @@ int(proj_main_loop)(int argc, char* argv[]) {
   load_button_xpms();
   load_ie_drawing();
 
+
   int ipc_status, r;
   message msg;
 
@@ -98,6 +138,7 @@ int(proj_main_loop)(int argc, char* argv[]) {
   uint8_t num_ies = get_number_of_drawing_ies();
 
   bool run = true;
+
 
   while (run) {
     /* Get a request message. */
@@ -109,9 +150,12 @@ int(proj_main_loop)(int argc, char* argv[]) {
     if (is_ipc_notify(ipc_status)) {
       switch (_ENDPOINT_P(msg.m_source)) {
         case HARDWARE:
+
+          /* timer interrupts */
+
           if (msg.m_notify.interrupts & BIT(timer_bit)) {
             timer_int_handler();
-
+            
             clear_screen(COLOR_BLUE);
             canvas_draw();
             draw_menu();
@@ -120,6 +164,9 @@ int(proj_main_loop)(int argc, char* argv[]) {
 
             flip();
           }
+
+
+          /* mouse interrupts */
 
           if (msg.m_notify.interrupts & BIT(mouse_bit)) {
             mouse_ih();
@@ -152,6 +199,9 @@ int(proj_main_loop)(int argc, char* argv[]) {
             }
           }
 
+
+          /* keyboard interrupts */
+
           if (msg.m_notify.interrupts & BIT(keyboard_bit)) {
             kbc_ih();
       
@@ -176,19 +226,39 @@ int(proj_main_loop)(int argc, char* argv[]) {
       }
     }
   }
+
+
   /* unsubscribe interrupts */
 
-  timer_unsubscribe_int();
-  kbc_unsubscribe_int();
-  mouse_unsubscribe_int();
+  if (timer_unsubscribe_int() != OK) {
+    fprintf(stderr, "There was an error unsubscribing timer interrupts!\n");
+    return EXIT_FAILURE;
+  }
+
+  if (kbc_unsubscribe_int() != OK) {
+    fprintf(stderr, "There was an error unsubscribing keyboard interrupts!\n");
+    return EXIT_FAILURE;
+  }
+
+  if (mouse_unsubscribe_int() != OK) {
+    fprintf(stderr, "There was an error unsubscribing mouse interrupts!\n");
+    return EXIT_FAILURE;
+  }
+
 
   /* disable data reporting */
   
   reset_kbc();
 
+
   /* exit graphics mode */
 
   vg_exit();
+
+
+  /* 
+    free_assets()...
+  */
 
   return EXIT_SUCCESS;
 }

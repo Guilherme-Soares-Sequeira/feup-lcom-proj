@@ -1,6 +1,4 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
-Makefile:28: *** missing separator.  Stop.
-
 # GNU Make 4.2.1
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2016 Free Software Foundation, Inc.
@@ -8,7 +6,7 @@ Makefile:28: *** missing separator.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Fri Jun 10 21:40:03 2022
+# Make data base, printed on Sat Jun 11 19:11:07 2022
 
 # Variables
 
@@ -53,7 +51,7 @@ VTE_VERSION = 6003
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en","availableLanguages":{},"_languagePackSupport":true}
 # environment
-JOURNAL_STREAM = 8:48041
+JOURNAL_STREAM = 8:51439
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # environment
@@ -81,9 +79,9 @@ VSCODE_VERBOSE_LOGGING = true
 # environment
 LC_CTYPE = pt_PT.UTF-8
 # environment
-MANAGERPID = 1799
+MANAGERPID = 1746
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-79950dd6-59c2-4bf8-abca-0e2a4e91efac.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-9af2b11d-1b5e-4086-994d-a78fa613eeb5.sock
 # environment
 LC_NAME = pt_PT.UTF-8
 # environment
@@ -103,7 +101,7 @@ GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
 LSCOLORS = Gxfxcxdxbxegedabagacad
 # environment
-SESSION_MANAGER = local/pedro-ramalho:@/tmp/.ICE-unix/2005,unix/pedro-ramalho:/tmp/.ICE-unix/2005
+SESSION_MANAGER = local/pedro-ramalho:@/tmp/.ICE-unix/1951,unix/pedro-ramalho:/tmp/.ICE-unix/1951
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -121,7 +119,7 @@ DISABLE_WAYLAND = 1
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = be3bc53ab7d143a28fc5a1c0cd62eb44
+INVOCATION_ID = 3e8bb3c0df284254af3dcb0ce2eb8b35
 # environment
 GDK_PIXBUF_MODULEDIR = /snap/code/98/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # default
@@ -151,7 +149,7 @@ PWD = /home/pedro/Desktop/MINIX-LCOM/shared/proj
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 1942
+SSH_AGENT_PID = 1893
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -271,11 +269,11 @@ PAGER = less
 # environment
 LC_ALL = C
 # environment
-GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/238677c5_a1ae_4a74_a8e6_f42bd71cfcf9
+GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/3db14c25_19e5_42c9_9a73_279702c29e6f
 # automatic
 ^F = $(notdir $^)
 # environment
-GNOME_TERMINAL_SERVICE = :1.314
+GNOME_TERMINAL_SERVICE = :1.3865
 # default
 SUFFIXES := 
 # environment
@@ -285,7 +283,6 @@ CHROME_DESKTOP = code-url-handler.desktop
 # default
 .INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
 # environment
- 
 LC_IDENTIFICATION = pt_PT.UTF-8
 # default
 .RECIPEPREFIX := 
@@ -294,9 +291,12 @@ LC_ADDRESS = pt_PT.UTF-8
 # environment
 LANG = C
 # environment
+ 
+Makefile:28: *** missing separator.  Stop.
+
 TERM = xterm-256color
 # environment
-VSCODE_PID = 10889
+VSCODE_PID = 31645
 # variable set hash-table stats:
 # Load=142/1024=14%, Rehash=0, Collisions=17/164=10%
 
@@ -306,9 +306,9 @@ VSCODE_PID = 10889
 
 # Directories
 
-# . (device 66309, inode 8936172): 8 files, no impossibilities.
+# . (device 66309, inode 8936172): 26 files, no impossibilities.
 
-# 8 files, no impossibilities in 1 directories.
+# 26 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -384,12 +384,12 @@ Makefile:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 20 / storage = 193 B / avg = 9 B
-# current buf: size = 8162 B / used = 193 B / count = 20 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 38 / storage = 358 B / avg = 9 B
+# current buf: size = 8162 B / used = 358 B / count = 38 / avg = 9 B
 
-# strcache performance: lookups = 35 / hit rate = 42%
+# strcache performance: lookups = 53 / hit rate = 28%
 # hash-table stats:
-# Load=20/8192=0%, Rehash=0, Collisions=1/35=3%
-# Finished Make data base on Fri Jun 10 21:40:03 2022
+# Load=38/8192=0%, Rehash=0, Collisions=1/53=2%
+# Finished Make data base on Sat Jun 11 19:11:07 2022
 
  

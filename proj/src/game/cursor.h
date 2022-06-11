@@ -76,14 +76,27 @@ uint8_t (cursor_get_thickness)();
 
 /**
  * @brief Set cursor thickness
+ * @param thickness cursor thickness to be set
  * 
- * @return cursor thickness to be set
  */
 void (cursor_set_thickness)(uint8_t thickness);
 
+
+/**
+ * @brief Increases the thickness of the cursor
+ * @param _ unused
+ * 
+ */
 void (cursor_increase_thickness)(uint8_t _);
 
+
+/**
+ * @brief Decreases the thickness of the cursor
+ * @param _ unused
+ * 
+ */
 void (cursor_decrease_thickness)(uint8_t _);
+
 
 /**
  * @brief Draws the cursor on screen
@@ -114,20 +127,52 @@ void (cursor_set_lb)(bool lb);
  */
 bool (cursor_lb_was_pressed)();
 
+
+/**
+ * @brief Returns the current color of the cursor
+ * 
+ * @return cursor_color
+ */
 uint8_t (cursor_get_color)();
 
+
+/**
+ * @brief Sets the cursor color
+ * @param color color to be set
+ * 
+ */
 void (cursor_set_color)(uint8_t color);
 
-void (cursor_set_color_black)();
 
-void (cursor_set_color_blue)();
+/**
+ * @brief Returns the line counter of the cursor
+ * 
+ * @return cursor_line_counter
+ */
+uint8_t (cursor_get_line_counter)();
 
-void (cursor_set_color_green)();
 
-void (cursor_set_color_red)();
+/**
+ * @brief Returns the intial position of the line to be drawn
+ * 
+ * @return line_initial_position
+ */
+position (cursor_get_initial_line_position)();
 
-void (cursor_set_color_brown)();
 
-void (cursor_set_color_yellow)();
+/**
+ * @brief Sets the initial position of the line to be drawn
+ * @param pos position to be set
+ * 
+ */
+void (cursor_set_initial_line_position)(position pos);
+
+
+/**
+ * @brief Increases the counter of the line and indicates the number of clicks done by the user
+ * 
+ */
+void (cursor_increase_line_counter)();
+
 
 #endif

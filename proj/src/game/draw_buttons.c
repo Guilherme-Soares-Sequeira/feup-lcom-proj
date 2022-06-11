@@ -28,9 +28,15 @@ void (draw_button_frame)(pixel_buffer const * const buf, position topleft_pos) {
   buf_draw_vline(buf, (position) {topleft_pos.x + BUTTON_FRAME_WIDTH - 1, topleft_pos.y + 2}, BUTTON_FRAME_HEIGHT - 4, BUTTON_FRAME_COLOR);
 }
 
-void (draw_color_button)(pixel_buffer const * const buf, position topleft_pos, uint8_t color) {
+int (draw_color_button)(pixel_buffer const * const buf, position topleft_pos, uint8_t color) {
   draw_button_frame(buf, topleft_pos);
-  buf_draw_rectangle(buf, (position) {topleft_pos.x + 2, topleft_pos.y + 2}, BUTTON_FRAME_WIDTH - 4, BUTTON_FRAME_HEIGHT - 4, color);
+  
+  if (buf_draw_rectangle(buf, (position) {topleft_pos.x + 2, topleft_pos.y + 2}, BUTTON_FRAME_WIDTH - 4, BUTTON_FRAME_HEIGHT - 4, color) != OK) {
+    fprintf(stderr, "There was an error drawing a rectangle at %s!\n", __func__);
+    return EXIT_FAILURE;
+  }
+
+  return OK;
 }
 
 void (draw_plus_button)(pixel_buffer const * const buf, position topleft_pos) {
@@ -41,18 +47,41 @@ void (draw_minus_button)(pixel_buffer const * const buf, position topleft_pos) {
    buf_draw_xpm(buf, button_minus, topleft_pos);
 }
 
-void (draw_sel_line_button)(pixel_buffer const * const buf, position topleft_pos) {
+int (draw_sel_line_button)(pixel_buffer const * const buf, position topleft_pos) {
   draw_button_frame(buf, topleft_pos);
+  
+  if (buf_draw_rectangle(buf, (position) {topleft_pos.x + 18, topleft_pos.y + 6}, 6, BUTTON_FRAME_HEIGHT - 14, COLOR_BLACK) != OK) {
+    fprintf(stderr, "There was an error drawing a rectangle at %s!\n", __func__);
+    return EXIT_FAILURE;
+  }
+
+  return OK;
 }
 
-void (draw_sel_square_button)(pixel_buffer const * const buf, position topleft_pos) {
+int (draw_sel_square_button)(pixel_buffer const * const buf, position topleft_pos) {
   draw_button_frame(buf, topleft_pos);
-  buf_draw_rectangle(buf, (position) {topleft_pos.x + 12, topleft_pos.y + 12}, BUTTON_FRAME_WIDTH - 24, BUTTON_FRAME_HEIGHT - 24, COLOR_BLACK);
+  
+  if (buf_draw_rectangle(buf, (position) {topleft_pos.x + 12, topleft_pos.y + 12}, BUTTON_FRAME_WIDTH - 24, BUTTON_FRAME_HEIGHT - 24, COLOR_BLACK) != OK) {
+    fprintf(stderr, "There was an error drawing a rectangle at %s!\n", __func__);
+    return EXIT_FAILURE;
+  }
+
+  return OK;
 }
 
-void (draw_sel_circle_button)(pixel_buffer const * const buf, position topleft_pos) {
+int (draw_sel_circle_button)(pixel_buffer const * const buf, position topleft_pos) {
   draw_button_frame(buf, topleft_pos);
-  buf_draw_circle(buf, (position) {topleft_pos.x + 20 , topleft_pos.y + 20}, 9, COLOR_BLACK);
+  
+  if (buf_draw_circle(buf, (position) {topleft_pos.x + 20 , topleft_pos.y + 20}, 9, COLOR_BLACK) != OK) {
+    fprintf(stderr, "There was an error drawing a rectangle at %s!\n", __func__);
+    return EXIT_FAILURE;
+  }
+
+  return OK;
+}
+
+void (draw_sel_bucket_button)(pixel_buffer const * const buf, position topleft_pos) {
+  draw_button_frame(buf, topleft_pos);
 }
 
 void (draw_sel_eraser_button)(pixel_buffer const * const buf, position topleft_pos) {
@@ -63,22 +92,88 @@ void (draw_clear_canvas_button)(pixel_buffer const * const buf, position topleft
    buf_draw_xpm(buf, button_clear_canvas, topleft_pos);
 }
 
-void (buttons_draw)() {
+int (buttons_draw)() {
   const pixel_buffer *const buf = get_back_buffer();
+
   const int color_button_x = CANVAS_RIGHT_VISIBLE_LIMIT + (CANVAS_MARGIN - BUTTON_FRAME_WIDTH)/2;
   const int other_buttons_x = (CANVAS_MARGIN - BUTTON_FRAME_WIDTH)/2;
-  draw_color_button(buf, (position) {color_button_x, 70}, COLOR_BLACK); // y = CANVAS_TOP_VISIBLE_LIMIT + (CANVAS_MARGIN - BUTTON_FRAME_HEIGHT) / 2
-  draw_color_button(buf, (position) {color_button_x, 120}, COLOR_BLUE); // y = previous_y() + (CANVAS_MARGIN - BUTTON_FRAME_HEIGHT) / 2
-  draw_color_button(buf, (position) {color_button_x, 170}, COLOR_GREEN);
-  draw_color_button(buf, (position) {color_button_x, 220}, COLOR_RED);
-  draw_color_button(buf, (position) {color_button_x, 270}, COLOR_BROWN);
-  draw_color_button(buf, (position) {color_button_x, 320}, COLOR_YELLOW);
-  
 
-  draw_plus_button(buf, (position) {other_buttons_x, 70}); // y = CANVAS_TOP_VISIBLE_LIMIT + (CANVAS_MARGIN - BUTTON_FRAME_HEIGHT) / 2
-  draw_minus_button(buf, (position) {other_buttons_x, 120}); // y = previous_y() + (CANVAS_MARGIN - BUTTON_FRAME_HEIGHT) / 2
-  draw_sel_square_button(buf, (position) {other_buttons_x, 170});
-  draw_sel_circle_button(buf, (position) {other_buttons_x, 220});
+  if (draw_color_button(buf, (position) {color_button_x, 70}, COLOR_BLACK) != OK) {
+    fprintf(stderr, "There was an error drawing a color button at %s!\n", __func__);
+    return EXIT_FAILURE;
+  } 
+
+  if (draw_color_button(buf, (position) {color_button_x, 120}, COLOR_BLUE) != OK) {
+    fprintf(stderr, "There was an error drawing a color button at %s!\n", __func__);
+    return EXIT_FAILURE;
+  }
+
+  if (draw_color_button(buf, (position) {color_button_x, 170}, COLOR_GREEN) != OK) {
+    fprintf(stderr, "There was an error drawing a color button at %s!\n", __func__);
+    return EXIT_FAILURE;
+  }
+
+  if (draw_color_button(buf, (position) {color_button_x, 220}, COLOR_RED) != OK) {
+    fprintf(stderr, "There was an error drawing a color button at %s!\n", __func__);
+    return EXIT_FAILURE;
+  }
+
+  if (draw_color_button(buf, (position) {color_button_x, 270}, COLOR_BROWN) != OK) {
+    fprintf(stderr, "There was an error drawing a color button at %s!\n", __func__);
+    return EXIT_FAILURE;    
+  }
+
+  if (draw_color_button(buf, (position) {color_button_x, 320}, COLOR_YELLOW) != OK) {
+    fprintf(stderr, "There was an error drawing a color button at %s!\n", __func__);
+    return EXIT_FAILURE;    
+  }
+
+  if (draw_color_button(buf, (position) {color_button_x, 370}, COLOR_AQUA) != OK) {
+    fprintf(stderr, "There was an error drawing a color button at %s!\n", __func__);
+    return EXIT_FAILURE;    
+  }
   
-  draw_clear_canvas_button(buf, (position) {other_buttons_x, 320}); // y = CANVAS_BOTTOM_VISIBLE_LIMIT - (CANVAS_MARGIN - BUTTON_FRAME_HEIGHT)/2 - BUTTON_FRAME_HEIGHT
+  if (draw_color_button(buf, (position) {color_button_x, 420}, COLOR_MAGENTA) != OK) {
+    fprintf(stderr, "There was an error drawing a color button at %s!\n", __func__);
+    return EXIT_FAILURE;    
+  }
+
+  if (draw_color_button(buf, (position) {color_button_x, 470}, COLOR_PURPLE) != OK) {
+    fprintf(stderr, "There was an error drawing a color button at %s!\n", __func__);
+    return EXIT_FAILURE;    
+  }
+
+  if (draw_color_button(buf, (position) {color_button_x, 520}, COLOR_ORANGE) != OK) {
+    fprintf(stderr, "There was an error drawing a color button at %s!\n", __func__);
+    return EXIT_FAILURE;    
+  }
+
+  if (draw_color_button(buf, (position) {color_button_x, 570}, COLOR_DARK_GREY) != OK) {
+    fprintf(stderr, "There was an error drawing a color button at %s!\n", __func__);
+    return EXIT_FAILURE;    
+  }
+
+  draw_plus_button(buf, (position) {other_buttons_x, 70}); 
+  draw_minus_button(buf, (position) {other_buttons_x, 120}); 
+  
+  if (draw_sel_square_button(buf, (position) {other_buttons_x, 170}) != OK) {
+    fprintf(stderr, "There was an error drawing a square button at %s!\n", __func__);
+    return EXIT_FAILURE;    
+  }
+
+  if (draw_sel_circle_button(buf, (position) {other_buttons_x, 220}) != OK) {
+    fprintf(stderr, "There was an error drawing a circle button at %s!\n", __func__);
+    return EXIT_FAILURE;    
+  }
+
+  if (draw_sel_line_button(buf, (position) {other_buttons_x, 270}) != OK) {
+    fprintf(stderr, "There was an error drawing a line button at %s!\n", __func__);
+    return EXIT_FAILURE;    
+  }
+  
+  draw_sel_bucket_button(buf, (position) {CANVAS_LEFT_VISIBLE_LIMIT + 10, CANVAS_BOTTOM_VISIBLE_LIMIT + 10});
+
+  draw_clear_canvas_button(buf, (position) {other_buttons_x, 320}); 
+
+  return OK;
 }

@@ -10,6 +10,8 @@
 #include "../utils/position.h"
 #include "draw_buttons.h"
 
+#define COLOR_BUTTON_PRIORITY 3
+#define STYLE_BUTTON_PRIORITY 3
 
 typedef struct {
   position top_pos;

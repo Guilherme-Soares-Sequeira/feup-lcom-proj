@@ -2,6 +2,42 @@
 
 #include "canvas.h"
 
+typedef struct list_node_t {
+  position pos;
+  struct list_node_t* next;
+} list_node;
+
+typedef struct {
+  list_node* start;
+  list_node* end;
+} linked_list;
+
+void (add_to_linked_list)(linked_list* list, position pos) {
+  list_node* new_node = (list_node*) malloc(sizeof(list_node));
+  new_node->pos = pos;
+  new_node->next = NULL;
+
+  if (list->end != NULL) {
+    list->end->next = (list_node*) new_node;  
+  }
+  else if (list->start != NULL) {
+    list->start->next = (list_node*) new_node;
+  }
+  else {
+    list->start = new_node;
+  }
+
+  list->end = new_node;
+}
+
+list_node (pop_from_linked_list)(linked_list* list) {
+  list_node* ini = list->start;
+  list->start = (list_node*)  list->start->next;
+  list_node ret_value = *ini;
+  free(ini);
+  return ret_value;
+}
+
 static pixel_buffer canvas_buffer;
 
 static uint32_t (canvas_get_buffer_size)() {
@@ -11,8 +47,12 @@ static uint32_t (canvas_get_buffer_size)() {
 void (canvas_load)() {
   canvas_buffer.h_res = H_RES;
   canvas_buffer.v_res = CANVAS_BOTTOM_VISIBLE_LIMIT;
+
   canvas_buffer.bytes_per_pixel = CANVAS_BYPP;
+
+  canvas_buffer.buffer_size = canvas_get_buffer_size();
   canvas_buffer.buffer_start = malloc(canvas_get_buffer_size());
+
   canvas_clear();
 }
 
@@ -24,7 +64,7 @@ void (canvas_fill)(uint8_t color) {
   memset(canvas_buffer.buffer_start, color, canvas_get_buffer_size());
 }
 
-int(canvas_draw_line_low)(position from_pos, position to_pos, int16_t dx, int16_t dy) {
+int (canvas_draw_line_low)(position from_pos, position to_pos, int16_t dx, int16_t dy) {
   int yi = 1;
 
   uint8_t thickness = cursor_get_thickness();
@@ -40,7 +80,7 @@ int(canvas_draw_line_low)(position from_pos, position to_pos, int16_t dx, int16_
 
   for (int x = from_pos.x; x <= to_pos.x; x++) {
     //if ((x - from_pos.x) % thickness == 0) { //ADD ONLY IF PERFORMANCE IS NEEDED
-      if (style == CURSOR_DSTATE_CIRCLE) {
+      if (style == CURSOR_DSTATE_CIRCLE || style == CURSOR_DSTATE_LINE) {
         if (buf_draw_circle(&canvas_buffer, (position) {x, y}, thickness, cursor_get_color()))
           return 1;
       }
@@ -60,7 +100,7 @@ int(canvas_draw_line_low)(position from_pos, position to_pos, int16_t dx, int16_
   return OK;
 }
 
-int(canvas_draw_line_high)(position from_pos, position to_pos, int16_t dx, int16_t dy) {
+int (canvas_draw_line_high)(position from_pos, position to_pos, int16_t dx, int16_t dy) {
   int xi = 1;
 
   uint8_t thickness = cursor_get_thickness();
@@ -77,7 +117,7 @@ int(canvas_draw_line_high)(position from_pos, position to_pos, int16_t dx, int16
   for (int y = from_pos.y; y <= to_pos.y; y++) {
     //if ((y - from_pos.y) % thickness == 0) { //ADD ONLY IF PERFORMANCE IS NEEDED
 
-      if (style == CURSOR_DSTATE_CIRCLE) {
+      if (style == CURSOR_DSTATE_CIRCLE || style == CURSOR_DSTATE_LINE) {
         if (buf_draw_circle(&canvas_buffer, (position) {x, y}, thickness, cursor_get_color()))
           return 1;
       }
@@ -98,7 +138,7 @@ int(canvas_draw_line_high)(position from_pos, position to_pos, int16_t dx, int16
   return OK;
 }
 
-int(canvas_draw_line)(position from_pos, position to_pos) {
+int (canvas_draw_line)(position from_pos, position to_pos) {
   int16_t dx = to_pos.x - from_pos.x;
   int16_t dy = to_pos.y - from_pos.y;
   if (abs(dy) < abs(dx))
@@ -196,6 +236,66 @@ int (canvas_draw_pencil_square)() {
 
 }
 
+void (canvas_handle_line)() {
+  position curr_pos = cursor_get_pos();
+  switch(cursor_get_line_counter()) {
+    case 0:
+      cursor_set_initial_line_position(curr_pos);
+      break;
+    case 1:
+      canvas_draw_line(cursor_get_initial_line_position(), curr_pos);
+  }
+  cursor_increase_line_counter();
+}
+
+void (canvas_flood_fill)(position ini_pos, uint8_t color_to_replace, uint8_t color_to_replace_with) {
+  linked_list queue = {NULL, NULL};
+  add_to_linked_list(&queue, ini_pos);
+  bool added = false;
+  
+  uint8_t* canvas_start = (uint8_t*) canvas_buffer.buffer_start;
+  
+  position curr_pos;
+  list_node curr_elem;
+
+  do {
+    added = false;
+    curr_elem = pop_from_linked_list(&queue);
+    curr_pos = curr_elem.pos;
+
+    if (curr_pos.x >= CANVAS_RIGHT_VISIBLE_LIMIT || curr_pos.y >= CANVAS_BOTTOM_VISIBLE_LIMIT || curr_pos.x <= CANVAS_LEFT_VISIBLE_LIMIT || curr_pos.y <= CANVAS_TOP_VISIBLE_LIMIT) {
+      continue;
+    }
+
+    int pixel_pos = (curr_pos.y * canvas_buffer.h_res + curr_pos.x);
+    uint8_t* pixel = canvas_start + pixel_pos;
+    // curr_index += (curr_pos.y * canvas_buffer.h_res + curr_pos.x) * sizeof(uint8_t);
+    
+    if (*pixel == color_to_replace) {
+      buf_draw_pixel(&canvas_buffer, curr_pos, color_to_replace_with);
+      
+      add_to_linked_list(&queue, (position) {curr_pos.x + 1, curr_pos.y});
+      add_to_linked_list(&queue, (position) {curr_pos.x - 1, curr_pos.y});
+      add_to_linked_list(&queue, (position) {curr_pos.x, curr_pos.y + 1});
+      add_to_linked_list(&queue, (position) {curr_pos.x, curr_pos.y - 1});
+      added = true;
+    }
+  } while(!(curr_elem.next == NULL && !added));
+}
+
+void (canvas_handle_bucket)() {
+  uint8_t color_to_replace_with = cursor_get_color();
+  position curr_pos = cursor_get_pos();
+  int pixel_pos = (curr_pos.y * canvas_buffer.h_res + curr_pos.x);
+  
+  uint8_t* canvas_start = (uint8_t*) canvas_buffer.buffer_start;
+
+  uint8_t* pixel = canvas_start + pixel_pos;
+
+  uint8_t color_to_replace = *pixel;
+  canvas_flood_fill(curr_pos, color_to_replace, color_to_replace_with);
+}
+
 void (canvas_clear)() {
   canvas_fill(COLOR_WHITE);
 }
@@ -213,7 +313,7 @@ void (canvas_mouse_handler)(uint8_t _) {
     case CURSOR_DSTATE_CIRCLE: canvas_draw_pencil_circle(); break;
     case CURSOR_DSTATE_SQUARE: canvas_draw_pencil_square(); break;
     case CURSOR_DSTATE_ARROW: break;
-    case CURSOR_DSTATE_LINE: break;
-    case CURSOR_DSTATE_BUCKET: break;
+    case CURSOR_DSTATE_LINE: canvas_handle_line(); break;
+    case CURSOR_DSTATE_BUCKET: canvas_handle_bucket(); break;
   }
 }

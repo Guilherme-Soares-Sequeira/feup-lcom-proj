@@ -6,61 +6,96 @@ static interactive_element *drawing_ies;
 
 static uint8_t number_of_drawing_ies;
 
+interactive_element (create_color_button)(position pos, uint8_t color) {
+  return (interactive_element) {
+    pos, 
+    BUTTON_FRAME_WIDTH, 
+    BUTTON_FRAME_HEIGHT, 
+    color, 
+    COLOR_BUTTON_PRIORITY, 
+    cursor_set_color
+  };
+}
+
+interactive_element (create_style_button)(position pos, enum cursor_style style) {
+  return (interactive_element) {
+    pos, 
+    BUTTON_FRAME_WIDTH, 
+    BUTTON_FRAME_HEIGHT, 
+    style, 
+    STYLE_BUTTON_PRIORITY, 
+    cursor_set_style
+  };
+}
+
 void (load_ie_drawing)() {
-  /* create elements */
-  interactive_element black_color_button = {
-    (position) {974, 70},
-    40,
-    40,
-    COLOR_BLACK,
-    3,
-    cursor_set_color
-  };
 
-  interactive_element blue_color_button = {
-    (position) {974, 120},
-    40,
-    40,
-    COLOR_BLUE,
-    3,
-    cursor_set_color
-  };
+  /* create color buttons */
 
-  interactive_element green_color_button = {
-    (position) {974, 170},
-    40,
-    40,
-    COLOR_GREEN,
-    3,
-    cursor_set_color
-  };
+  interactive_element black_color_button =  create_color_button(
+    (position) {974, 70}, COLOR_BLACK
+  );
 
-  interactive_element red_color_button = {
-    (position) {974, 220},
-    40,
-    40,
-    COLOR_RED,
-    3,
-    cursor_set_color
-  };
-  
-  interactive_element brown_color_button = {
-    (position) {974, 270},
-    40,
-    40,
-    COLOR_BROWN,
-    3,
-    cursor_set_color
-  };
+  interactive_element blue_color_button  =  create_color_button(
+    (position) {974, 120}, COLOR_BLUE
+  );
 
-  interactive_element yellow_color_button = {
-    (position) {974, 320},
-    40,
-    40,
-    COLOR_YELLOW,
-    3,
-    cursor_set_color
-  };
+  interactive_element green_color_button =  create_color_button(
+    (position) {974, 170}, COLOR_GREEN
+  );
+
+  interactive_element red_color_button   =  create_color_button(
+    (position) {974, 220}, COLOR_RED
+  );
+
+  interactive_element brown_color_button =  create_color_button(
+    (position) {974, 270}, COLOR_BROWN
+  );
+
+  interactive_element yellow_color_button = create_color_button(
+    (position) {974, 320}, COLOR_YELLOW
+  );
+
+  interactive_element aqua_color_button = create_color_button(
+    (position) {974, 370}, COLOR_AQUA
+  );
+
+  interactive_element magenta_color_button = create_color_button(
+    (position) {974, 420}, COLOR_MAGENTA
+  );
+
+  interactive_element purple_color_button = create_color_button(
+    (position) {974, 470}, COLOR_PURPLE
+  );
+
+  interactive_element orange_color_button = create_color_button(
+    (position) {974, 520}, COLOR_ORANGE
+  );
+
+  interactive_element dark_grey_color_button = create_color_button(
+    (position) {974, 570}, COLOR_DARK_GREY
+  );
+
+  /* create cursor style buttons */
+
+  interactive_element square_button     = create_style_button(
+    (position) {10, 170}, CURSOR_DSTATE_SQUARE
+  );
+
+  interactive_element circle_button     = create_style_button(
+    (position) {10, 220}, CURSOR_DSTATE_CIRCLE
+  );
+
+  interactive_element sel_line_button   = create_style_button(
+    (position) {10, 270}, CURSOR_DSTATE_LINE
+  );
+
+  interactive_element sel_bucket_button = create_style_button(
+    (position) {CANVAS_LEFT_VISIBLE_LIMIT + 10, CANVAS_BOTTOM_VISIBLE_LIMIT + 10}, CURSOR_DSTATE_BUCKET
+  );
+
+
+  /* other buttons */
 
   interactive_element plus_button = {
     (position) {10, 70},
@@ -79,24 +114,6 @@ void (load_ie_drawing)() {
     3,
     cursor_decrease_thickness
   };
-  
-  interactive_element square_button = {
-    (position) {10, 170},
-    40,
-    40,
-    CURSOR_DSTATE_SQUARE, // this will act as the enum...
-    3,
-    cursor_set_style
-  };
-
-  interactive_element circle_button = {
-    (position) {10, 220},
-    40,
-    40,
-    CURSOR_DSTATE_CIRCLE,
-    3,
-    cursor_set_style
-  };
 
   interactive_element clear_canvas_button = {
     (position) {10, 320},
@@ -107,8 +124,11 @@ void (load_ie_drawing)() {
     canvas_fill
   };
 
+
+  /* canvas */
+
   interactive_element canvas = {
-    (position) {CANVAS_TOP_VISIBLE_LIMIT, CANVAS_LEFT_VISIBLE_LIMIT},
+    (position) {CANVAS_LEFT_VISIBLE_LIMIT, CANVAS_TOP_VISIBLE_LIMIT},
     CANVAS_WIDTH,
     CANVAS_HEIGHT,
     COLOR_TRANSPARENT,
@@ -116,13 +136,12 @@ void (load_ie_drawing)() {
     canvas_mouse_handler
   };
 
-  number_of_drawing_ies = 12;
+  number_of_drawing_ies = 19;
 
   drawing_ies = (interactive_element*)malloc(number_of_drawing_ies * sizeof(interactive_element));
 
   memcpy(drawing_ies, (interactive_element[]){canvas, black_color_button, blue_color_button, green_color_button, red_color_button,
-  brown_color_button, yellow_color_button, plus_button, minus_button, square_button, circle_button, clear_canvas_button}, number_of_drawing_ies * sizeof(interactive_element));
-  
+  brown_color_button, yellow_color_button, aqua_color_button, magenta_color_button, purple_color_button, orange_color_button, dark_grey_color_button, plus_button, minus_button, square_button, circle_button, clear_canvas_button, sel_line_button, sel_bucket_button}, number_of_drawing_ies * sizeof(interactive_element));
 }
 
 
