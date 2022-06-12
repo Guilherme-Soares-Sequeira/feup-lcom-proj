@@ -41,7 +41,7 @@ void(setup_update_interrupts)() {
   write_to_reg(RTC_CTRL_REG_B, 0 | ENABLE_UPDATE_INTERRUPT | BINARY_COUNTING_MODE | HOUR_RANGE_24H | DST);
 }
 
-void(handle_update_int)() { // no documentation needed, just a helper for tine int handler
+void(handle_update_int)() { // no documentation needed, just a helper for rtc int handler
   seconds = read_from_reg(RTC_SECONDS_REG);
   minutes = read_from_reg(RTC_MINUTES_REG);
   hours = read_from_reg(RTC_HOURS_REG);
@@ -54,7 +54,7 @@ void(handle_update_int)() { // no documentation needed, just a helper for tine i
 
 void(rtc_int_handler)() {
 
-  uint8_t regC = read_from_register(RTC_CTRL_REG_C);
+  uint8_t regC = read_from_reg(RTC_CTRL_REG_C);
 
   if (!(regC & IQRF))
     return;
