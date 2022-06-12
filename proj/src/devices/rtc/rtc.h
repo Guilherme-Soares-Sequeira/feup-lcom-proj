@@ -1,30 +1,35 @@
 #ifndef RTC_H
 #define RTC_H
 
-#define RTC_IRQ 0x8
+/** @defgroup rtc rtc
+ * 
+ * Constants and functions used for the programming of the RTC
+ */
 
-#define RTC_ADDR_REG 0x70
-#define RTC_DATA_REG 0x71
+#define RTC_IRQ 0x8             /**< @brief the IRQ line used for RTC interrupts */
 
-#define RTC_SECONDS_REG 0
-#define RTC_SECONDS_ALARM_REG 1
-#define RTC_MINUTES_REG 2
-#define RTC_MINUTES_ALARM_REG 3
-#define RTC_HOURS_REG 4
-#define RTC_HOURS_ALARM_REG 5
+#define RTC_ADDR_REG 0x70       /**< @brief the RTC register used for sending instructions */
+#define RTC_DATA_REG 0x71       /**< @brief the RTC register used for reading data */
 
-#define RTC_CTRL_REG_A 10
-#define RTC_CTRL_REG_B 11
-#define RTC_CTRL_REG_C 12
-#define RTC_CTRL_REG_D 13
+#define RTC_SECONDS_REG 0       /**< @brief the number of the RTC register that contains information about the seconds */
+#define RTC_SECONDS_ALARM_REG 1 /**< @brief the number of the RTC register that contains information about the seconds portion of the alarm */
+#define RTC_MINUTES_REG 2       /**< @brief the number of the RTC register that contains information about the minutes */
+#define RTC_MINUTES_ALARM_REG 3 /**< @brief the number of the RTC register that contains information about the minutes portion of the alarm */
+#define RTC_HOURS_REG 4         /**< @brief the number of the RTC register that contains information about the hours */ 
+#define RTC_HOURS_ALARM_REG 5   /**< @brief the number of the RTC register that contains information about the hours portion of the alarm */
 
-#define ENABLE_UPDATE_INTERRUPT BIT(4)
-#define BINARY_COUNTING_MODE BIT(2)
-#define HOUR_RANGE_24H BIT(1)
-#define DST BIT(0)
+#define RTC_CTRL_REG_A 10       /**< @brief the number of the RTC register that  */
+#define RTC_CTRL_REG_B 11       /**< @brief the number of the RTC register that  */
+#define RTC_CTRL_REG_C 12       /**< @brief the number of the RTC register that  */
+#define RTC_CTRL_REG_D 13       /**< @brief the number of the RTC register that  */
 
-#define IQRF BIT(7)
-#define UPDATE_INT_FLAG BIT(4)
+#define ENABLE_UPDATE_INTERRUPT BIT(4) /**< @brief mask for the bit used to  */
+#define BINARY_COUNTING_MODE BIT(2)    /**< @brief mask for the bit used to */
+#define HOUR_RANGE_24H BIT(1)          /**< @brief mask for the bit used to */
+#define DST BIT(0)                     /**< @brief mask for the bit used to */
+
+#define IQRF BIT(7)             /**< @brief mask for the bit used to */
+#define UPDATE_INT_FLAG BIT(4)  /**< @brief mask for the bit used to */
 
 /**
  * @brief subscribes to RTC interrupts and puts the given bit in bit_no
@@ -92,5 +97,8 @@ unsigned short(rtc_get_hours)();
  *  @return the current RTC time in a formatted string
  */
 char *(rtc_get_formatted_time) ();
+
+
+/**@}*/
 
 #endif

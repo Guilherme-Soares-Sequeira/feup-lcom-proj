@@ -10,6 +10,12 @@
 #include "../devices/kbc/mouse.h"
 #include "cursor.h"
 
+/** @defgroup canvas canvas
+ * @{
+ * 
+ * Constants and functions used for programming the canvas
+ */
+
 #define CANVAS_MARGIN 60 /**< @brief */
 #define CANVAS_WIDTH (H_RES - CANVAS_MARGIN * 2) /**< @brief */
 #define CANVAS_HEIGHT (708) /**< @brief */
@@ -45,7 +51,7 @@ void (canvas_draw)();
 
 
 /**
- * @brief Fills an area with the given color
+ * @brief Fills the entire screen with the given color and updates the "canvas_background_color" variable
  * @param color color to fill the area with
  * 
  */
@@ -91,24 +97,30 @@ void (canvas_handle_line)();
 
 
 /**
- * @brief Handles the filling of an area with the cursor color
+ * @brief Handles the filling of the canvas with the cursor color
  * 
  */
 void (canvas_handle_bucket)();
 
 
 /**
- * @brief Recursive function to fill an area with a color
+ * @brief Function that is supposed to replace an area of color "color_to_replace_with" with a new color "color_to_replace". Utilizes a linked list / queue but is unused at the moment
  * 
+ * @param curr_pos the position of the first pixel to be replaced
+ *
+ * @param color_to_replace the color that will be replaced
+ *
+ * @param color_to_replace_with the color that will be used to replace the other color
  */
 void (canvas_flood_fill)(position curr_pos, uint8_t color_to_replace, uint8_t color_to_replace_with);
 
 
 /**
- * @brief 
+ * @brief Handles how clicks on the canvas while the cursor is in text state should behave
  * 
  */ 
 void (canvas_handle_text)();
+
 
 /**
  * @brief Frees the memory allocated to the canvas
@@ -116,5 +128,6 @@ void (canvas_handle_text)();
  */
 void (canvas_exit)();
 
+/**@}*/
 
 #endif

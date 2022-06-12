@@ -4,13 +4,14 @@
 #include "draw_chat.h"
 #include "../devices/kbc/i8042.h"
 
-#define ENTER_MAKECODE 0x1c
-#define TAB_MAKECODE 0x0f
-#define CTRL_MAKECODE 0x1d
-#define LEFT_SHIFT_MAKECODE 0x2a
-#define RIGHT_SHIFT_MAKECODE 0x36
-#define BACKSPACE_MAKECODE 0x0e
+#define ENTER_MAKECODE       0x1c /**< @brief the makecode of the enter key       */
+#define TAB_MAKECODE         0x0f /**< @brief the makecode of the tab key         */
+#define CTRL_MAKECODE        0x1d /**< @brief the makecode of the ctrl key        */
+#define LEFT_SHIFT_MAKECODE  0x2a /**< @brief the makecode of the left-shift key  */
+#define RIGHT_SHIFT_MAKECODE 0x36 /**< @brief the makecode of the right-shift key */ 
+#define BACKSPACE_MAKECODE   0x0e /**< @brief the makecode of the backspace key   */
 
+/**< @brief the charset supported by the program */
 char default_charset[] = {NO_ADD_CHAR, NO_ADD_CHAR, '1', '2', '3', 
                           '4', '5', '6', '7', '8', 
                           '9', '0', '?', NO_ADD_CHAR, NO_ADD_CHAR, 

@@ -2,7 +2,7 @@
 
 #include "graphics.h"
 
-static pixel_buffer backbuffer;
+static pixel_buffer backbuffer; /**< @brief back buffer of the vram */
 
 void (load_backbuffer)() {
   backbuffer.buffer_start = vg_get_back_buffer();

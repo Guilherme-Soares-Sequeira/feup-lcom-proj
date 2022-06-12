@@ -5,11 +5,11 @@
 #include "i8254.h"
 #include "timer.h"
 
-unsigned long counter;
+unsigned long counter;          /**< @brief value that is increased everytime a timer interrupt occurs */
 
-int32_t timer_global_hook_id;
+int32_t timer_global_hook_id;   /**< @brief hook id used to unsubscribe interrupts from the timer */
 
-uint16_t(to_bcd)(uint16_t val);
+uint16_t(to_bcd)(uint16_t val); /**< @brief converts an unsigned 16 bit value to bcd */
 
 unsigned long (get_timer_get_counter)() {
   return counter;

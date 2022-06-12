@@ -1,5 +1,12 @@
+#ifndef PS2_H
+#define PS2_H
+
 #include <lcom/lcf.h>
 
+/** @defgroup PS2 PS2
+ * 
+ * Constants used for the programming of the mouse
+ */
 
 /* mouse first packet byte structure */
 
@@ -50,3 +57,8 @@
 /* negative number mask */
 
 #define NEG BIT(7) /**<@ if set the number is negative */
+
+
+/**@}*/
+
+#endif 

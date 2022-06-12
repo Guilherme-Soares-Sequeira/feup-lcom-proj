@@ -11,7 +11,7 @@
 
 #include "text.h"
 
-static xpm_image_t clock_xpm;
+static xpm_image_t clock_xpm; /**< @brief xpm image of the clock */
 
 static position clock_pos = {
   H_RES - CANVAS_MARGIN - 40,

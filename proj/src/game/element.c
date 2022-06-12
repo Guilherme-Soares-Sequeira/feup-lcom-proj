@@ -2,9 +2,10 @@
 
 #include "element.h"
 
-static interactive_element *drawing_ies;
+static interactive_element *drawing_ies; /**< @brief the container of the interactive elements */
 
-static uint8_t number_of_drawing_ies;
+static uint8_t number_of_drawing_ies; /**< @brief the number of interactive elements present on screen */
+
 
 interactive_element (create_color_button)(position pos, uint8_t color) {
   return (interactive_element) {

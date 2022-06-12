@@ -8,6 +8,18 @@
 #include "canvas.h"
 #include "../devices/video/graphics.h"
 
+/** @defgroup UI UI
+ * 
+ * Constants, structures and functions used for programming our program's UI
+ */
+
+
+/**
+ * @brief Draws the menu (background) and calls the function responsible for drawing the buttons
+ * 
+ */
 void (draw_menu)();
+
+/**@}*/
 
 #endif

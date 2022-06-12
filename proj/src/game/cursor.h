@@ -11,6 +11,12 @@
 #include "../utils/color.h"
 #include "element.h"
 
+/** @defgroup cursor cursor
+ * @{
+ *
+ * Constants, structures and functions used for programming the cursor
+ */
+
 #define MIN_THICKNESS 1
 #define MAX_THICKNESS 24
 
@@ -47,8 +53,8 @@ void (cursor_move)(int16_t delta_x, int16_t delta_y);
 
 /**
  * @brief Returns the current position of the cursor
- * @return current position of the structure
  * 
+ * @return current position of the structure
  */
 position (cursor_get_pos)();
 
@@ -64,6 +70,7 @@ cursor_state_style_t (cursor_get_style)();
 /**
  * @brief Set cursor state
  * @param state state to be set
+ * 
  */
 void (cursor_set_style)(uint8_t style);
 
@@ -178,15 +185,37 @@ void (cursor_set_initial_line_position)(position pos);
 void (cursor_increase_line_counter)();
 
 
+/**
+ * @brief Returns the initial position of where the text should be printedthe text 
+ * 
+ * @return
+ */
 position (get_text_initial_position)();
 
 
+/**
+ * @brief Getter for the "typing" variable 
+ * 
+ * @return true if the user is currently in a state of drawing or editing text, false otherwise
+ */
 bool (get_is_typing)();
 
 
+/**
+ * @brief Setter for the "typing" variable
+ * 
+ * @param new_is_typing the value "typing" should be set to. Should be true when the user is supposed to be writing text and false otherwise
+ */
 void (set_is_typing)(bool new_is_typing);
 
 
+/**
+ * @brief Setter for the initial position where the text should start being drawn
+ * 
+ * @param pos position to be set
+ */
 void (set_text_initial_position)(position pos);
+
+/**@}*/
 
 #endif

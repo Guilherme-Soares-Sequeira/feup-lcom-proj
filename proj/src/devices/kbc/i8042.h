@@ -5,6 +5,11 @@
 
 #include "../../utils/utils.h"
 
+/** @defgroup i8042 i8042
+ * 
+ * Constants used for programming the KBC
+ */
+
 /* kbc registers */
 
 #define KBC_IN_BUF_ARG 0x60 /**< @brief command byte arguments port */
@@ -63,5 +68,7 @@
 
 #define ESC_KEY_MAKE  0x01 /**< @brief ESC key make code */
 #define ESC_KEY_BREAK 0x81 /**< @brief ESC key break code */
+
+/**@}*/
 
 #endif

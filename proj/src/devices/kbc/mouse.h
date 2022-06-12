@@ -6,6 +6,11 @@
 #include "PS2.h"
 #include "i8042.h"
 
+/** @defgroup mouse mouse
+ * 
+ * Functions used for the programming of the mouse
+ */
+
 #define mouse_packet_t struct packet
 
 /**
@@ -88,3 +93,5 @@ int16_t(uint8_to_int16)(uint8_t uint8_val, bool sign);
  * @return true if the packet has been fully processed
  */
 bool(mouse_packet_ready)();
+
+/**@}*/

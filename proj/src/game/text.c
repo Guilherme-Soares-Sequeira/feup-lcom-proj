@@ -5,7 +5,7 @@
 #include "text.h"
 #include "../devices/video/video_gr.h"
 
-static xpm_image_t font_xpm;
+static xpm_image_t font_xpm; /**< @brief the xpm image of the font */
 
 void (text_load)() {
   font_xpm = vg_load_xpm(xpm_font);

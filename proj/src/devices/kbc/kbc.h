@@ -4,7 +4,13 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+/** @defgroup kbc kbc
+ * 
+ * Functions used for the programming of the KBC
+ */
+
 #define DELAY_US 20000
+
 
 /**
  * @brief subscribes to keyboard interrupts and puts the given bit in bit_no
@@ -57,5 +63,7 @@ int(get_scancode_size)();
  * @return keyboard scancode type(MAKE/BREAK)
  */
 int(get_scancode_type)();
+
+/**@}*/
 
 #endif

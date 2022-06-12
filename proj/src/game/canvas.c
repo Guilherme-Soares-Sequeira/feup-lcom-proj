@@ -2,7 +2,7 @@
 
 #include "canvas.h"
 
-static uint8_t canvas_background_color;
+static uint8_t canvas_background_color; /**< @brief the background color of the canvas */
 
 // typedef struct list_node_t {
 //   position pos;

@@ -5,7 +5,12 @@
 
 /* button xpms */
 
-static xpm_image_t button_plus, button_minus, button_eraser,button_bucket, button_text, button_clear_canvas;
+static xpm_image_t button_plus;         /**< @brief xpm image of the 'plus' button         */
+static xpm_image_t button_minus;        /**< @brief xpm image of the 'minus' button        */
+static xpm_image_t button_eraser;       /**< @brief xpm image of the 'eraser' button       */
+static xpm_image_t button_bucket;       /**< @brief xpm image of the 'bucket' button       */
+static xpm_image_t button_text;         /**< @brief xpm image of the 'text' button         */
+static xpm_image_t button_clear_canvas; /**< @brief xpm image of the 'clear canvas' button */
 
 
 xpm_image_t (get_button_plus)(){ return button_plus; }

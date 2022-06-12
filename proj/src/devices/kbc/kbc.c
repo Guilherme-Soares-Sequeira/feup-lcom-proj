@@ -4,15 +4,18 @@
 
 #include "i8042.h"
 
-int      scancode_size = 1; // most interrupts are associated with 1 byte scancodes, ih will deal with this value changing;
-int      scancode_type;
+// most interrupts are associated with 1 byte scancodes, ih will deal with this value changing;
+int      scancode_size = 1; /**< @brief the size of the scancode */ 
+int      scancode_type;     /**< @brief the type of the scancode: can be MAKE or BREAK */
 
-int32_t  kbc_global_hook_id;
-uint8_t  st_reg;
-uint8_t  *scancodes = NULL; // scan codes have at most 3 bytes (?)
+int32_t  kbc_global_hook_id; /**< @brief the hook id that is used to unsubscribe interrupts from the KBC */
+uint8_t  st_reg;             /**< @brief variable used to store the status register of the KBC */
+// scan codes have at most 3 bytes (?)
+uint8_t  *scancodes = NULL; /**< @brief pointer to the scancodes array */
 
-bool     keyboard_packet_ready = false, scancode_processed = false;
-int      bytes_read = 0;
+bool     keyboard_packet_ready = false, /**< @brief indicates whether the keyboard packet is ready or not */
+         scancode_processed = false;    /**< @brief indicates whether the current scancode has been processed or not */
+int      bytes_read = 0;                /**< @brief the number of bytes from the current scancode that have been read so far */
 
 int(kbc_subscribe_int)(uint8_t *bit_no) {
   int hook_id = KBC_KEYBOARD_IRQ;

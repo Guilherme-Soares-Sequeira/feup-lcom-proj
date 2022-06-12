@@ -15,6 +15,11 @@
 #include "../../game/draw_chat.h"
 #include "../../game/cursor.h"
 
+/** @defgroup graphics graphics
+ * 
+ * Functions used for the programming of the graphics
+ */
+
 void (load_backbuffer)();
 
 pixel_buffer const * (get_back_buffer)();
@@ -103,5 +108,7 @@ int (buf_draw_xpm)(pixel_buffer const * const buf, const xpm_image_t xpm_info, p
  * @return
 */
 int (buf_draw_text)(pixel_buffer const * const buf, char* text, position pos, text_alignment_t alignment);
+
+/**@}*/
 
 #endif

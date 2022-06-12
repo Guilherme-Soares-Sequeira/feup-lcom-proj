@@ -49,25 +49,25 @@
 #define TIMER_BIN 0x00 /**< @brief Count in binary */
 
 /* READ-BACK COMMAND FORMAT */
-
-#define TIMER_RB_COUNT_  BIT(5)
-#define TIMER_RB_STATUS_ BIT(4)
-#define TIMER_RB_SEL(n)  BIT((n) + 1)
+  
+#define TIMER_RB_COUNT_  BIT(5)       /**< @brief mask used to indicate that we do not want to read the count value of the selected timer */
+#define TIMER_RB_STATUS_ BIT(4)       /**< @brief mask used to indicate that we do not want to read the programmed mode of the selected timer */
+#define TIMER_RB_SEL(n)  BIT((n) + 1) /**< @brief mask used to indicate that we want information regarding the nth timer */
 
 /* PARSE TIMER CONFIG */
 
-#define TIMER_ST_INI_RW (TIMER_RB_COUNT_ | TIMER_RB_STATUS_)
-#define TIMER_ST_MODE (BIT(3) | (BIT(2) | BIT(1)))
-#define TIMER_ST_BCD (BIT(0))
+#define TIMER_ST_INI_RW (TIMER_RB_COUNT_ | TIMER_RB_STATUS_) /**< @brief masked used to indicate that we want neither the count value nor the programmed mode of the selected timer */
+#define TIMER_ST_MODE (BIT(3) | (BIT(2) | BIT(1))) /**< @brief indicates the operating mode of the timer */
+#define TIMER_ST_BCD (BIT(0)) /**< @brief indicates whether the time is configured in bcd or binary mode */
 
 /* PARSE TIMER BYTES */
 
-#define TIMER_LSB_MASK 0x00FF
-#define TIMER_MSB_MASK 0xFF00
+#define TIMER_LSB_MASK 0x00FF /**< @brief LSB mask */
+#define TIMER_MSB_MASK 0xFF00 /**< @brief MSB mask */
 
 /* MAX FREQUENCIES */
-#define TIMER_MIN_FREQ_BCD 120
-#define TIMER_MIN_FREQ_BIN 19
+#define TIMER_MIN_FREQ_BCD 120 /**< @brief minimum frequency of the timer in bcd mode    */
+#define TIMER_MIN_FREQ_BIN 19  /**< @brief minimum frequency of the timer in binary mode */
 
 /**@}*/
 

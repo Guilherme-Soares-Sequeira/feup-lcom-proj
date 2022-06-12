@@ -16,12 +16,12 @@ static xpm_image_t cursor_pencil_xpm;  /**< @brief pencil cursor xpm  */
 static xpm_image_t cursor_text_xpm;    /**< @brief text cursor xpm    */
 static xpm_image_t cursor_line_xpm;    /**< @brief line cursor xpm    */
 
-static position cursor_pos = {0, 0}; /**< @brief cursor_position of the cursor */
+static position cursor_pos = {0, 0};   /**< @brief cursor_position of the cursor */
 
 static cursor_state_style_t cursor_style; /**< @brief style of the cursor */
 
-static uint8_t cursor_color; /**< @brief color/previous of the cursor */
-static uint8_t cursor_thickness; /**< @brief thickness of the cursor */
+static uint8_t cursor_color;        /**< @brief color/previous of the cursor */
+static uint8_t cursor_thickness;    /**< @brief thickness of the cursor */
 static uint8_t cursor_line_counter; /**< @brief line counter */
 
 static position line_initial_position; /**< @brief initial position of the line to be drawn */
@@ -29,7 +29,7 @@ static position text_initial_position; /**< @brief initial position of the text 
 
 static bool cursor_lb; /**< @brief indicates whether the mouse left button was already pressed or not */
  
-static bool typing; /**< @brief indicates whether the user is typing or not */
+static bool typing;    /**< @brief indicates whether the user is typing or not */
 
 
 void (cursor_load)() {

@@ -7,13 +7,13 @@
 #include "i8042.h"
 #include "mouse.h"
 
-int32_t mouse_global_hook_id;
+int32_t mouse_global_hook_id; /**< @brief the hook id that is used to unsubscribe interrupts from the mouse */
 
-struct packet mouse_packet;
+struct packet mouse_packet;   /**< @brief the packet that contains information about the last movement and the state of the various buttons of the mouse */
 
-uint8_t packet_counter = 0;
+uint8_t packet_counter = 0;   /**< @brief the amount of bytes that have been read so far for the current packet */
 
-bool mouse_ready = false;
+bool mouse_ready = false;     /**< @brief indicates whether the mouse_packet contains all the necessary information or not */
 
 /* declared in LCF */
 

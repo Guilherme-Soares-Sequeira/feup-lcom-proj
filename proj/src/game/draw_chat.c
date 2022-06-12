@@ -5,9 +5,9 @@
 #include "charset.h"
 #include "text.h"
 
-int text_size = 0;
-char text[INPUT_CHAR_SIZE + 1] = {0};
-char *chat_messages[INPUT_CHAR_SIZE + 1] = {0};
+int text_size = 0; /**< @brief size of the piece of text */
+char text[INPUT_CHAR_SIZE + 1] = {0}; /**< @brief container each character of the text */
+char *chat_messages[INPUT_CHAR_SIZE + 1] = {0}; /**< @brief */
 
 void (draw_text_input)(pixel_buffer const * const buf, position topleft_pos) {
     buf_draw_rectangle(buf, (position) {topleft_pos.x, topleft_pos.y}, H_RES - CANVAS_MARGIN, CHAT_HEIGHT, COLOR_WHITE);
