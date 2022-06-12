@@ -28,6 +28,8 @@
 
 /**
  * @brief subscribes to RTC interrupts and puts the given bit in bit_no
+ * 
+ * @param[in] bit_no Bit number of the RTC interrupt messages
  */
 int(rtc_subscribe_int)(uint8_t *bit_no);
 
