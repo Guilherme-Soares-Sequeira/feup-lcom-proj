@@ -36,10 +36,9 @@ void (clock_draw)() {
   int minute = rtc_get_minutes();
   int second = rtc_get_seconds();
   double hour_angle = M_PI * (hour + (minute/60.0)) / 6.0;
-  position hour_pos = {
-    clock_pos_center.x + HOUR_HANDLE_LENGTH * sin(hour_angle),
-    clock_pos_center.y - HOUR_HANDLE_LENGTH * cos(hour_angle)
-  };
+  int hour_pos_x = clock_pos_center.x + HOUR_HANDLE_LENGTH * sin(hour_angle);
+  int hour_pos_y = clock_pos_center.y - HOUR_HANDLE_LENGTH * cos(hour_angle);
+  position hour_pos = {hour_pos_x, hour_pos_y};
   buf_draw_line(buf, clock_pos_center, hour_pos, COLOR_BLACK);
 
   double minute_angle = M_PI * (minute + (second/60.0)) / 30.0;

@@ -30,7 +30,9 @@ int (buf_draw_pixel)(pixel_buffer const * const buf, position pos, uint8_t color
   return 0;
 }
 
-int(_buf_draw_line_low)(pixel_buffer const * const buf, uint16_t from_x, uint16_t from_y, uint16_t to_x, uint16_t to_y, int16_t dx, int16_t dy, uint8_t color) {
+int(_buf_draw_line_low)(pixel_buffer const * const buf, uint16_t from_x, uint16_t from_y, uint16_t to_x, uint16_t to_y, uint8_t color) {
+  int dx = to_x - from_x;
+  int dy = to_y - from_y;
   int yi = 1;
 
   if (dy < 0) {
@@ -58,7 +60,9 @@ int(_buf_draw_line_low)(pixel_buffer const * const buf, uint16_t from_x, uint16_
   return OK;
 }
 
-int(_buf_draw_line_high)(pixel_buffer const * const buf, uint16_t from_x, uint16_t from_y, uint16_t to_x, uint16_t to_y, int16_t dx, int16_t dy, uint8_t color) {
+int(_buf_draw_line_high)(pixel_buffer const * const buf, uint16_t from_x, uint16_t from_y, uint16_t to_x, uint16_t to_y, uint8_t color) {
+  int dx = to_x - from_x;
+  int dy = to_y - from_y;
   int xi = 1;
 
   if (dx < 0) {
@@ -87,17 +91,15 @@ int(_buf_draw_line_high)(pixel_buffer const * const buf, uint16_t from_x, uint16
 }
 
 int (buf_draw_line)(pixel_buffer const * const buf, position from_pos, position to_pos, uint8_t color) {
-  int16_t dx = to_pos.x - from_pos.x;
-  int16_t dy = to_pos.y - from_pos.y;
-  if (abs(dy) < abs(dx))
+  if (abs(to_pos.y - from_pos.y) < abs(to_pos.x - from_pos.x))
     if (from_pos.x > to_pos.x)
-      return _buf_draw_line_low(buf, from_pos.x, from_pos.y, to_pos.x, to_pos.y, -dx, -dy, color);
+      return _buf_draw_line_low(buf, to_pos.x, to_pos.y, from_pos.x, from_pos.y, color);
     else
-      return _buf_draw_line_low(buf, from_pos.x, from_pos.y, to_pos.x, to_pos.y, dx, dy, color);
+      return _buf_draw_line_low(buf, from_pos.x, from_pos.y, to_pos.x, to_pos.y, color);
   else if (from_pos.y > to_pos.y)
-    return _buf_draw_line_high(buf, from_pos.x, from_pos.y, to_pos.x, to_pos.y, -dx, -dy, color);
+    return _buf_draw_line_high(buf, to_pos.x, to_pos.y, from_pos.x, from_pos.y, color);
   else
-    return _buf_draw_line_high(buf, from_pos.x, from_pos.y, to_pos.x, to_pos.y, dx, dy, color);
+    return _buf_draw_line_high(buf, from_pos.x, from_pos.y, to_pos.x, to_pos.y, color);
 
 }
 
