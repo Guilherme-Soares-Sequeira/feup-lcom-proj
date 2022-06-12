@@ -37,11 +37,9 @@ void (setup_update_interrupts)();
 uint8_t (read_from_register)(uint8_t reg_no);
 void (write_to_reg)(uint8_t reg_no, uint8_t data);
 
-int (rtc_get_seconds)();
-
-int (rtc_get_minutes)();
-
-int (rtc_get_hours)();
+unsigned short (rtc_get_seconds)();
+unsigned short (rtc_get_minutes)();
+unsigned short (rtc_get_hours)();
 
 char* (rtc_get_formatted_time)();
 

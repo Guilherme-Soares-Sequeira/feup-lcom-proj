@@ -42,9 +42,9 @@ void (setup_update_interrupts)() {
 }
 
 void (handle_update_int)() {
-  uint8_t seconds = read_from_register(RTC_SECONDS_REG);
-  uint8_t minutes = read_from_register(RTC_MINUTES_REG);
-  uint8_t hours = read_from_register(RTC_HOURS_REG);
+  seconds = read_from_register(RTC_SECONDS_REG);
+  minutes = read_from_register(RTC_MINUTES_REG);
+  hours = read_from_register(RTC_HOURS_REG);
 
   sprintf(formatted_time, "%s%d:%s%d:%s%d", hours < 10 ? "0" : "", hours, minutes < 10 ? "0" : "", minutes, seconds < 10 ? "0" : "", seconds);
   formatted_time[8] = '\0';
@@ -60,15 +60,15 @@ void (rtc_int_handler)() {
     handle_update_int();
 }
 
-int (rtc_get_seconds)() {
+unsigned short (rtc_get_seconds)() {
     return seconds;
 }
 
-int (rtc_get_minutes)() {
+unsigned short (rtc_get_minutes)() {
     return minutes;
 }
 
-int (rtc_get_hours)() {
+unsigned short (rtc_get_hours)() {
     return hours;
 }
 
