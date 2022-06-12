@@ -12,6 +12,7 @@
 #include "devices/video/vbe.h"
 #include "devices/video/video_gr.h"
 #include "devices/timer/timer.h"
+#include "devices/rtc/rtc.h"
 
 
 /* utils include */
@@ -64,7 +65,7 @@ int main(int argc, char *argv[]) {
 }
 
 int(proj_main_loop)(int argc, char* argv[]) {
-  uint8_t keyboard_bit, mouse_bit, timer_bit;
+  uint8_t keyboard_bit, mouse_bit, timer_bit, rtc_bit;
 
   kbc_enable_data_report();
 
@@ -73,6 +74,11 @@ int(proj_main_loop)(int argc, char* argv[]) {
   timer_subscribe_int(&timer_bit);
   kbc_subscribe_int(&keyboard_bit);
   mouse_subscribe_int(&mouse_bit);
+  rtc_subscribe_int(&rtc_bit);
+
+  /* RTC initialization */
+
+  setup_update_interrupts();
 
   /* timer initialization */ 
 
@@ -109,6 +115,10 @@ int(proj_main_loop)(int argc, char* argv[]) {
     if (is_ipc_notify(ipc_status)) {
       switch (_ENDPOINT_P(msg.m_source)) {
         case HARDWARE:
+          if (msg.m_notify.interrupts & BIT(rtc_bit)) {
+            rtc_int_handler();
+          }
+
           if (msg.m_notify.interrupts & BIT(timer_bit)) {
             timer_int_handler();
 
@@ -181,6 +191,7 @@ int(proj_main_loop)(int argc, char* argv[]) {
   timer_unsubscribe_int();
   kbc_unsubscribe_int();
   mouse_unsubscribe_int();
+  rtc_unsubscribe_int();
 
   /* disable data reporting */
   
