@@ -5,7 +5,7 @@
 
 /* button xpms */
 
-static xpm_image_t button_plus, button_minus, button_eraser, button_clear_canvas;
+static xpm_image_t button_plus, button_minus, button_eraser,button_bucket, button_text, button_clear_canvas;
 
 
 xpm_image_t (get_button_plus)(){ return button_plus; }
@@ -14,6 +14,8 @@ void (load_button_xpms)() {
   button_plus = vg_load_xpm(xpm_button_plus);
   button_minus = vg_load_xpm(xpm_button_minus);
   button_eraser = vg_load_xpm(xpm_button_eraser);
+  button_bucket = vg_load_xpm(xpm_button_bucket);
+  button_text = vg_load_xpm(xpm_button_text);
   button_clear_canvas = vg_load_xpm(xpm_button_clear_canvas);
 }
 
@@ -82,7 +84,11 @@ int (draw_sel_circle_button)(pixel_buffer const * const buf, position topleft_po
 }
 
 void (draw_sel_bucket_button)(pixel_buffer const * const buf, position topleft_pos) {
-  draw_button_frame(buf, topleft_pos);
+  buf_draw_xpm(buf, button_bucket, topleft_pos);
+}
+
+void (draw_sel_text_button)(pixel_buffer const * const buf, position topleft_pos) {
+  buf_draw_xpm(buf, button_text, topleft_pos);
 }
 
 void (draw_sel_eraser_button)(pixel_buffer const * const buf, position topleft_pos) {
@@ -155,6 +161,11 @@ int (buttons_draw)() {
     return EXIT_FAILURE;    
   }
 
+  if (draw_color_button(buf, (position) {color_button_x, 620}, COLOR_WHITE) != OK) {
+    fprintf(stderr, "There was an error drawing a color button at %s!\n", __func__);
+    return EXIT_FAILURE;    
+  }
+
   draw_plus_button(buf, (position) {other_buttons_x, 70}); 
   draw_minus_button(buf, (position) {other_buttons_x, 120}); 
   
@@ -175,7 +186,9 @@ int (buttons_draw)() {
   
   draw_sel_eraser_button(buf, (position) {other_buttons_x, 320});
 
-  draw_sel_bucket_button(buf, (position) {CANVAS_LEFT_VISIBLE_LIMIT + 10, CANVAS_BOTTOM_VISIBLE_LIMIT + 10});
+  draw_sel_bucket_button(buf, (position) {10, 370});
+
+  draw_sel_text_button(buf, (position) {10, 420});
 
   draw_clear_canvas_button(buf, (position) {other_buttons_x, 670}); 
 

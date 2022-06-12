@@ -28,3 +28,7 @@ void (text_draw)(char* text, int16_t x, int16_t y, int16_t scale, int color, tex
     x += CHAR_WIDTH * scale;
   } while (*(++text));
 }
+
+xpm_image_t (get_font_xpm)() {
+  return font_xpm;
+}

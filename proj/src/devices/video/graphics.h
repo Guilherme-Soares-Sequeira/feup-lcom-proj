@@ -10,6 +10,10 @@
 #include "../../utils/const.h"
 #include "../../utils/color.h"
 #include "video_gr.h"
+#include "../../game/text.h"
+#include "../../game/charset.h"
+#include "../../game/draw_chat.h"
+#include "../../game/cursor.h"
 
 void (load_backbuffer)();
 
@@ -66,5 +70,6 @@ int (buf_draw_vline)(pixel_buffer const * const buf, position pos, uint16_t len,
 
 int (buf_draw_xpm)(pixel_buffer const * const buf, const xpm_image_t xpm_info, position pos);
 
+int (buf_draw_text)(pixel_buffer const * const buf, char* text, position pos, text_alignment_t alignment);
 
 #endif

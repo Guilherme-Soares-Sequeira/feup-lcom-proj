@@ -86,6 +86,9 @@ void(draw_assets)() {
   clear_screen(COLOR_BLUE);
 
   canvas_draw();
+  if (get_is_typing()) {
+    buf_draw_text(get_back_buffer(), get_current_text(), get_text_initial_position(), LEFT);
+  }
   draw_menu();
   clock_draw();
 
@@ -177,6 +180,11 @@ int(proj_main_loop)(int argc, char *argv[]) {
                   drawing_ies[0].mouse_event_handler(drawing_ies[0].color);
                 }
                 else if (!cursor_lb_was_pressed()) {
+                  if (get_is_typing()) {
+                    buf_draw_text(get_canvas_buffer(), get_current_text(), get_text_initial_position(), LEFT);
+                    set_is_typing(false);
+                    clear_current_text();
+                  }
                   for (int i = 1; i < num_ies; i++) {
                     if (is_hovered(drawing_ies[i])) {
                       drawing_ies[i].mouse_event_handler(drawing_ies[i].color);
@@ -214,8 +222,9 @@ int(proj_main_loop)(int argc, char *argv[]) {
 
               if (get_scancode_type() == KBC_SCANCODE_BREAK)
                 continue;
-
-              process_scancode(scancodes, get_scancode_size(), get_scancode_type());
+              if (get_is_typing()) {
+                process_scancode(scancodes, get_scancode_size(), get_scancode_type());
+              }
             }
           }
       }

@@ -30,6 +30,15 @@ void (remove_char_from_current_text)() {
     text[--text_size] = 0;
 }
 
+void (clear_current_text)() {
+    while (text_size > 0)
+        remove_char_from_current_text();
+}
+
+char* (get_current_text)() {
+    return text;
+}
+
 void (chat_draw)() {
 
     const pixel_buffer *const buf = get_back_buffer();

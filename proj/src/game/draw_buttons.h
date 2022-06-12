@@ -6,6 +6,8 @@
 #include "../xpm/buttons/button_minus_size.xpm"
 #include "../xpm/buttons/button_clear_canvas.xpm"
 #include "../xpm/buttons/button_eraser.xpm"
+#include "../xpm/buttons/button_bucket.xpm"
+#include "../xpm/buttons/button_text.xpm"
 
 #include "pixel_buffer.h"
 #include "element.h"
@@ -32,6 +34,8 @@ int (draw_sel_square_button)(pixel_buffer const * const buf, position topleft_po
 int (draw_sel_circle_button)(pixel_buffer const * const buf, position topleft_pos);
 
 void (draw_sel_eraser_button)(pixel_buffer const * const buf, position topleft_pos);
+
+void (draw_sel_text_button)(pixel_buffer const * const buf, position topleft_pos);
 
 void (draw_clear_canvas_button)(pixel_buffer const * const buf, position topleft_pos);
 

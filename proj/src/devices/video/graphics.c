@@ -161,3 +161,28 @@ int (buf_draw_xpm)(pixel_buffer const * const buf, const xpm_image_t xpm_info, p
 
   return OK;
 }
+
+int (buf_draw_text)(pixel_buffer const * const buf, char* text, position pos, text_alignment_t alignment) {
+  uint16_t scale = cursor_get_thickness();
+  
+  pos.x -= alignment*strlen(text)*CHAR_WIDTH*scale/2;
+
+  do {
+    char c = *text;
+    int tx = c % FONT_WIDTH * CHAR_WIDTH;
+    int ty = c / FONT_WIDTH * CHAR_HEIGHT;
+    int ti = tx + ty * FONT_WIDTH*CHAR_WIDTH;
+
+    for (int i = 0; i < CHAR_WIDTH; ++i)
+      for (int j = 0; j < CHAR_HEIGHT; ++j)
+        if (get_font_xpm().bytes[ti + i + j*FONT_WIDTH*CHAR_WIDTH])
+          if (buf_draw_rectangle(buf, (position) {pos.x + i*scale, pos.y + j*scale}, scale, scale, cursor_get_color())) {
+            fprintf(stderr, "There was an error drawing a rectangle at %s!\n", __func__);
+            return EXIT_FAILURE;
+          }
+
+    pos.x += CHAR_WIDTH * scale;
+  } while (*(++text));
+
+  return OK;
+}

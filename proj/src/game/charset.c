@@ -72,10 +72,18 @@ void (process_scancode)(uint8_t* scancode, int scancode_size, int scancode_type)
 
             uint8_t code = scancode[0];
 
-            if (code == BACKSPACE_MAKECODE)
+            if (code == BACKSPACE_MAKECODE) {
                 remove_char_from_current_text();
-            else
+            }
+            else if (code == ENTER_MAKECODE) {
+                buf_draw_text(get_canvas_buffer(), get_current_text(), get_text_initial_position(), LEFT);
+                set_is_typing(false);
+                clear_current_text();
+            }
+            else {
                 add_char_to_current_text(default_charset[code]);
+            }
+        break;
         }
         case KBC_SCANCODE_BREAK: {
 

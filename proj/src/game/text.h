@@ -19,4 +19,6 @@ void (text_load)();
 
 void (text_draw)(char* text, int16_t x, int16_t y, int16_t scale, int color, text_alignment_t alignment);
 
+xpm_image_t (get_font_xpm)();
+
 #endif

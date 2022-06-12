@@ -11,8 +11,6 @@ void (draw_menu)(){
   buf_draw_rectangle(back_buf, (position) {0, CANVAS_TOP_VISIBLE_LIMIT}, CANVAS_LEFT_VISIBLE_LIMIT, CANVAS_BOTTOM_VISIBLE_LIMIT - 120, COLOR_CYAN);
   buf_draw_rectangle(back_buf, (position) {CANVAS_RIGHT_VISIBLE_LIMIT, CANVAS_TOP_VISIBLE_LIMIT}, H_RES - CANVAS_RIGHT_VISIBLE_LIMIT, CANVAS_BOTTOM_VISIBLE_LIMIT - 120, COLOR_CYAN);
   
-  buttons_draw();
-  chat_draw();
 
-  text_draw(title, H_RES/2, 15, 4, COLOR_BLACK, CENTER);
+  buttons_draw();
 }

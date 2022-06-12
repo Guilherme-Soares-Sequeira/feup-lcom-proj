@@ -1,4 +1,6 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+Makefile:29: *** missing separator.  Stop.
+
 # GNU Make 4.2.1
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2016 Free Software Foundation, Inc.
@@ -6,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sun Jun 12 14:39:35 2022
+# Make data base, printed on Sun Jun 12 15:30:36 2022
 
 # Variables
 
@@ -187,6 +189,7 @@ GNOME_DESKTOP_SESSION_ID = this-is-deprecated
 # environment
 LC_TIME = pt_PT.UTF-8
 # environment
+ 
 SNAP_REAL_HOME = /home/pedro
 # environment
 COLORTERM = truecolor
@@ -283,9 +286,6 @@ CHROME_DESKTOP = code-url-handler.desktop
 # default
 .INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
 # environment
- 
-Makefile:29: *** missing separator.  Stop.
-
 LC_IDENTIFICATION = pt_PT.UTF-8
 # default
 .RECIPEPREFIX := 
@@ -396,6 +396,6 @@ Makefile:
 # strcache performance: lookups = 58 / hit rate = 29%
 # hash-table stats:
 # Load=41/8192=1%, Rehash=0, Collisions=1/58=2%
-# Finished Make data base on Sun Jun 12 14:39:35 2022
+# Finished Make data base on Sun Jun 12 15:30:36 2022
 
  

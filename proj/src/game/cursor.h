@@ -9,6 +9,7 @@
 #include "../utils/position.h"
 #include "../utils/const.h"
 #include "../utils/color.h"
+#include "element.h"
 
 #define MIN_THICKNESS 1
 #define MAX_THICKNESS 24
@@ -21,7 +22,7 @@
 typedef enum cursor_style {
   CURSOR_DSTATE_CIRCLE,
   CURSOR_DSTATE_SQUARE,
-  CURSOR_DSTATE_ARROW,
+  CURSOR_DSTATE_TEXT,
   CURSOR_DSTATE_LINE,
   CURSOR_DSTATE_ERASER,
   CURSOR_DSTATE_BUCKET
@@ -145,12 +146,6 @@ uint8_t (cursor_get_color)();
 void (cursor_set_color)(uint8_t color);
 
 
-/**
- * @brief Resets the cursor color to the one used before the last change to the eraser cursor
- * 
- */
-void (reset_cursor_color)();
-
 
 /**
  * @brief Returns the line counter of the cursor
@@ -182,5 +177,12 @@ void (cursor_set_initial_line_position)(position pos);
  */
 void (cursor_increase_line_counter)();
 
+position (get_text_initial_position)();
+
+bool (get_is_typing)();
+
+void (set_is_typing)(bool new_is_typing);
+
+void (set_text_initial_position)(position pos);
 
 #endif

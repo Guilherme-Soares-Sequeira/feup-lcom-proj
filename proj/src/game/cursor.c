@@ -16,20 +16,23 @@ static position cursor_pos = {0, 0}; /**< @brief cursor_position of the cursor *
 
 static cursor_state_style_t cursor_style; /**< @brief style of the cursor */
 
-static uint8_t cursor_color, previous_color; /**< @brief color/previous of the cursor */
+static uint8_t cursor_color; /**< @brief color/previous of the cursor */
 static uint8_t cursor_thickness; /**< @brief thickness of the cursor */
 static uint8_t cursor_line_counter; /**< @brief line counter */
 
 static position line_initial_position; /**< @brief initial position of the line to be drawn */
+static position text_initial_position; /**< @brief initial position of the text to be drawn */
 
 static bool cursor_lb; /**< @brief indicates whether the mouse left button was already pressed or not */
+ 
+static bool typing; /**< @brief indicates whether the user is typing or not */
 
 
 void (cursor_load)() {
   cursor_default_xpm = vg_load_xpm(xpm_cursor_arrow);
   cursor_bucket_xpm  = vg_load_xpm(xpm_cursor_bucket);
-  cursor_eraser_xpm = vg_load_xpm(xpm_cursor_eraser);
-  cursor_pencil_xpm = vg_load_xpm(xpm_cursor_pencil);
+  cursor_eraser_xpm  = vg_load_xpm(xpm_cursor_eraser);
+  cursor_pencil_xpm  = vg_load_xpm(xpm_cursor_pencil);
 
   cursor_pos.x = H_RES/2;
   cursor_pos.y = V_RES/2;
@@ -41,14 +44,19 @@ void (cursor_load)() {
   cursor_style = CURSOR_DSTATE_CIRCLE;
   
   cursor_lb = false;
+  typing = false;
 }
 
 xpm_image_t (cursor_get_xpm)() {
   /* in the future this needs to be changed */
+  if (!is_hovered(get_drawing_ies()[0])) {
+    return cursor_default_xpm;
+  }
+
   switch (cursor_style) {
     case CURSOR_DSTATE_CIRCLE: return cursor_pencil_xpm;
     case CURSOR_DSTATE_SQUARE: return cursor_default_xpm;
-    case CURSOR_DSTATE_ARROW:  return cursor_default_xpm;
+    case CURSOR_DSTATE_TEXT:   return cursor_default_xpm;
     case CURSOR_DSTATE_LINE:   return cursor_default_xpm;
     case CURSOR_DSTATE_ERASER: return cursor_eraser_xpm;
     case CURSOR_DSTATE_BUCKET: return cursor_bucket_xpm;
@@ -124,21 +132,30 @@ uint8_t (cursor_get_color)() {
   return cursor_color;
 }
 
+void (cursor_set_color)(uint8_t color) {
+  cursor_color = color;
+}
+
 void (cursor_increase_thickness)(uint8_t _) {
   cursor_thickness = cursor_thickness + 1 > MAX_THICKNESS ? MAX_THICKNESS : cursor_thickness + 1;
 }
 
 void (cursor_decrease_thickness)(uint8_t _) {
   cursor_thickness = cursor_thickness - 1 < MIN_THICKNESS ? MIN_THICKNESS : cursor_thickness - 1;
+} 
+
+position (get_text_initial_position)() {
+  return text_initial_position;
 }
 
-void (cursor_set_color)(uint8_t color) {
-  previous_color = cursor_color;
-  cursor_color = color;
+void (set_text_initial_position)(position pos) {
+  text_initial_position = pos;
 }
 
-void (reset_cursor_color)() {
-  if (cursor_color != COLOR_WHITE) return;
-  cursor_color = previous_color;
+bool (get_is_typing)() {
+  return typing;
 }
 
+void (set_is_typing) (bool new_is_typing) {
+  typing = new_is_typing;
+}
