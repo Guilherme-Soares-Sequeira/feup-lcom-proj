@@ -10,6 +10,7 @@
     "sysutil.h": "c",
     "cursor.h": "c",
     "*.xpm": "c",
-    "position.h": "c"
+    "position.h": "c",
+    "i8042.h": "c"
   },
 }
