@@ -1,37 +1,34 @@
-/* LCF include */ 
+/* LCF include */
 
 #include <lcom/lcf.h>
 
-
 /* device includes */
 
-#include <lcom/video_gr.h>
-#include <lcom/timer.h>
 #include "devices/kbc/kbc.h"
 #include "devices/kbc/mouse.h"
+#include "devices/rtc/rtc.h"
+#include "devices/timer/timer.h"
 #include "devices/video/vbe.h"
 #include "devices/video/video_gr.h"
-#include "devices/timer/timer.h"
-#include "devices/rtc/rtc.h"
-
+#include <lcom/timer.h>
+#include <lcom/video_gr.h>
 
 /* utils include */
 
-#include "utils/utils.h"
 #include "utils/color.h"
-
+#include "utils/utils.h"
 
 /* other includes */
 
-#include <stdbool.h>
-#include "game/cursor.h"
-#include "xpm/cursor.xpm"
 #include "game/canvas.h"
-#include "game/text.h"
-#include "game/element.h"
-#include "game/ui.h"
 #include "game/charset.h"
+#include "game/cursor.h"
 #include "game/draw_clock.h"
+#include "game/element.h"
+#include "game/text.h"
+#include "game/ui.h"
+#include "xpm/cursor.xpm"
+#include <stdbool.h>
 
 /* global variables */
 
@@ -65,38 +62,37 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
-
 /**
  * @brief Loads the necessary assets
- * 
+ *
  */
-void (load_assets)() {
+void(load_assets)() {
   load_backbuffer();
-  
+
   cursor_load();
   canvas_load();
   text_load();
 
   load_button_xpms();
   load_ie_drawing();
+  clock_load();
 }
-
 
 /**
  * @brief Draws the program assets on screen
- * 
+ *
  */
-void (draw_assets)() {
+void(draw_assets)() {
   clear_screen(COLOR_BLUE);
-  
+
   canvas_draw();
   draw_menu();
-  
+  clock_draw();
+
   cursor_draw();
 }
 
-
-int(proj_main_loop)(int argc, char* argv[]) {
+int(proj_main_loop)(int argc, char *argv[]) {
   uint8_t keyboard_bit, mouse_bit, timer_bit, rtc_bit = 0;
 
   kbc_enable_data_report();
@@ -108,9 +104,10 @@ int(proj_main_loop)(int argc, char* argv[]) {
     return EXIT_FAILURE;
   }
 
-  /* RTC initialization */
-
-  setup_update_interrupts();
+  if (rtc_subscribe_int(&rtc_bit) != OK) {
+    fprintf(stderr, "There was an error subscribing RTC interrupts!\n");
+    return EXIT_FAILURE;
+  }
 
   if (kbc_subscribe_int(&keyboard_bit) != OK) {
     fprintf(stderr, "There was an error subscribing keyboard interrupts!\n");
@@ -122,6 +119,9 @@ int(proj_main_loop)(int argc, char* argv[]) {
     return EXIT_FAILURE;
   }
 
+  /* RTC initialization */
+
+  setup_update_interrupts();
 
   /* initialize graphics card */
 
@@ -129,23 +129,15 @@ int(proj_main_loop)(int argc, char* argv[]) {
   vg_init(VBE_MODE_1024x768_INDEXED);
   // vg_init(VBE_MODE_1280x1024_FULL_COLOR);
 
-  load_backbuffer();
-  cursor_load();
-  canvas_load();
-  text_load();
-  load_button_xpms();
-  load_ie_drawing();
-  clock_load();
-
+  load_assets();
 
   int ipc_status, r;
   message msg;
 
-  interactive_element* drawing_ies = get_drawing_ies();
+  interactive_element *drawing_ies = get_drawing_ies();
   uint8_t num_ies = get_number_of_drawing_ies();
 
   bool run = true;
-
 
   while (run) {
     /* Get a request message. */
@@ -153,7 +145,7 @@ int(proj_main_loop)(int argc, char* argv[]) {
       printf("driver_receive failed with: %d", r);
       continue;
     }
-    
+
     if (is_ipc_notify(ipc_status)) {
       switch (_ENDPOINT_P(msg.m_source)) {
         case HARDWARE:
@@ -163,17 +155,11 @@ int(proj_main_loop)(int argc, char* argv[]) {
 
           if (msg.m_notify.interrupts & BIT(timer_bit)) {
             timer_int_handler();
-            
-            clear_screen(COLOR_BLUE);
-            canvas_draw();
-            draw_menu();
-            clock_draw();
-            
-            cursor_draw();
+
+            draw_assets();
 
             flip();
           }
-
 
           /* mouse interrupts */
 
@@ -185,7 +171,7 @@ int(proj_main_loop)(int argc, char* argv[]) {
               mouse_packet_t mouse_packet = get_mouse_packet();
 
               cursor_move(mouse_packet.delta_x, mouse_packet.delta_y);
-              
+
               if (mouse_packet.lb) {
                 if (is_hovered(drawing_ies[0])) {
                   drawing_ies[0].mouse_event_handler(drawing_ies[0].color);
@@ -199,8 +185,8 @@ int(proj_main_loop)(int argc, char* argv[]) {
                   }
                 }
 
-              if (!cursor_lb_was_pressed())
-                cursor_set_lb(true);
+                if (!cursor_lb_was_pressed())
+                  cursor_set_lb(true);
               }
               else {
                 cursor_set_lb(false);
@@ -208,26 +194,26 @@ int(proj_main_loop)(int argc, char* argv[]) {
             }
           }
 
-
           /* keyboard interrupts */
 
           if (msg.m_notify.interrupts & BIT(keyboard_bit)) {
             kbc_ih();
-      
-            if (get_scancode_size() == 0) { 
+
+            if (get_scancode_size() == 0) {
               mark_scancode_processed();
               continue;
             }
 
             if (keyboard_ready()) {
-              if (scancodes[0] == ESC_KEY_BREAK) { // check early for exit 
+              if (scancodes[0] == ESC_KEY_BREAK) { // check early for exit
                 run = false;
-                free(scancodes);        
+                free(scancodes);
               }
 
               mark_scancode_processed();
 
-              if (get_scancode_type() == KBC_SCANCODE_BREAK) continue;
+              if (get_scancode_type() == KBC_SCANCODE_BREAK)
+                continue;
 
               process_scancode(scancodes, get_scancode_size(), get_scancode_type());
             }
@@ -235,7 +221,6 @@ int(proj_main_loop)(int argc, char* argv[]) {
       }
     }
   }
-
 
   /* unsubscribe interrupts */
 
@@ -257,16 +242,14 @@ int(proj_main_loop)(int argc, char* argv[]) {
   rtc_unsubscribe_int();
 
   /* disable data reporting */
-  
-  reset_kbc();
 
+  reset_kbc();
 
   /* exit graphics mode */
 
   vg_exit();
 
-
-  /* 
+  /*
     free_assets()...
   */
 
