@@ -12,6 +12,7 @@
 #include "devices/video/vbe.h"
 #include "devices/video/video_gr.h"
 #include "devices/timer/timer.h"
+#include "devices/rtc/rtc.h"
 
 
 /* utils include */
@@ -30,6 +31,7 @@
 #include "game/element.h"
 #include "game/ui.h"
 #include "game/charset.h"
+#include "game/draw_clock.h"
 
 /* global variables */
 
@@ -95,7 +97,7 @@ void (draw_assets)() {
 
 
 int(proj_main_loop)(int argc, char* argv[]) {
-  uint8_t keyboard_bit, mouse_bit, timer_bit;
+  uint8_t keyboard_bit, mouse_bit, timer_bit, rtc_bit = 0;
 
   kbc_enable_data_report();
 
@@ -105,6 +107,10 @@ int(proj_main_loop)(int argc, char* argv[]) {
     fprintf(stderr, "There was an error subscribing timer interrupts!\n");
     return EXIT_FAILURE;
   }
+
+  /* RTC initialization */
+
+  setup_update_interrupts();
 
   if (kbc_subscribe_int(&keyboard_bit) != OK) {
     fprintf(stderr, "There was an error subscribing keyboard interrupts!\n");
@@ -129,6 +135,7 @@ int(proj_main_loop)(int argc, char* argv[]) {
   text_load();
   load_button_xpms();
   load_ie_drawing();
+  clock_load();
 
 
   int ipc_status, r;
@@ -150,8 +157,9 @@ int(proj_main_loop)(int argc, char* argv[]) {
     if (is_ipc_notify(ipc_status)) {
       switch (_ENDPOINT_P(msg.m_source)) {
         case HARDWARE:
-
-          /* timer interrupts */
+          if (msg.m_notify.interrupts & BIT(rtc_bit)) {
+            rtc_int_handler();
+          }
 
           if (msg.m_notify.interrupts & BIT(timer_bit)) {
             timer_int_handler();
@@ -159,6 +167,7 @@ int(proj_main_loop)(int argc, char* argv[]) {
             clear_screen(COLOR_BLUE);
             canvas_draw();
             draw_menu();
+            clock_draw();
             
             cursor_draw();
 
@@ -245,6 +254,7 @@ int(proj_main_loop)(int argc, char* argv[]) {
     return EXIT_FAILURE;
   }
 
+  rtc_unsubscribe_int();
 
   /* disable data reporting */
   

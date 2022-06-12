@@ -15,7 +15,7 @@ void (draw_text_input)(pixel_buffer const * const buf, position topleft_pos) {
 
 void (add_char_to_current_text)(char c) {
 
-    if (text_size >= INPUT_CHAR_SIZE) return;
+    if (text_size >= INPUT_CHAR_SIZE - 1) return;
 
     if (c == NO_ADD_CHAR) return;
 
@@ -26,6 +26,7 @@ void (remove_char_from_current_text)() {
 
     if (text_size <= 0) return;
 
+    text[text_size] = 0; // so we do not leave trailing characters
     text[--text_size] = 0;
 }
 
@@ -38,6 +39,7 @@ void (chat_draw)() {
 
     draw_text_input(buf, (position) {chat_x, chat_y});
 
+    text[text_size] = '_';
+
     text_draw(text, chat_x + 5, chat_y + 2, CHAR_SCALE, COLOR_BLACK, LEFT);
 }
-
