@@ -5,12 +5,14 @@
 #include "../xpm/bucket_cursor.xpm"
 #include "../xpm/eraser_cursor.xpm"
 #include "../xpm/pencil.xpm"
+#include "../xpm/text_cursor.xpm"
 #include "cursor.h"
 
 static xpm_image_t cursor_default_xpm; /**< @brief default cursor xpm */
 static xpm_image_t cursor_bucket_xpm;  /**< @brief bucket cursor xpm */
 static xpm_image_t cursor_eraser_xpm;
 static xpm_image_t cursor_pencil_xpm;
+static xpm_image_t cursor_text_xpm;
 
 static position cursor_pos = {0, 0}; /**< @brief cursor_position of the cursor */
 
@@ -33,6 +35,7 @@ void (cursor_load)() {
   cursor_bucket_xpm  = vg_load_xpm(xpm_cursor_bucket);
   cursor_eraser_xpm  = vg_load_xpm(xpm_cursor_eraser);
   cursor_pencil_xpm  = vg_load_xpm(xpm_cursor_pencil);
+  cursor_text_xpm = vg_load_xpm(xpm_cursor_text);
 
   cursor_pos.x = H_RES/2;
   cursor_pos.y = V_RES/2;
@@ -49,14 +52,10 @@ void (cursor_load)() {
 
 xpm_image_t (cursor_get_xpm)() {
   /* in the future this needs to be changed */
-  if (!is_hovered(get_drawing_ies()[0])) {
-    return cursor_default_xpm;
-  }
-
   switch (cursor_style) {
     case CURSOR_DSTATE_CIRCLE: return cursor_pencil_xpm;
     case CURSOR_DSTATE_SQUARE: return cursor_default_xpm;
-    case CURSOR_DSTATE_TEXT:   return cursor_default_xpm;
+    case CURSOR_DSTATE_TEXT:   return cursor_text_xpm;
     case CURSOR_DSTATE_LINE:   return cursor_default_xpm;
     case CURSOR_DSTATE_ERASER: return cursor_eraser_xpm;
     case CURSOR_DSTATE_BUCKET: return cursor_bucket_xpm;
@@ -70,7 +69,31 @@ void (cursor_move)(int16_t delta_x, int16_t delta_y) {
 }
 
 void (cursor_draw)() {
-  if (vg_draw_xpm(cursor_get_xpm(), cursor_pos.x, cursor_pos.y) != OK) {
+  position pos = cursor_pos;
+  if (!is_hovered(get_drawing_ies()[0])) {
+    if (vg_draw_xpm(cursor_default_xpm, pos.x, pos.y) != OK) {
+      fprintf(stderr, "There was an error drawing an xpm at %s!\n", __func__);
+      exit(EXIT_FAILURE);
+    }
+    return;
+  }
+  xpm_image_t xpm = cursor_get_xpm();
+  cursor_state_style_t style = cursor_get_style();  
+  switch (style) {
+    case CURSOR_DSTATE_ERASER:
+      pos.x -= 15;
+    case CURSOR_DSTATE_BUCKET:
+    case CURSOR_DSTATE_TEXT:
+      pos.y -= 30;
+      break;
+    case CURSOR_DSTATE_CIRCLE:
+      pos.y -= 30;
+      break;
+    default:
+      break;
+  }
+
+  if (vg_draw_xpm(xpm, pos.x, pos.y) != OK) {
     fprintf(stderr, "There was an error drawing an xpm at %s!\n", __func__);
     exit(EXIT_FAILURE);
   }
