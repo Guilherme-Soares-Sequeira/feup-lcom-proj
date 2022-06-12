@@ -14,7 +14,7 @@ static position cursor_pos = {0, 0}; /**< @brief cursor_position of the cursor *
 
 static cursor_state_style_t cursor_style; /**< @brief style of the cursor */
 
-static uint8_t cursor_color; /**< @brief color of the cursor */
+static uint8_t cursor_color, previous_color; /**< @brief color/previous of the cursor */
 static uint8_t cursor_thickness; /**< @brief thickness of the cursor */
 static uint8_t cursor_line_counter; /**< @brief line counter */
 
@@ -130,6 +130,12 @@ void (cursor_decrease_thickness)(uint8_t _) {
 }
 
 void (cursor_set_color)(uint8_t color) {
+  previous_color = cursor_color;
   cursor_color = color;
+}
+
+void (reset_cursor_color)() {
+  if (cursor_color != COLOR_WHITE) return;
+  cursor_color = previous_color;
 }
 

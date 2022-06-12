@@ -146,6 +146,13 @@ void (cursor_set_color)(uint8_t color);
 
 
 /**
+ * @brief Resets the cursor color to the one used before the last change to the eraser cursor
+ * 
+ */
+void (reset_cursor_color)();
+
+
+/**
  * @brief Returns the line counter of the cursor
  * 
  * @return cursor_line_counter
