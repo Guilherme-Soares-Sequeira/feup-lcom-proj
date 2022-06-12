@@ -1,7 +1,7 @@
 #include <lcom/lcf.h>
 
 #include "charset.h"
-#include "draw_chat.h"
+#include "draw_text.h"
 #include "../devices/kbc/i8042.h"
 
 #define ENTER_MAKECODE       0x1c /**< @brief the makecode of the enter key       */

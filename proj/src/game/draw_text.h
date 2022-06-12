@@ -17,24 +17,6 @@
 #define CHAT_HEIGHT (CHAR_HEIGHT * 2 * CHAR_SCALE/2) /**< @brief height of a character */
 #define INPUT_CHAR_SIZE 80 /**< @brief size of an input character */
 
-
-/**
- * @brief Draws a placeholder for user input. Currently unused
- * @param buf the buffer where the frame will be drawn
- * @param topleft_pos the top left position of the placeholder 
- *
- * @param
- */
-void (draw_text_input)(pixel_buffer const * const buf, position topleft_pos);
-
-
-/**
- * @brief Draws the chat to the screen. Currently unused
- * 
- */
-void (chat_draw)();
-
-
 /**
  * @brief Adds a character to the current text 
  * @param c character to be added

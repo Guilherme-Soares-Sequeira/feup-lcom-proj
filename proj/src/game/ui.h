@@ -4,7 +4,7 @@
 #include <lcom/lcf.h>
 
 #include "draw_buttons.h"
-#include "draw_chat.h"
+#include "draw_text.h"
 #include "canvas.h"
 #include "../devices/video/graphics.h"
 

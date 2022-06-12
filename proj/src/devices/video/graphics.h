@@ -12,7 +12,7 @@
 #include "video_gr.h"
 #include "../../game/text.h"
 #include "../../game/charset.h"
-#include "../../game/draw_chat.h"
+#include "../../game/draw_text.h"
 #include "../../game/cursor.h"
 
 /** @defgroup graphics graphics

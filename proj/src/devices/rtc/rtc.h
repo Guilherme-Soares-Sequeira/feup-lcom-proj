@@ -8,8 +8,8 @@
 
 #define RTC_IRQ 0x8             /**< @brief the IRQ line used for RTC interrupts */
 
-#define RTC_ADDR_REG 0x70       /**< @brief the RTC register used for sending instructions */
-#define RTC_DATA_REG 0x71       /**< @brief the RTC register used for reading data */
+#define RTC_ADDR_REG 0x70       /**< @brief the RTC register used for setting the RTC register to work with */
+#define RTC_DATA_REG 0x71       /**< @brief the RTC register used for reading/writing data */
 
 #define RTC_SECONDS_REG 0       /**< @brief the number of the RTC register that contains information about the seconds */
 #define RTC_SECONDS_ALARM_REG 1 /**< @brief the number of the RTC register that contains information about the seconds portion of the alarm */
@@ -18,18 +18,18 @@
 #define RTC_HOURS_REG 4         /**< @brief the number of the RTC register that contains information about the hours */ 
 #define RTC_HOURS_ALARM_REG 5   /**< @brief the number of the RTC register that contains information about the hours portion of the alarm */
 
-#define RTC_CTRL_REG_A 10       /**< @brief the number of the RTC register that  */
-#define RTC_CTRL_REG_B 11       /**< @brief the number of the RTC register that  */
-#define RTC_CTRL_REG_C 12       /**< @brief the number of the RTC register that  */
-#define RTC_CTRL_REG_D 13       /**< @brief the number of the RTC register that  */
+#define RTC_CTRL_REG_A 10       /**< @brief the number of the RTC control register A */
+#define RTC_CTRL_REG_B 11       /**< @brief the number of the RTC control register B */
+#define RTC_CTRL_REG_C 12       /**< @brief the number of the RTC control register C */
+#define RTC_CTRL_REG_D 13       /**< @brief the number of the RTC control register D */
 
-#define ENABLE_UPDATE_INTERRUPT BIT(4) /**< @brief mask for the bit used to  */
-#define BINARY_COUNTING_MODE BIT(2)    /**< @brief mask for the bit used to */
-#define HOUR_RANGE_24H BIT(1)          /**< @brief mask for the bit used to */
-#define DST BIT(0)                     /**< @brief mask for the bit used to */
+#define ENABLE_UPDATE_INTERRUPT BIT(4) /**< @brief mask for the bit used to enable Update-Ended interrupts */
+#define BINARY_COUNTING_MODE BIT(2)    /**< @brief mask for the bit used to set the RTC counters in binary counting mode */
+#define HOUR_RANGE_24H BIT(1)          /**< @brief mask for the bit used to set the RTC counters hour range to 0-24 */
+#define DST BIT(0)                     /**< @brief mask for the bit used to enable Daylight Savings TIme */
 
-#define IQRF BIT(7)             /**< @brief mask for the bit used to */
-#define UPDATE_INT_FLAG BIT(4)  /**< @brief mask for the bit used to */
+#define IQRF BIT(7)             /**< @brief mask for the bit used to check for IQRF (ctrl reg C) */
+#define UPDATE_INT_FLAG BIT(4)  /**< @brief mask for the bit used to check if a given interrupt is an Update-Ended Interrupt */
 
 /**
  * @brief subscribes to RTC interrupts and puts the given bit in bit_no
