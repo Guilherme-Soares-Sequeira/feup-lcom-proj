@@ -309,7 +309,7 @@ pixel_buffer const * (get_canvas_buffer)() {
 }
 
 void (canvas_mouse_handler)(uint8_t _) {
-  reset_cursor_color();-
+  reset_cursor_color();
   switch(cursor_get_style()) {
     case CURSOR_DSTATE_CIRCLE: canvas_draw_pencil_circle(); break;
     case CURSOR_DSTATE_SQUARE: canvas_draw_pencil_square(); break;

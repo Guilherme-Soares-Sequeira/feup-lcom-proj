@@ -26,21 +26,69 @@
 #define IQRF BIT(7)
 #define UPDATE_INT_FLAG BIT(4)
 
-int (rtc_subscribe_int)(uint8_t *bit_no);
+/**
+ * @brief subscribes to RTC interrupts and puts the given bit in bit_no
+ */
+int(rtc_subscribe_int)(uint8_t *bit_no);
 
-int (rtc_unsubscribe_int)();
+/**
+ * @brief unsubscribes RTC interrupts
+ */
+int(rtc_unsubscribe_int)();
 
-void (rtc_int_handler)();
+/**
+ *  @brief interrupt handler for the RTC
+ */
+void(rtc_int_handler)();
 
-void (setup_update_interrupts)();
+/**
+ *  @brief sets up the RTC with some default operation values
+ */
+void(setup_update_interrupts)();
 
-uint8_t (read_from_register)(uint8_t reg_no);
-void (write_to_reg)(uint8_t reg_no, uint8_t data);
+/**
+ *  @brief reads the value present in the given RTC register
+ *  
+ *  @param reg_no the register number
+ * 
+ *  @return the value present in the given RTC register
+ */
+uint8_t(read_from_reg)(uint8_t reg_no);
 
-unsigned short (rtc_get_seconds)();
-unsigned short (rtc_get_minutes)();
-unsigned short (rtc_get_hours)();
+/**
+ *  @brief writes the given value to the given RTC register
+ *  
+ *  @param reg_no the register number
+ *  @param data the data to write
+ */
+void(write_to_reg)(uint8_t reg_no, uint8_t data);
 
-char* (rtc_get_formatted_time)();
+/**
+ *  @brief get current seconds
+ * 
+ *  @return the current RTC seconds
+ */
+unsigned short(rtc_get_seconds)();
+
+/**
+ *  @brief get current minutes
+ * 
+ *  @return the current RTC minutes
+ */
+unsigned short(rtc_get_minutes)();
+
+/**
+ *  @brief get current hours
+ * 
+ *  @return the current RTC hours
+ */
+unsigned short(rtc_get_hours)();
+
+/**
+ *  @brief get a formatted representation of the current time
+ * 
+ *  @return the current RTC time in a formatted string
+ */
+char *(rtc_get_formatted_time) ();
 
 #endif
