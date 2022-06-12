@@ -31,6 +31,7 @@
 #include "game/element.h"
 #include "game/ui.h"
 #include "game/charset.h"
+#include "game/draw_clock.h"
 
 /* global variables */
 
@@ -96,6 +97,7 @@ int(proj_main_loop)(int argc, char* argv[]) {
   text_load();
   load_button_xpms();
   load_ie_drawing();
+  clock_load();
 
   int ipc_status, r;
   message msg;
@@ -125,6 +127,7 @@ int(proj_main_loop)(int argc, char* argv[]) {
             clear_screen(COLOR_BLUE);
             canvas_draw();
             draw_menu();
+            clock_draw();
             
             cursor_draw();
 

@@ -1,6 +1,7 @@
 **/.gdbinit
 **/*.o
 **/*.d
+.depend
 output.txt
 trace.txt
 
@@ -19,3 +20,5 @@ lab4/lab4
 # lab5
 lab5/lab5
 
+# proj
+proj/proj
