@@ -6,13 +6,15 @@
 #include "../xpm/eraser_cursor.xpm"
 #include "../xpm/pencil.xpm"
 #include "../xpm/text_cursor.xpm"
+#include "../xpm/line_cursor.xpm"
 #include "cursor.h"
 
 static xpm_image_t cursor_default_xpm; /**< @brief default cursor xpm */
-static xpm_image_t cursor_bucket_xpm;  /**< @brief bucket cursor xpm */
-static xpm_image_t cursor_eraser_xpm;
-static xpm_image_t cursor_pencil_xpm;
-static xpm_image_t cursor_text_xpm;
+static xpm_image_t cursor_bucket_xpm;  /**< @brief bucket cursor xpm  */
+static xpm_image_t cursor_eraser_xpm;  /**< @brief eraser cursor xpm  */
+static xpm_image_t cursor_pencil_xpm;  /**< @brief pencil cursor xpm  */
+static xpm_image_t cursor_text_xpm;    /**< @brief text cursor xpm    */
+static xpm_image_t cursor_line_xpm;    /**< @brief line cursor xpm    */
 
 static position cursor_pos = {0, 0}; /**< @brief cursor_position of the cursor */
 
@@ -31,11 +33,12 @@ static bool typing; /**< @brief indicates whether the user is typing or not */
 
 
 void (cursor_load)() {
+  cursor_line_xpm    = vg_load_xpm(xpm_cursor_line);
   cursor_default_xpm = vg_load_xpm(xpm_cursor_arrow);
   cursor_bucket_xpm  = vg_load_xpm(xpm_cursor_bucket);
   cursor_eraser_xpm  = vg_load_xpm(xpm_cursor_eraser);
   cursor_pencil_xpm  = vg_load_xpm(xpm_cursor_pencil);
-  cursor_text_xpm = vg_load_xpm(xpm_cursor_text);
+  cursor_text_xpm    = vg_load_xpm(xpm_cursor_text);
 
   cursor_pos.x = H_RES/2;
   cursor_pos.y = V_RES/2;
@@ -54,9 +57,9 @@ xpm_image_t (cursor_get_xpm)() {
   /* in the future this needs to be changed */
   switch (cursor_style) {
     case CURSOR_DSTATE_CIRCLE: return cursor_pencil_xpm;
-    case CURSOR_DSTATE_SQUARE: return cursor_default_xpm;
+    case CURSOR_DSTATE_SQUARE: return cursor_pencil_xpm;
     case CURSOR_DSTATE_TEXT:   return cursor_text_xpm;
-    case CURSOR_DSTATE_LINE:   return cursor_default_xpm;
+    case CURSOR_DSTATE_LINE:   return cursor_line_xpm;
     case CURSOR_DSTATE_ERASER: return cursor_eraser_xpm;
     case CURSOR_DSTATE_BUCKET: return cursor_bucket_xpm;
     default: return cursor_default_xpm;
@@ -87,8 +90,12 @@ void (cursor_draw)() {
       pos.y -= 30;
       break;
     case CURSOR_DSTATE_CIRCLE:
+    case CURSOR_DSTATE_SQUARE:
       pos.y -= 30;
       break;
+    case CURSOR_DSTATE_LINE:
+      pos.x -= 11;
+      pos.y -= 11;
     default:
       break;
   }

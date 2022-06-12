@@ -175,10 +175,12 @@ int (buf_draw_text)(pixel_buffer const * const buf, char* text, position pos, te
 
     for (int i = 0; i < CHAR_WIDTH; ++i)
       for (int j = 0; j < CHAR_HEIGHT; ++j)
-        if (get_font_xpm().bytes[ti + i + j*FONT_WIDTH*CHAR_WIDTH])
+        if (get_font_xpm().bytes[ti + i + j*FONT_WIDTH*CHAR_WIDTH]) {
+          if (pos.x + i*scale > buf->h_res || pos.y + j*scale > buf->v_res) continue;
           if (buf_draw_rectangle(buf, (position) {pos.x + i*scale, pos.y + j*scale}, scale, scale, cursor_get_color())) {
             fprintf(stderr, "There was an error drawing a rectangle at %s!\n", __func__);
             return EXIT_FAILURE;
+            }
           }
 
     pos.x += CHAR_WIDTH * scale;

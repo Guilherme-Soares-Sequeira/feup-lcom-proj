@@ -329,11 +329,13 @@ void (canvas_handle_text)() {
 
   if (get_is_typing()) {
     buf_draw_text(&canvas_buffer, get_current_text(), get_text_initial_position(), LEFT);
-    set_text_initial_position(cursor_get_pos());
+    position pos = cursor_get_pos();
+    set_text_initial_position((position) {pos.x, pos.y - cursor_get_thickness()*6});
     clear_current_text();
   }
   else {
-    set_text_initial_position(cursor_get_pos());
+    position pos = cursor_get_pos();
+    set_text_initial_position((position) {pos.x, pos.y - cursor_get_thickness()*6});
     clear_current_text();
     set_is_typing(true);
   }

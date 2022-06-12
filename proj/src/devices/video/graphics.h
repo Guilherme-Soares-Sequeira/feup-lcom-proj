@@ -64,12 +64,44 @@ int (buf_draw_rectangle)(pixel_buffer const * const buf, position pos, uint16_t 
  */
 int (buf_draw_circle)(pixel_buffer const * const buf, position pos, uint16_t radius, uint8_t color);
 
+
+/**
+ * @brief Draws an horizontal line on a pixel buffer
+ * @param pos starting position of the line
+ * @param len length of the line
+ * @param color color of the line
+ *
+ * @return true if successful, false otherwise
+*/
 int (buf_draw_hline)(pixel_buffer const * const buf, position pos, uint16_t len, uint8_t color);
 
+
+/**
+ * @brief Draws a vertical line on a pixel buffer
+ * @param pos starting position of the line
+ * @param len length of the line
+ * @param color color of the line
+ *
+ * @return true if successful, false otherwise
+*/
 int (buf_draw_vline)(pixel_buffer const * const buf, position pos, uint16_t len, uint8_t color);
 
+
+/**
+ * @brief
+ * @param
+ *
+ * @return
+*/
 int (buf_draw_xpm)(pixel_buffer const * const buf, const xpm_image_t xpm_info, position pos);
 
+
+/**
+ * @brief
+ * @param
+ *
+ * @return
+*/
 int (buf_draw_text)(pixel_buffer const * const buf, char* text, position pos, text_alignment_t alignment);
 
 #endif

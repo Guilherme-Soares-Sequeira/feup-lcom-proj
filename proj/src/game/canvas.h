@@ -103,6 +103,11 @@ void (canvas_handle_bucket)();
  */
 void (canvas_flood_fill)(position curr_pos, uint8_t color_to_replace, uint8_t color_to_replace_with);
 
+
+/**
+ * @brief 
+ * 
+ */ 
 void (canvas_handle_text)();
 
 /**

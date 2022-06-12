@@ -177,11 +177,15 @@ void (cursor_set_initial_line_position)(position pos);
  */
 void (cursor_increase_line_counter)();
 
+
 position (get_text_initial_position)();
+
 
 bool (get_is_typing)();
 
+
 void (set_is_typing)(bool new_is_typing);
+
 
 void (set_text_initial_position)(position pos);
 
