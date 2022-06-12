@@ -3,11 +3,12 @@
 
 #include "../xpm/cursor.xpm"
 #include "../xpm/bucket_cursor.xpm"
+#include "../xpm/eraser_cursor.xpm"
 #include "cursor.h"
 
 static xpm_image_t cursor_default_xpm; /**< @brief default cursor xpm */
 static xpm_image_t cursor_bucket_xpm;  /**< @brief bucket cursor xpm */
-
+static xpm_image_t cursor_eraser_xpm;
 
 static position cursor_pos = {0, 0}; /**< @brief cursor_position of the cursor */
 
@@ -25,6 +26,7 @@ static bool cursor_lb; /**< @brief indicates whether the mouse left button was a
 void (cursor_load)() {
   cursor_default_xpm = vg_load_xpm(xpm_cursor_arrow);
   cursor_bucket_xpm  = vg_load_xpm(xpm_cursor_bucket);
+  cursor_eraser_xpm = vg_load_xpm(xpm_cursor_eraser);
 
   cursor_pos.x = H_RES/2;
   cursor_pos.y = V_RES/2;
@@ -45,6 +47,7 @@ xpm_image_t (cursor_get_xpm)() {
     case CURSOR_DSTATE_SQUARE: return cursor_default_xpm;
     case CURSOR_DSTATE_ARROW:  return cursor_default_xpm;
     case CURSOR_DSTATE_LINE:   return cursor_default_xpm;
+    case CURSOR_DSTATE_ERASER: return cursor_eraser_xpm;
     case CURSOR_DSTATE_BUCKET: return cursor_bucket_xpm;
     default: return cursor_default_xpm;
   }

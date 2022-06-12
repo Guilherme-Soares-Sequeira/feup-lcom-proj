@@ -90,6 +90,10 @@ void (load_ie_drawing)() {
     (position) {10, 270}, CURSOR_DSTATE_LINE
   );
 
+  interactive_element eraser_button     = create_style_button(
+    (position) {10, 320}, CURSOR_DSTATE_ERASER
+  );
+
   interactive_element sel_bucket_button = create_style_button(
     (position) {CANVAS_LEFT_VISIBLE_LIMIT + 10, CANVAS_BOTTOM_VISIBLE_LIMIT + 10}, CURSOR_DSTATE_BUCKET
   );
@@ -116,7 +120,7 @@ void (load_ie_drawing)() {
   };
 
   interactive_element clear_canvas_button = {
-    (position) {10, 320},
+    (position) {10, 670},
     40,
     40,
     COLOR_WHITE,
@@ -136,12 +140,12 @@ void (load_ie_drawing)() {
     canvas_mouse_handler
   };
 
-  number_of_drawing_ies = 19;
+  number_of_drawing_ies = 20;
 
   drawing_ies = (interactive_element*)malloc(number_of_drawing_ies * sizeof(interactive_element));
 
   memcpy(drawing_ies, (interactive_element[]){canvas, black_color_button, blue_color_button, green_color_button, red_color_button,
-  brown_color_button, yellow_color_button, aqua_color_button, magenta_color_button, purple_color_button, orange_color_button, dark_grey_color_button, plus_button, minus_button, square_button, circle_button, clear_canvas_button, sel_line_button, sel_bucket_button}, number_of_drawing_ies * sizeof(interactive_element));
+  brown_color_button, yellow_color_button, aqua_color_button, magenta_color_button, purple_color_button, orange_color_button, dark_grey_color_button, plus_button, minus_button, square_button, circle_button, eraser_button, clear_canvas_button, sel_line_button, sel_bucket_button}, number_of_drawing_ies * sizeof(interactive_element));
 }
 
 

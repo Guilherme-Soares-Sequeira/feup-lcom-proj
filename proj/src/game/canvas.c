@@ -314,6 +314,7 @@ void (canvas_mouse_handler)(uint8_t _) {
     case CURSOR_DSTATE_SQUARE: canvas_draw_pencil_square(); break;
     case CURSOR_DSTATE_ARROW: break;
     case CURSOR_DSTATE_LINE: canvas_handle_line(); break;
+    case CURSOR_DSTATE_ERASER: cursor_set_color(COLOR_WHITE); canvas_draw_pencil_circle(); break;
     case CURSOR_DSTATE_BUCKET: canvas_handle_bucket(); break;
   }
 }

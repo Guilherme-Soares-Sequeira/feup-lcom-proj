@@ -23,6 +23,7 @@ typedef enum cursor_style {
   CURSOR_DSTATE_SQUARE,
   CURSOR_DSTATE_ARROW,
   CURSOR_DSTATE_LINE,
+  CURSOR_DSTATE_ERASER,
   CURSOR_DSTATE_BUCKET
 } cursor_state_style_t;
 

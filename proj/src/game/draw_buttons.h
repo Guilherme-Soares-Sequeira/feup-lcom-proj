@@ -5,6 +5,7 @@
 #include "../xpm/buttons/button_plus_size.xpm"
 #include "../xpm/buttons/button_minus_size.xpm"
 #include "../xpm/buttons/button_clear_canvas.xpm"
+#include "../xpm/buttons/button_eraser.xpm"
 
 #include "pixel_buffer.h"
 #include "element.h"

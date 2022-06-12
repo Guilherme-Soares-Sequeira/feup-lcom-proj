@@ -5,7 +5,7 @@
 
 /* button xpms */
 
-static xpm_image_t button_plus, button_minus, button_clear_canvas;
+static xpm_image_t button_plus, button_minus, button_eraser, button_clear_canvas;
 
 
 xpm_image_t (get_button_plus)(){ return button_plus; }
@@ -13,6 +13,7 @@ xpm_image_t (get_button_plus)(){ return button_plus; }
 void (load_button_xpms)() {
   button_plus = vg_load_xpm(xpm_button_plus);
   button_minus = vg_load_xpm(xpm_button_minus);
+  button_eraser = vg_load_xpm(xpm_button_eraser);
   button_clear_canvas = vg_load_xpm(xpm_button_clear_canvas);
 }
 
@@ -85,7 +86,8 @@ void (draw_sel_bucket_button)(pixel_buffer const * const buf, position topleft_p
 }
 
 void (draw_sel_eraser_button)(pixel_buffer const * const buf, position topleft_pos) {
-  
+  draw_button_frame(buf, topleft_pos);
+  buf_draw_xpm(buf, button_eraser, topleft_pos);
 }
 
 void (draw_clear_canvas_button)(pixel_buffer const * const buf, position topleft_pos) {
@@ -171,9 +173,11 @@ int (buttons_draw)() {
     return EXIT_FAILURE;    
   }
   
+  draw_sel_eraser_button(buf, (position) {other_buttons_x, 320});
+
   draw_sel_bucket_button(buf, (position) {CANVAS_LEFT_VISIBLE_LIMIT + 10, CANVAS_BOTTOM_VISIBLE_LIMIT + 10});
 
-  draw_clear_canvas_button(buf, (position) {other_buttons_x, 320}); 
+  draw_clear_canvas_button(buf, (position) {other_buttons_x, 670}); 
 
   return OK;
 }
