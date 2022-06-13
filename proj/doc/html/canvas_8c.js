@@ -7,7 +7,6 @@ var canvas_8c =
     [ "canvas_draw_line_low", "canvas_8c.html#a654b1a28b128143b1e490b1a79d73327", null ],
     [ "canvas_draw_pencil_circle", "group__canvas.html#gaa4b92ad51f39f4432397dcd16c3a3625", null ],
     [ "canvas_draw_pencil_square", "group__canvas.html#ga6b1d3293521f7ea36a4e7bf970304057", null ],
-    [ "canvas_exit", "group__canvas.html#gafe40bcfefa1f881f10e307a2da543cd4", null ],
     [ "canvas_fill", "group__canvas.html#ga638de35fdbe6db429ae8b24c98b9cc13", null ],
     [ "canvas_handle_bucket", "group__canvas.html#gab6d35de38e60c1031a8bc9d70c529f28", null ],
     [ "canvas_handle_line", "group__canvas.html#ga7a40fac29d1d2399c46be35360319841", null ],

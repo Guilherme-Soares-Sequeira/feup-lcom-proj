@@ -104,9 +104,6 @@ void(cursor_draw)() {
   }
 }
 
-void(cursor_clear)() {
-  free(cursor_get_xpm().bytes);
-}
 
 void(cursor_set_initial_line_position)(position pos) {
   line_initial_position = pos;

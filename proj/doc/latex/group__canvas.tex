@@ -45,9 +45,7 @@ void() \mbox{\hyperlink{group__canvas_gab6d35de38e60c1031a8bc9d70c529f28}{canvas
 void() \mbox{\hyperlink{group__canvas_ga087d6760c3afc2795718e3d4f746beab}{canvas\+\_\+flood\+\_\+fill}} (\mbox{\hyperlink{structposition}{position}} curr\+\_\+pos, uint8\+\_\+t color\+\_\+to\+\_\+replace, uint8\+\_\+t color\+\_\+to\+\_\+replace\+\_\+with)
 \begin{DoxyCompactList}\small\item\em Function that is supposed to replace an area of color \char`\"{}color\+\_\+to\+\_\+replace\+\_\+with\char`\"{} with a new color \char`\"{}color\+\_\+to\+\_\+replace\char`\"{}. Utilizes a linked list / queue but is unused at the moment. \end{DoxyCompactList}\item 
 void() \mbox{\hyperlink{group__canvas_ga2a8f55e20f4a68fa050db0fffced2bb3}{canvas\+\_\+handle\+\_\+text}} ()
-\begin{DoxyCompactList}\small\item\em Handles how clicks on the canvas while the cursor is in text state should behave. \end{DoxyCompactList}\item 
-void() \mbox{\hyperlink{group__canvas_gafe40bcfefa1f881f10e307a2da543cd4}{canvas\+\_\+exit}} ()
-\begin{DoxyCompactList}\small\item\em Frees the memory allocated to the canvas. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Handles how clicks on the canvas while the cursor is in text state should behave. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -161,6 +159,8 @@ Draws the canvas to the back buffer.
 
 Here is the call graph for this function\+:
 % FIG 1
+Here is the caller graph for this function\+:
+% FIG 2
 \mbox{\Hypertarget{group__canvas_gaa4b92ad51f39f4432397dcd16c3a3625}\label{group__canvas_gaa4b92ad51f39f4432397dcd16c3a3625}} 
 \index{canvas@{canvas}!canvas\_draw\_pencil\_circle@{canvas\_draw\_pencil\_circle}}
 \index{canvas\_draw\_pencil\_circle@{canvas\_draw\_pencil\_circle}!canvas@{canvas}}
@@ -175,7 +175,9 @@ Draws a circle on screen at the given cursor position.
 0 if success, 1 otherwise 
 \end{DoxyReturn}
 Here is the call graph for this function\+:
-% FIG 2
+% FIG 3
+Here is the caller graph for this function\+:
+% FIG 4
 \mbox{\Hypertarget{group__canvas_ga6b1d3293521f7ea36a4e7bf970304057}\label{group__canvas_ga6b1d3293521f7ea36a4e7bf970304057}} 
 \index{canvas@{canvas}!canvas\_draw\_pencil\_square@{canvas\_draw\_pencil\_square}}
 \index{canvas\_draw\_pencil\_square@{canvas\_draw\_pencil\_square}!canvas@{canvas}}
@@ -190,17 +192,9 @@ Draws a square on screen at the given cursor position.
 0 if success, 1 otherwise 
 \end{DoxyReturn}
 Here is the call graph for this function\+:
-% FIG 3
-\mbox{\Hypertarget{group__canvas_gafe40bcfefa1f881f10e307a2da543cd4}\label{group__canvas_gafe40bcfefa1f881f10e307a2da543cd4}} 
-\index{canvas@{canvas}!canvas\_exit@{canvas\_exit}}
-\index{canvas\_exit@{canvas\_exit}!canvas@{canvas}}
-\doxysubsubsection{\texorpdfstring{canvas\_exit()}{canvas\_exit()}}
-{\footnotesize\ttfamily void() canvas\+\_\+exit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-
-
-Frees the memory allocated to the canvas. 
-
+% FIG 5
+Here is the caller graph for this function\+:
+% FIG 6
 \mbox{\Hypertarget{group__canvas_ga638de35fdbe6db429ae8b24c98b9cc13}\label{group__canvas_ga638de35fdbe6db429ae8b24c98b9cc13}} 
 \index{canvas@{canvas}!canvas\_fill@{canvas\_fill}}
 \index{canvas\_fill@{canvas\_fill}!canvas@{canvas}}
@@ -216,6 +210,8 @@ Fills the entire screen with the given color and updates the \char`\"{}canvas\+\
 {\em color} & color to fill the area with \\
 \hline
 \end{DoxyParams}
+Here is the caller graph for this function\+:
+% FIG 7
 \mbox{\Hypertarget{group__canvas_ga087d6760c3afc2795718e3d4f746beab}\label{group__canvas_ga087d6760c3afc2795718e3d4f746beab}} 
 \index{canvas@{canvas}!canvas\_flood\_fill@{canvas\_flood\_fill}}
 \index{canvas\_flood\_fill@{canvas\_flood\_fill}!canvas@{canvas}}
@@ -246,7 +242,9 @@ Function that is supposed to replace an area of color \char`\"{}color\+\_\+to\+\
 Handles the filling of the canvas with the cursor color. 
 
 Here is the call graph for this function\+:
-% FIG 4
+% FIG 8
+Here is the caller graph for this function\+:
+% FIG 9
 \mbox{\Hypertarget{group__canvas_ga7a40fac29d1d2399c46be35360319841}\label{group__canvas_ga7a40fac29d1d2399c46be35360319841}} 
 \index{canvas@{canvas}!canvas\_handle\_line@{canvas\_handle\_line}}
 \index{canvas\_handle\_line@{canvas\_handle\_line}!canvas@{canvas}}
@@ -258,7 +256,9 @@ Here is the call graph for this function\+:
 Handles the drawing of straight lines made by clicking on an initial and final positions. 
 
 Here is the call graph for this function\+:
-% FIG 5
+% FIG 10
+Here is the caller graph for this function\+:
+% FIG 11
 \mbox{\Hypertarget{group__canvas_ga2a8f55e20f4a68fa050db0fffced2bb3}\label{group__canvas_ga2a8f55e20f4a68fa050db0fffced2bb3}} 
 \index{canvas@{canvas}!canvas\_handle\_text@{canvas\_handle\_text}}
 \index{canvas\_handle\_text@{canvas\_handle\_text}!canvas@{canvas}}
@@ -270,7 +270,9 @@ Here is the call graph for this function\+:
 Handles how clicks on the canvas while the cursor is in text state should behave. 
 
 Here is the call graph for this function\+:
-% FIG 6
+% FIG 12
+Here is the caller graph for this function\+:
+% FIG 13
 \mbox{\Hypertarget{group__canvas_ga80055034f5f9ceae3b737cc3cdc2ef47}\label{group__canvas_ga80055034f5f9ceae3b737cc3cdc2ef47}} 
 \index{canvas@{canvas}!canvas\_load@{canvas\_load}}
 \index{canvas\_load@{canvas\_load}!canvas@{canvas}}
@@ -281,6 +283,8 @@ Here is the call graph for this function\+:
 
 Loads canvas information and allocates the necessary memory. 
 
+Here is the caller graph for this function\+:
+% FIG 14
 \mbox{\Hypertarget{group__canvas_ga33567ef82c11af5b0b894616851cc03b}\label{group__canvas_ga33567ef82c11af5b0b894616851cc03b}} 
 \index{canvas@{canvas}!canvas\_mouse\_handler@{canvas\_mouse\_handler}}
 \index{canvas\_mouse\_handler@{canvas\_mouse\_handler}!canvas@{canvas}}
@@ -297,7 +301,9 @@ Handles mouse events that happen within the canvas section of the screen.
 \hline
 \end{DoxyParams}
 Here is the call graph for this function\+:
-% FIG 7
+% FIG 15
+Here is the caller graph for this function\+:
+% FIG 16
 \mbox{\Hypertarget{group__canvas_ga6e396a9fe595370839ca1f2e3cc98acb}\label{group__canvas_ga6e396a9fe595370839ca1f2e3cc98acb}} 
 \index{canvas@{canvas}!get\_canvas\_buffer@{get\_canvas\_buffer}}
 \index{get\_canvas\_buffer@{get\_canvas\_buffer}!canvas@{canvas}}
@@ -311,3 +317,5 @@ Returns the canvas buffer.
 \begin{DoxyReturn}{Returns}
 canvas\+\_\+buffer 
 \end{DoxyReturn}
+Here is the caller graph for this function\+:
+% FIG 17

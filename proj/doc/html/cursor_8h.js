@@ -11,7 +11,6 @@ var cursor_8h =
       [ "CURSOR_DSTATE_ERASER", "group__cursor.html#gga99618eb300a45f7d23a757c5000b1cccaf512370483502caf72f6a819587aa639", null ],
       [ "CURSOR_DSTATE_BUCKET", "group__cursor.html#gga99618eb300a45f7d23a757c5000b1ccca18e126aed21fca3bef10e6dae2ffb577", null ]
     ] ],
-    [ "cursor_clear", "group__cursor.html#gaf0f7d6d41793b016732d77df927b052d", null ],
     [ "cursor_decrease_thickness", "group__cursor.html#ga70c35d2bf7529b2584d568c203efcddb", null ],
     [ "cursor_draw", "group__cursor.html#ga4648530c8e1a1b7846ec80cb78781ca5", null ],
     [ "cursor_get_color", "group__cursor.html#ga5f8c8d3eed096c6d94a911f9bfa72df4", null ],

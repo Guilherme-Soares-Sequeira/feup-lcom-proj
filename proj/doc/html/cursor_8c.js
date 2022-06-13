@@ -1,6 +1,5 @@
 var cursor_8c =
 [
-    [ "cursor_clear", "group__cursor.html#gaf0f7d6d41793b016732d77df927b052d", null ],
     [ "cursor_decrease_thickness", "group__cursor.html#ga70c35d2bf7529b2584d568c203efcddb", null ],
     [ "cursor_draw", "group__cursor.html#ga4648530c8e1a1b7846ec80cb78781ca5", null ],
     [ "cursor_get_color", "group__cursor.html#ga5f8c8d3eed096c6d94a911f9bfa72df4", null ],

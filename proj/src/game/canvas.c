@@ -315,9 +315,6 @@ void(canvas_clear)() {
   canvas_fill(COLOR_WHITE);
 }
 
-void(canvas_exit)() {
-  free(canvas_buffer.buffer_start);
-}
 
 pixel_buffer const *(get_canvas_buffer) () {
   return &canvas_buffer;

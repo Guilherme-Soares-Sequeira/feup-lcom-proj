@@ -102,11 +102,6 @@ void(cursor_decrease_thickness)(uint8_t _);
  */
 void(cursor_draw)();
 
-/**
- * @brief Frees the memory allocated to the cursor
- *
- */
-void(cursor_clear)();
 
 /**
  * @brief Assigns a new value to the left button of the cursor

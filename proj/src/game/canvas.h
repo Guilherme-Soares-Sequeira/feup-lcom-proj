@@ -109,11 +109,6 @@ void(canvas_flood_fill)(position curr_pos, uint8_t color_to_replace, uint8_t col
  */
 void(canvas_handle_text)();
 
-/**
- * @brief Frees the memory allocated to the canvas
- *
- */
-void(canvas_exit)();
 
 /**@}*/
 
