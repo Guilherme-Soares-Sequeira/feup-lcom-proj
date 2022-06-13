@@ -20,7 +20,7 @@ static uint8_t canvas_background_color; /**< @brief the background color of the 
 //   new_node->next = NULL;
 
 //   if (list->end != NULL) {
-//     list->end->next = (list_node*) new_node;  
+//     list->end->next = (list_node*) new_node;
 //   }
 //   else if (list->start != NULL) {
 //     list->start->next = (list_node*) new_node;
@@ -42,11 +42,11 @@ static uint8_t canvas_background_color; /**< @brief the background color of the 
 
 static pixel_buffer canvas_buffer;
 
-static uint32_t (canvas_get_buffer_size)() {
+static uint32_t(canvas_get_buffer_size)() {
   return canvas_buffer.h_res * canvas_buffer.v_res * canvas_buffer.bytes_per_pixel;
 }
 
-void (canvas_load)() {
+void(canvas_load)() {
   canvas_buffer.h_res = H_RES;
   canvas_buffer.v_res = CANVAS_BOTTOM_VISIBLE_LIMIT;
 
@@ -55,20 +55,19 @@ void (canvas_load)() {
   canvas_buffer.buffer_size = canvas_get_buffer_size();
   canvas_buffer.buffer_start = malloc(canvas_get_buffer_size());
 
-
   canvas_clear();
 }
 
-void (canvas_draw)() {
+void(canvas_draw)() {
   memcpy(vg_get_back_buffer(), canvas_buffer.buffer_start, canvas_get_buffer_size());
 }
 
-void (canvas_fill)(uint8_t color) {
+void(canvas_fill)(uint8_t color) {
   canvas_background_color = color;
   memset(canvas_buffer.buffer_start, color, canvas_get_buffer_size());
 }
 
-int (canvas_draw_line_low)(position from_pos, position to_pos, int16_t dx, int16_t dy) {
+int(canvas_draw_line_low)(position from_pos, position to_pos, int16_t dx, int16_t dy) {
   int yi = 1;
 
   uint8_t thickness = cursor_get_thickness();
@@ -83,19 +82,19 @@ int (canvas_draw_line_low)(position from_pos, position to_pos, int16_t dx, int16
   int y = from_pos.y;
 
   for (int x = from_pos.x; x <= to_pos.x; x++) {
-    //if ((x - from_pos.x) % thickness == 0) { //ADD ONLY IF PERFORMANCE IS NEEDED
-      if (style == CURSOR_DSTATE_CIRCLE || style == CURSOR_DSTATE_LINE) {
-        if (buf_draw_circle(&canvas_buffer, (position) {x, y}, thickness, cursor_get_color()))
-          return 1;
-      }
-      else if ( style == CURSOR_DSTATE_SQUARE) {
-        if (buf_draw_rectangle(&canvas_buffer, (position) { x - thickness/2, y - thickness/2}, thickness, thickness, cursor_get_color()))
-          return 1;
-      }
-      else if (style == CURSOR_DSTATE_ERASER) {
-        if (buf_draw_circle(&canvas_buffer, (position) {x, y}, thickness, canvas_background_color))
-          return 1;
-      }
+    // if ((x - from_pos.x) % thickness == 0) { //ADD ONLY IF PERFORMANCE IS NEEDED
+    if (style == CURSOR_DSTATE_CIRCLE || style == CURSOR_DSTATE_LINE) {
+      if (buf_draw_circle(&canvas_buffer, (position){x, y}, thickness, cursor_get_color()))
+        return 1;
+    }
+    else if (style == CURSOR_DSTATE_SQUARE) {
+      if (buf_draw_rectangle(&canvas_buffer, (position){x - thickness / 2, y - thickness / 2}, thickness, thickness, cursor_get_color()))
+        return 1;
+    }
+    else if (style == CURSOR_DSTATE_ERASER) {
+      if (buf_draw_circle(&canvas_buffer, (position){x, y}, thickness, canvas_background_color))
+        return 1;
+    }
     //}
     if (D > 0) {
       y += yi;
@@ -108,7 +107,7 @@ int (canvas_draw_line_low)(position from_pos, position to_pos, int16_t dx, int16
   return OK;
 }
 
-int (canvas_draw_line_high)(position from_pos, position to_pos, int16_t dx, int16_t dy) {
+int(canvas_draw_line_high)(position from_pos, position to_pos, int16_t dx, int16_t dy) {
   int xi = 1;
 
   uint8_t thickness = cursor_get_thickness();
@@ -123,20 +122,20 @@ int (canvas_draw_line_high)(position from_pos, position to_pos, int16_t dx, int1
   int x = from_pos.x;
 
   for (int y = from_pos.y; y <= to_pos.y; y++) {
-    //if ((y - from_pos.y) % thickness == 0) { //ADD ONLY IF PERFORMANCE IS NEEDED
+    // if ((y - from_pos.y) % thickness == 0) { //ADD ONLY IF PERFORMANCE IS NEEDED
 
-      if (style == CURSOR_DSTATE_CIRCLE || style == CURSOR_DSTATE_LINE) {
-        if (buf_draw_circle(&canvas_buffer, (position) {x, y}, thickness, cursor_get_color()))
-          return 1;
-      }
-      else if (style == CURSOR_DSTATE_SQUARE) {
-        if (buf_draw_rectangle(&canvas_buffer, (position) { x - thickness/2, y - thickness/2}, thickness, thickness, cursor_get_color()))
-          return 1;
-      }
-      else if (style == CURSOR_DSTATE_ERASER) {
-        if (buf_draw_circle(&canvas_buffer, (position) {x, y}, thickness, canvas_background_color))
-          return 1;
-      }
+    if (style == CURSOR_DSTATE_CIRCLE || style == CURSOR_DSTATE_LINE) {
+      if (buf_draw_circle(&canvas_buffer, (position){x, y}, thickness, cursor_get_color()))
+        return 1;
+    }
+    else if (style == CURSOR_DSTATE_SQUARE) {
+      if (buf_draw_rectangle(&canvas_buffer, (position){x - thickness / 2, y - thickness / 2}, thickness, thickness, cursor_get_color()))
+        return 1;
+    }
+    else if (style == CURSOR_DSTATE_ERASER) {
+      if (buf_draw_circle(&canvas_buffer, (position){x, y}, thickness, canvas_background_color))
+        return 1;
+    }
     //}
 
     if (D > 0) {
@@ -150,7 +149,7 @@ int (canvas_draw_line_high)(position from_pos, position to_pos, int16_t dx, int1
   return OK;
 }
 
-int (canvas_draw_line)(position from_pos, position to_pos) {
+int(canvas_draw_line)(position from_pos, position to_pos) {
   int16_t dx = to_pos.x - from_pos.x;
   int16_t dy = to_pos.y - from_pos.y;
   if (abs(dy) < abs(dx))
@@ -177,14 +176,14 @@ int (canvas_draw_line)(position from_pos, position to_pos) {
 //   int16_t sx = x0 < x1 ? 1 : -1;
 //   int16_t dy = -abs(y1 - y0);
 //   int16_t sy = y0 < y1 ? 1 : -1;
-  
+
 //   int32_t error = dx + dy;
 
 //   while (true) {
 //     if (buf_draw_circle(&canvas_buffer, (position) {x0, y0}, cursor_get_thickness(), cursor_get_color()) != OK)
 //       return EXIT_FAILURE;
 
-//     if (x0 == x1 && y0 == y1) 
+//     if (x0 == x1 && y0 == y1)
 //       break;
 
 //     int32_t error2 = 2 * error;
@@ -202,56 +201,56 @@ int (canvas_draw_line)(position from_pos, position to_pos) {
 //     }
 //   }
 
-//   return OK; 
+//   return OK;
 // }
 
-int (canvas_draw_pencil_circle)() { //uncomment if we have performance issues
+int(canvas_draw_pencil_circle)() { // uncomment if we have performance issues
   int ret = 0;
-  
-  //uint8_t thickness = cursor_get_thickness();
-  //uint8_t color = cursor_get_color();
-  
+
+  // uint8_t thickness = cursor_get_thickness();
+  // uint8_t color = cursor_get_color();
+
   mouse_packet_t mouse_packet = get_mouse_packet();
   position final_position = cursor_get_pos();
-  position initial_position = (position) {final_position.x - mouse_packet.delta_x, final_position.y + mouse_packet.delta_y};  
+  position initial_position = (position){final_position.x - mouse_packet.delta_x, final_position.y + mouse_packet.delta_y};
 
-  //if (abs(mouse_packet.delta_x) + abs(mouse_packet.delta_y) >= 2*thickness) {
-    ret = canvas_draw_line(initial_position, final_position) || ret;
+  // if (abs(mouse_packet.delta_x) + abs(mouse_packet.delta_y) >= 2*thickness) {
+  ret = canvas_draw_line(initial_position, final_position) || ret;
   //}
- // else {
-   // ret = buf_draw_circle(&canvas_buffer, final_position, thickness, color) || ret;
-   // ret = buf_draw_circle(&canvas_buffer, initial_position, thickness, color) || ret;
+  // else {
+  // ret = buf_draw_circle(&canvas_buffer, final_position, thickness, color) || ret;
+  // ret = buf_draw_circle(&canvas_buffer, initial_position, thickness, color) || ret;
   //}
 
   return ret;
 }
 
-int (canvas_draw_pencil_square)() { //uncomment if we have performance issues
+int(canvas_draw_pencil_square)() { // uncomment if we have performance issues
   int ret = 0;
-  
-  //uint8_t thickness = cursor_get_thickness();
-  //uint8_t color = cursor_get_color();
-  
+
+  // uint8_t thickness = cursor_get_thickness();
+  // uint8_t color = cursor_get_color();
+
   mouse_packet_t mouse_packet = get_mouse_packet();
   position final_position = cursor_get_pos();
-  position initial_position = (position) {final_position.x - mouse_packet.delta_x, final_position.y + mouse_packet.delta_y};  
+  position initial_position = (position){final_position.x - mouse_packet.delta_x, final_position.y + mouse_packet.delta_y};
 
-  //if (abs(mouse_packet.delta_x) + abs(mouse_packet.delta_y) >= 2*thickness) {
-    ret = canvas_draw_line(initial_position, final_position) || ret;
+  // if (abs(mouse_packet.delta_x) + abs(mouse_packet.delta_y) >= 2*thickness) {
+  ret = canvas_draw_line(initial_position, final_position) || ret;
   //}
- // else {
-   // ret = buf_draw_rectangle(&canvas_buffer, (position) { final_position.x - thickness/2, final_position.y - thickness/2}, thickness, thickness, color) || ret;
-    //ret = buf_draw_rectangle(&canvas_buffer, (position) { initial_position.x - thickness/2, initial_position.y - thickness/2}, thickness, thickness, color) || ret;
- // }
+  // else {
+  // ret = buf_draw_rectangle(&canvas_buffer, (position) { final_position.x - thickness/2, final_position.y - thickness/2}, thickness, thickness, color) || ret;
+  // ret = buf_draw_rectangle(&canvas_buffer, (position) { initial_position.x - thickness/2, initial_position.y - thickness/2}, thickness, thickness, color) || ret;
+  // }
 
   return ret;
-
 }
 
-void (canvas_handle_line)() {
-  if (cursor_lb_was_pressed()) return;
+void(canvas_handle_line)() {
+  if (cursor_lb_was_pressed())
+    return;
   position curr_pos = cursor_get_pos();
-  switch(cursor_get_line_counter()) {
+  switch (cursor_get_line_counter()) {
     case 0:
       cursor_set_initial_line_position(curr_pos);
       break;
@@ -265,9 +264,9 @@ void (canvas_handle_line)() {
 //   linked_list queue = {NULL, NULL};
 //   add_to_linked_list(&queue, ini_pos);
 //   bool added = false;
-  
+
 //   uint8_t* canvas_start = (uint8_t*) canvas_buffer.buffer_start;
-  
+
 //   position curr_pos;
 //   list_node curr_elem;
 
@@ -283,10 +282,10 @@ void (canvas_handle_line)() {
 //     int pixel_pos = (curr_pos.y * canvas_buffer.h_res + curr_pos.x);
 //     uint8_t* pixel = canvas_start + pixel_pos;
 //     // curr_index += (curr_pos.y * canvas_buffer.h_res + curr_pos.x) * sizeof(uint8_t);
-    
+
 //     if (*pixel == color_to_replace) {
 //       buf_draw_pixel(&canvas_buffer, curr_pos, color_to_replace_with);
-      
+
 //       add_to_linked_list(&queue, (position) {curr_pos.x + 1, curr_pos.y});
 //       add_to_linked_list(&queue, (position) {curr_pos.x - 1, curr_pos.y});
 //       add_to_linked_list(&queue, (position) {curr_pos.x, curr_pos.y + 1});
@@ -296,11 +295,11 @@ void (canvas_handle_line)() {
 //   } while(!(curr_elem.next == NULL && !added));
 // }
 
-void (canvas_handle_bucket)() {
+void(canvas_handle_bucket)() {
   /*uint8_t color_to_replace_with = cursor_get_color();
   position curr_pos = cursor_get_pos();
   int pixel_pos = (curr_pos.y * canvas_buffer.h_res + curr_pos.x);
-  
+
   uint8_t* canvas_start = (uint8_t*) canvas_buffer.buffer_start;
 
   uint8_t* pixel = canvas_start + pixel_pos;
@@ -309,40 +308,41 @@ void (canvas_handle_bucket)() {
   canvas_flood_fill(curr_pos, color_to_replace, color_to_replace_with);*/
 
   uint8_t color = cursor_get_color();
-  canvas_fill(color);  
+  canvas_fill(color);
 }
 
-void (canvas_clear)() {
+void(canvas_clear)() {
   canvas_fill(COLOR_WHITE);
 }
 
-void (canvas_exit)() {
+void(canvas_exit)() {
   free(canvas_buffer.buffer_start);
 }
 
-pixel_buffer const * (get_canvas_buffer)() {
+pixel_buffer const *(get_canvas_buffer) () {
   return &canvas_buffer;
 }
 
-void (canvas_handle_text)() {
-  if (cursor_lb_was_pressed()) return;
+void(canvas_handle_text)() {
+  if (cursor_lb_was_pressed())
+    return;
 
   if (get_is_typing()) {
     buf_draw_text(&canvas_buffer, get_current_text(), get_text_initial_position(), LEFT);
     position pos = cursor_get_pos();
-    set_text_initial_position((position) {pos.x, pos.y - cursor_get_thickness()*6});
+    set_text_initial_position((position){pos.x, pos.y - cursor_get_thickness() * 6});
     clear_current_text();
   }
   else {
     position pos = cursor_get_pos();
-    set_text_initial_position((position) {pos.x, pos.y - cursor_get_thickness()*6});
+    set_text_initial_position((position){pos.x, pos.y - cursor_get_thickness() * 6});
     clear_current_text();
     set_is_typing(true);
   }
 }
 
-void (canvas_mouse_handler)(uint8_t _) {
-  switch(cursor_get_style()) {
+void(canvas_mouse_handler)(uint8_t _) {
+  switch (cursor_get_style()) {
     case CURSOR_DSTATE_CIRCLE: canvas_draw_pencil_circle(); break;
     case CURSOR_DSTATE_SQUARE: canvas_draw_pencil_square(); break;
     case CURSOR_DSTATE_TEXT: canvas_handle_text(); break;

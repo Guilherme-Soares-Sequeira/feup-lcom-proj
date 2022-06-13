@@ -9,8 +9,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "vbe.h"
 #include "../../utils/color.h"
+#include "vbe.h"
 
 vbe_mode_info_t vg_mode_info;
 void *front_buffer;
@@ -19,7 +19,7 @@ void *back_buffer;
 int bytes_per_pixel = 0;
 bool indexed = false;
 
-void* (vg_get_back_buffer)() {
+void *(vg_get_back_buffer) () {
   return back_buffer;
 }
 
@@ -72,14 +72,14 @@ void *(vg_init) (in_port_t graphics_mode) {
 
 #define COLOR_SIZE_MASK(x) (BIT(x) - 1)
 
-int (vg_draw_pixel_index)(uint32_t i, uint32_t color) {
-  memcpy((uint8_t*)back_buffer + i, &color, bytes_per_pixel);
+int(vg_draw_pixel_index)(uint32_t i, uint32_t color) {
+  memcpy((uint8_t *) back_buffer + i, &color, bytes_per_pixel);
 
   return 0;
 }
 
-int (vg_draw_pixel)(uint16_t x, uint16_t y, uint32_t color) {
-  if (x >= vg_mode_info.XResolution || x < 0 || y >= vg_mode_info.YResolution ||  y < 0)
+int(vg_draw_pixel)(uint16_t x, uint16_t y, uint32_t color) {
+  if (x >= vg_mode_info.XResolution || x < 0 || y >= vg_mode_info.YResolution || y < 0)
     return 0;
 
   color &= COLOR_SIZE_MASK(vg_mode_info.BitsPerPixel);
@@ -97,24 +97,24 @@ int (vg_draw_pixel)(uint16_t x, uint16_t y, uint32_t color) {
   return 0;
 }
 
-int (vg_draw_hline)(uint16_t x, uint16_t y, uint16_t len, uint32_t color) {
+int(vg_draw_hline)(uint16_t x, uint16_t y, uint16_t len, uint32_t color) {
   int i = y * vg_mode_info.XResolution + x;
 
-  memset((uint8_t*)back_buffer + i * bytes_per_pixel, color, len * bytes_per_pixel);
+  memset((uint8_t *) back_buffer + i * bytes_per_pixel, color, len * bytes_per_pixel);
 
   // for (int i = 0; i < len && x + i < vg_mode_info.XResolution; i++)
   //   if (vg_draw_pixel(x + i, y, color)) return 1;
-    
+
   return 0;
 }
 
-int (vg_draw_rectangle)(uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint32_t color) {
+int(vg_draw_rectangle)(uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint32_t color) {
   int i = (x + y * vg_mode_info.XResolution) * bytes_per_pixel;
   int offset = vg_mode_info.XResolution * bytes_per_pixel;
   width *= bytes_per_pixel;
 
   for (int j = 0; j < height; ++j, i += offset)
-    memset((uint8_t*)back_buffer + i, color, width);
+    memset((uint8_t *) back_buffer + i, color, width);
 
   // for (int j = 0; j < height; ++j, i += offset)
   //   for (int k = 0; k < width; ++k, i += bytes_per_pixel)
@@ -217,16 +217,15 @@ xpm_image_t(vg_load_xpm)(const xpm_map_t map) {
   return info;
 }
 
-int (vg_draw_xpm)(const xpm_image_t xpm_info, uint16_t x, uint16_t y) {
-  uint8_t* bytes = xpm_info.bytes;
+int(vg_draw_xpm)(const xpm_image_t xpm_info, uint16_t x, uint16_t y) {
+  uint8_t *bytes = xpm_info.bytes;
 
   for (unsigned long int i = 0; i < (unsigned long) xpm_info.width * xpm_info.height; i++) {
     if (bytes[i] != COLOR_TRANSPARENT && vg_draw_pixel(
-      x + (i % xpm_info.width),
-      y + (i / xpm_info.width),
-      (uint32_t) *(bytes + i))
-    )
-        return 1;
+                                           x + (i % xpm_info.width),
+                                           y + (i / xpm_info.width),
+                                           (uint32_t) * (bytes + i)))
+      return 1;
   }
 
   return OK;
@@ -242,7 +241,7 @@ uint32_t makeRGB(uint8_t r, uint8_t g, uint8_t b) {
   return 0 | ((r & COLOR_SIZE_MASK(vg_mode_info.RedMaskSize)) << vg_mode_info.RedFieldPosition) | ((g & COLOR_SIZE_MASK(vg_mode_info.GreenMaskSize)) << vg_mode_info.GreenFieldPosition) | ((b & COLOR_SIZE_MASK(vg_mode_info.BlueMaskSize)) << vg_mode_info.BlueFieldPosition);
 }
 
-void (clear_screen)(uint8_t color) {
+void(clear_screen)(uint8_t color) {
   memset(back_buffer, color, bytes_per_pixel * vg_mode_info.XResolution * vg_mode_info.YResolution);
 }
 

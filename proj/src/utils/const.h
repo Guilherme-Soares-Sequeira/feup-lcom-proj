@@ -1,7 +1,7 @@
 #include <lcom/lcf.h>
 
-/** @defgroup const const 
- * 
+/** @defgroup const const
+ *
  * Constants used in many places of our program
  */
 

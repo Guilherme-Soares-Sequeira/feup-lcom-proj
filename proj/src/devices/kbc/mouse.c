@@ -1,5 +1,5 @@
-#include <lcom/lcf.h>
 #include <lcom/lab4.h>
+#include <lcom/lcf.h>
 #include <lcom/utils.h>
 
 #include <stdbool.h>
@@ -9,11 +9,11 @@
 
 int32_t mouse_global_hook_id; /**< @brief the hook id that is used to unsubscribe interrupts from the mouse */
 
-struct packet mouse_packet;   /**< @brief the packet that contains information about the last movement and the state of the various buttons of the mouse */
+struct packet mouse_packet; /**< @brief the packet that contains information about the last movement and the state of the various buttons of the mouse */
 
-uint8_t packet_counter = 0;   /**< @brief the amount of bytes that have been read so far for the current packet */
+uint8_t packet_counter = 0; /**< @brief the amount of bytes that have been read so far for the current packet */
 
-bool mouse_ready = false;     /**< @brief indicates whether the mouse_packet contains all the necessary information or not */
+bool mouse_ready = false; /**< @brief indicates whether the mouse_packet contains all the necessary information or not */
 
 /* declared in LCF */
 
@@ -37,14 +37,14 @@ int(mouse_unsubscribe_int)() {
   return sys_irqrmpolicy((int *) &mouse_global_hook_id);
 }
 
-bool (kbc_mouse_data)() {
+bool(kbc_mouse_data)() {
   uint8_t st_reg = 0;
   util_sys_inb(KBC_OUT_BUF_ST, &st_reg);
 
-  return (st_reg & (KBC_ST_OBF  | BIT(5)));
+  return (st_reg & (KBC_ST_OBF | BIT(5)));
 }
 
-bool (lb_is_pressed)() {
+bool(lb_is_pressed)() {
   return mouse_packet.lb;
 }
 
@@ -65,7 +65,7 @@ void(mouse_ih)() {
       }
 
       mouse_packet.rb = byte & MOUSE_RB;
-      
+
       mouse_packet.lb = byte & MOUSE_LB;
 
       mouse_packet.mb = byte & MOUSE_MB;
@@ -95,10 +95,11 @@ void(mouse_ih)() {
   mouse_ready = (packet_counter == 0); // when we catch a 0 at this point, we know we have successfully parsed 3 bytes
 }
 
-void (kbc_enable_data_report) () {
+void(kbc_enable_data_report)() {
   wait_for_inbuff_empty();
   sys_outb(KBC_IN_BUF_CMD, 0x60);
-  uint8_t cmd = 0; cmd |= (BIT(1));
+  uint8_t cmd = 0;
+  cmd |= (BIT(1));
   sys_outb(KBC_IN_BUF_CMD, cmd);
   write_command_to_mouse(MOUSE_ENABLE_DATA_REPORTING);
 }
@@ -152,6 +153,6 @@ void(write_command_to_mouse)(uint8_t command) {
   }
 }
 
-bool (mouse_packet_ready)() {
+bool(mouse_packet_ready)() {
   return mouse_ready;
 }
