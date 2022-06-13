@@ -4,10 +4,13 @@
 
 #include "rtc.h"
 
-unsigned short seconds, minutes, hours;
-char formatted_time[9];
+unsigned short seconds; /**< @brief the current time's seconds */
+unsigned short minutes; /**< @brief the current time's minutes */
+unsigned short hours;   /**< @brief the current time's hours */
 
-int32_t rtc_global_hook_id;
+char formatted_time[9]; /**< @brief character string containing a formatted representation of the current time */
+
+int32_t rtc_global_hook_id; /**< @brief hook id used to unsubscribe interrupts from the RTC */
 
 int(rtc_subscribe_int)(uint8_t *bit_no) {
   int hook_id = RTC_IRQ;

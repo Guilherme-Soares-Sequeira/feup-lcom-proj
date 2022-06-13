@@ -22,10 +22,15 @@
 
 void(load_backbuffer)();
 
+/**
+ * @brief Returns the back buffer
+ *
+ */
 pixel_buffer const *(get_back_buffer) ();
 
 /**
  * @brief Draws a pixel on a pixel_buffer
+ *
  * @param buf buffer where the pixel is going to be drawn
  * @param pos position of the pixel on screen
  * @param color color of the pixel
@@ -87,18 +92,25 @@ int(buf_draw_hline)(pixel_buffer const *const buf, position pos, uint16_t len, u
 int(buf_draw_vline)(pixel_buffer const *const buf, position pos, uint16_t len, uint8_t color);
 
 /**
- * @brief
- * @param
+ * @brief Draws a XPM to the given pixel buffer.
  *
- * @return
+ * @param buf the buffer to which the XMP will be drawn
+ * @param xpm_info info regarding the XPM to draw
+ * @param pos position to draw the given XPM
+ *
+ * @return 0 on success
  */
 int(buf_draw_xpm)(pixel_buffer const *const buf, const xpm_image_t xpm_info, position pos);
 
 /**
- * @brief
- * @param
+ * @brief draws the given string to the given buffer on the given position.
  *
- * @return
+ * @param buf the buffer to which the text will be drawn
+ * @param text the text to draw
+ * @param pos the position in which to draw the text
+ * @param alignment the alignment of the text relative to the chosen position
+ *
+ * @return 0 on success
  */
 int(buf_draw_text)(pixel_buffer const *const buf, char *text, position pos, text_alignment_t alignment);
 

@@ -17,9 +17,9 @@
  * Constants, structures and functions used for programming the drawing of buttons
  */
 
-#define BUTTON_FRAME_WIDTH 40  /**< @brief */
-#define BUTTON_FRAME_HEIGHT 40 /**< @brief */
-#define BUTTON_FRAME_COLOR 7   /**< @brief */
+#define BUTTON_FRAME_WIDTH 40  /**< @brief the width of the interactive buttons' frame */
+#define BUTTON_FRAME_HEIGHT 40 /**< @brief the height of the interactive buttons' frame */
+#define BUTTON_FRAME_COLOR 7   /**< @brief the color of the interactive buttons' frame */
 
 /**
  * @brief Draws a button frame on a pixel buffer
@@ -112,7 +112,7 @@ void(draw_clear_canvas_button)(pixel_buffer const *const buf, position topleft_p
 /**
  * @brief Draws the buttons on screen
  *
- * @return OK if sucessful, != OK otherwise
+ * @return OK if successful, != OK otherwise
  */
 int(buttons_draw)();
 

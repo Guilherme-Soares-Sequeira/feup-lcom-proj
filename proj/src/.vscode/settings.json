@@ -11,6 +11,9 @@
     "cursor.h": "c",
     "*.xpm": "c",
     "position.h": "c",
-    "i8042.h": "c"
+    "i8042.h": "c",
+    "utils.h": "c",
+    "lab4.h": "c",
+    "video_gr.h": "c"
   },
 }

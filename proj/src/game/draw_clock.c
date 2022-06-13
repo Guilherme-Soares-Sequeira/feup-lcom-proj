@@ -15,11 +15,11 @@ static xpm_image_t clock_xpm; /**< @brief xpm image of the clock */
 
 static position clock_pos = {
   H_RES - CANVAS_MARGIN - 40,
-  V_RES - CANVAS_MARGIN - 40};
+  V_RES - CANVAS_MARGIN - 40}; /**< @brief the top-left corner position of the clock XPM */
 
 static position clock_pos_center = {
   H_RES - CANVAS_MARGIN,
-  V_RES - CANVAS_MARGIN};
+  V_RES - CANVAS_MARGIN}; /**< @brief the center position of the clock XPM */
 
 void(clock_load)() {
   clock_xpm = vg_load_xpm(xpm_clock);

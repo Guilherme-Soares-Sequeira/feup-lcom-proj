@@ -1,5 +1,6 @@
-#include <lcom/lab4.h>
 #include <lcom/lcf.h>
+
+#include <lcom/lab4.h>
 #include <lcom/utils.h>
 
 #include <stdbool.h>
@@ -96,11 +97,11 @@ void(mouse_ih)() {
 }
 
 void(kbc_enable_data_report)() {
-  wait_for_inbuff_empty();
+  /* wait_for_inbuff_empty();
   sys_outb(KBC_IN_BUF_CMD, 0x60);
   uint8_t cmd = 0;
-  cmd |= (BIT(1));
-  sys_outb(KBC_IN_BUF_CMD, cmd);
+  cmd |= BIT(1);
+  sys_outb(KBC_IN_BUF_CMD, cmd); */
   write_command_to_mouse(MOUSE_ENABLE_DATA_REPORTING);
 }
 

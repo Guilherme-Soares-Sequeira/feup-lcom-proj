@@ -40,7 +40,7 @@ static uint8_t canvas_background_color; /**< @brief the background color of the 
 //   return ret_value;
 // }
 
-static pixel_buffer canvas_buffer;
+static pixel_buffer canvas_buffer; /**< @brief the buffer used to draw the canvas */
 
 static uint32_t(canvas_get_buffer_size)() {
   return canvas_buffer.h_res * canvas_buffer.v_res * canvas_buffer.bytes_per_pixel;
@@ -88,7 +88,7 @@ int(canvas_draw_line_low)(position from_pos, position to_pos, int16_t dx, int16_
         return 1;
     }
     else if (style == CURSOR_DSTATE_SQUARE) {
-      if (buf_draw_rectangle(&canvas_buffer, (position){x - thickness / 2, y - thickness / 2}, thickness, thickness, cursor_get_color()))
+      if (buf_draw_rectangle(&canvas_buffer, (position){x - thickness / 2, y - thickness / 2}, thickness * 2, thickness * 2, cursor_get_color()))
         return 1;
     }
     else if (style == CURSOR_DSTATE_ERASER) {
@@ -129,7 +129,7 @@ int(canvas_draw_line_high)(position from_pos, position to_pos, int16_t dx, int16
         return 1;
     }
     else if (style == CURSOR_DSTATE_SQUARE) {
-      if (buf_draw_rectangle(&canvas_buffer, (position){x - thickness / 2, y - thickness / 2}, thickness, thickness, cursor_get_color()))
+      if (buf_draw_rectangle(&canvas_buffer, (position){x - thickness / 2, y - thickness / 2}, thickness * 2, thickness * 2, cursor_get_color()))
         return 1;
     }
     else if (style == CURSOR_DSTATE_ERASER) {

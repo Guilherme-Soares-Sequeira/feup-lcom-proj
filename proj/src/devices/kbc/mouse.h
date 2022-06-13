@@ -44,7 +44,7 @@ bool(lb_is_pressed)();
  *
  * @return the current mouse packet
  */
-struct packet(get_mouse_packet)();
+mouse_packet_t(get_mouse_packet)();
 
 /**
  * @brief Resets the KBC to the default Minix state

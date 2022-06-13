@@ -6,7 +6,7 @@
 #include "text.h"
 
 int text_size = 0;                    /**< @brief size of the piece of text */
-char text[INPUT_CHAR_SIZE + 1] = {0}; /**< @brief container each character of the text */
+char text[INPUT_CHAR_SIZE + 1] = {0}; /**< @brief the text currently being edited */
 
 void(add_char_to_current_text)(char c) {
 

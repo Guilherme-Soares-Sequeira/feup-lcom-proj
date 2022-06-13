@@ -1,4 +1,5 @@
-#include <lcom/lcf.h>
+#ifndef VIDEO_GR_H
+#define VIDEO_GR_H
 
 /** @defgroup video_gr video_gr
  *
@@ -72,3 +73,5 @@ void(flip)();
 void *(vg_get_back_buffer) ();
 
 /**@}*/
+
+#endif

@@ -10,8 +10,8 @@ int scancode_type;     /**< @brief the type of the scancode: can be MAKE or BREA
 
 int32_t kbc_global_hook_id; /**< @brief the hook id that is used to unsubscribe interrupts from the KBC */
 uint8_t st_reg;             /**< @brief variable used to store the status register of the KBC */
-// scan codes have at most 3 bytes (?)
-uint8_t *scancodes = NULL; /**< @brief pointer to the scancodes array */
+
+uint8_t *scancodes = NULL; /**< @brief array of bytes that make up the scancode */
 
 bool keyboard_packet_ready = false, /**< @brief indicates whether the keyboard packet is ready or not */
   scancode_processed = false;       /**< @brief indicates whether the current scancode has been processed or not */

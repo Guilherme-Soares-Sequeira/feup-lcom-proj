@@ -16,16 +16,16 @@
  * Constants and functions used for programming the canvas
  */
 
-#define CANVAS_MARGIN 60                         /**< @brief */
-#define CANVAS_WIDTH (H_RES - CANVAS_MARGIN * 2) /**< @brief */
-#define CANVAS_HEIGHT (708)                      /**< @brief */
+#define CANVAS_MARGIN 60                         /**< @brief the margin of the canvas */
+#define CANVAS_WIDTH (H_RES - CANVAS_MARGIN * 2) /**< @brief the width of the canvas relative to the window dimensions */
+#define CANVAS_HEIGHT (708)                      /**< @brief the height of the canvas relative to the window dimensions */
 
-#define CANVAS_TOP_VISIBLE_LIMIT CANVAS_MARGIN                      /**< @brief */
-#define CANVAS_BOTTOM_VISIBLE_LIMIT (CANVAS_MARGIN + CANVAS_HEIGHT) /**< @brief */
-#define CANVAS_LEFT_VISIBLE_LIMIT CANVAS_MARGIN                     /**< @brief */
-#define CANVAS_RIGHT_VISIBLE_LIMIT (H_RES - CANVAS_MARGIN)          /**< @brief */
+#define CANVAS_TOP_VISIBLE_LIMIT CANVAS_MARGIN                      /**< @brief the top limit of the canvas*/
+#define CANVAS_BOTTOM_VISIBLE_LIMIT (CANVAS_MARGIN + CANVAS_HEIGHT) /**< @brief the bottom limit of the canvas */
+#define CANVAS_LEFT_VISIBLE_LIMIT CANVAS_MARGIN                     /**< @brief the left limit of the canvas */
+#define CANVAS_RIGHT_VISIBLE_LIMIT (H_RES - CANVAS_MARGIN)          /**< @brief the right limit of the canvas */
 
-#define CANVAS_BYPP 1 /**< @brief */
+#define CANVAS_BYPP 1 /**< @brief number of bytes that each canvas pixel takes in physical memory */
 
 /**
  * @brief Loads canvas information and allocates the necessary memory

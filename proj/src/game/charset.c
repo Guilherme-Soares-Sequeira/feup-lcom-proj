@@ -4,6 +4,8 @@
 #include "charset.h"
 #include "draw_text.h"
 
+// NOTE: should be implemented as struct due to special flags/key codes
+
 #define ENTER_MAKECODE 0x1c       /**< @brief the makecode of the enter key       */
 #define TAB_MAKECODE 0x0f         /**< @brief the makecode of the tab key         */
 #define CTRL_MAKECODE 0x1d        /**< @brief the makecode of the ctrl key        */
@@ -87,7 +89,7 @@ void(process_scancode)(uint8_t *scancode, int scancode_size, int scancode_type) 
       }
       break;
     }
-    case KBC_SCANCODE_BREAK: {
+    case KBC_SCANCODE_BREAK: { // NOTE: unused
     }
   };
 }

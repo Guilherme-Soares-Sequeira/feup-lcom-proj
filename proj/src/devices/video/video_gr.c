@@ -11,19 +11,20 @@
 
 #include "../../utils/color.h"
 #include "vbe.h"
+#include "video_gr.h"
 
-vbe_mode_info_t vg_mode_info;
-void *front_buffer;
-void *back_buffer;
+vbe_mode_info_t vg_mode_info; /**< @brief current graphics mode information */
+void *front_buffer;           /**< @brief the front buffer which is directly mapped to VRAM */
+void *back_buffer;            /**< @brief the back buffer which is mapped in memory and replaces the front buffer in every render */
 
-int bytes_per_pixel = 0;
-bool indexed = false;
+int bytes_per_pixel = 0; /**< @brief number of bytes per pixel */
+bool indexed = false;    /**< @brief weather the current graphics mode is indexed or not */
 
 void *(vg_get_back_buffer) () {
   return back_buffer;
 }
 
-void(_get_mode_info)(in_port_t mode) { // TODO: implement this using sys_int86
+void(_get_mode_info)(in_port_t mode) {
   vbe_get_mode_info(mode, &vg_mode_info);
 }
 
@@ -102,9 +103,6 @@ int(vg_draw_hline)(uint16_t x, uint16_t y, uint16_t len, uint32_t color) {
 
   memset((uint8_t *) back_buffer + i * bytes_per_pixel, color, len * bytes_per_pixel);
 
-  // for (int i = 0; i < len && x + i < vg_mode_info.XResolution; i++)
-  //   if (vg_draw_pixel(x + i, y, color)) return 1;
-
   return 0;
 }
 
@@ -115,13 +113,6 @@ int(vg_draw_rectangle)(uint16_t x, uint16_t y, uint16_t width, uint16_t height, 
 
   for (int j = 0; j < height; ++j, i += offset)
     memset((uint8_t *) back_buffer + i, color, width);
-
-  // for (int j = 0; j < height; ++j, i += offset)
-  //   for (int k = 0; k < width; ++k, i += bytes_per_pixel)
-  //     vg_draw_pixel_index(i, color);
-
-  // for(int i = 0; i < height && y + i < vg_mode_info.YResolution; i++)
-  //   if (vg_draw_hline(x, y + i, width, color)) return 1;
 
   return 0;
 }

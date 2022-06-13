@@ -17,8 +17,8 @@
  * Constants, structures and functions used for programming the cursor
  */
 
-#define MIN_THICKNESS 1
-#define MAX_THICKNESS 24
+#define MIN_THICKNESS 1  /**< @brief the minimum thickness of the cursor */
+#define MAX_THICKNESS 24 /**< @brief the maximum thickness of the cursor */
 
 /**
  * @brief States that define what the mouse will draw and how it looks when hovering the canvas
