@@ -7,7 +7,8 @@
 #include <stdlib.h>
 
 /** @defgroup pixel_buffer pixel_buffer
- *
+ *  @{
+ * 
  * Constants, structures and functions used for programming a pixel buffer
  */
 

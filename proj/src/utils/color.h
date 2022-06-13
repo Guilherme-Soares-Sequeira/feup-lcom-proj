@@ -4,6 +4,7 @@
 #include <lcom/lcf.h>
 
 /** @defgroup color color
+ *  @{
  *
  * Constants used for the colors used
  */

@@ -16,6 +16,7 @@
 #include "video_gr.h"
 
 /** @defgroup graphics graphics
+ *  @{
  *
  * Functions used for the programming of the graphics
  */

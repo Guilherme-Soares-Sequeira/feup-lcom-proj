@@ -7,6 +7,7 @@
 #include "i8042.h"
 
 /** @defgroup mouse mouse
+ *  @{
  *
  * Functions used for the programming of the mouse
  */

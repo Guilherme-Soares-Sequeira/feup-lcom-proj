@@ -6,6 +6,7 @@
 #include "../../utils/utils.h"
 
 /** @defgroup i8042 i8042
+ *  @{
  *
  * Constants used for programming the KBC
  */

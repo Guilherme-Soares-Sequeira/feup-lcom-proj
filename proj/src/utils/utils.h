@@ -4,7 +4,8 @@
 #  define UTILS_H
 
 /** @defgroup utils utils
- *
+ *  @{
+ * 
  * Utility functions and constants used throughout our program
  */
 

@@ -2,7 +2,7 @@
 #define CHARSET_H
 
 /** @defgroup charset charset
- * @{
+ *  @{
  *
  * Constants and functions used for programming the charset
  */

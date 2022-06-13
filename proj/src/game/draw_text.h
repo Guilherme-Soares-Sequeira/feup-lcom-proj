@@ -7,6 +7,7 @@
 #include "pixel_buffer.h"
 
 /** @defgroup draw_chat draw_chat
+ *  @{
  *
  * Constants, structures and functions used for programming the drawing of the chat
  */

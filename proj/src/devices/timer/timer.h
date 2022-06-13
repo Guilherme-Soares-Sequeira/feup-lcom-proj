@@ -4,7 +4,8 @@
 #include <lcom/lcf.h>
 
 /** @defgroup timer timer
- *
+ * @{
+ * 
  * Additional functions used for programming the timer
  */
 

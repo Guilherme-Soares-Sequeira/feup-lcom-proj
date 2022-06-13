@@ -2,6 +2,7 @@
 #define VIDEO_GR_H
 
 /** @defgroup video_gr video_gr
+ *  @{
  *
  * Functions used for the programming of the video graphics card
  */

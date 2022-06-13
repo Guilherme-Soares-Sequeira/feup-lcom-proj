@@ -12,7 +12,7 @@
 #include "element.h"
 
 /** @defgroup cursor cursor
- * @{
+ *  @{
  *
  * Constants, structures and functions used for programming the cursor
  */

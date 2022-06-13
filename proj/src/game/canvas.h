@@ -11,7 +11,7 @@
 #include "pixel_buffer.h"
 
 /** @defgroup canvas canvas
- * @{
+ *  @{
  *
  * Constants and functions used for programming the canvas
  */

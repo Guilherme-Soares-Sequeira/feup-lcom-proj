@@ -5,6 +5,7 @@
 #include <stdint.h>
 
 /** @defgroup kbc kbc
+ *  @{
  *
  * Functions used for the programming of the KBC
  */

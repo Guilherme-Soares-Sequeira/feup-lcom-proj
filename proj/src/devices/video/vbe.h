@@ -4,6 +4,7 @@
 #include "../../utils/utils.h"
 
 /** @defgroup vbe vbe
+ *  @{
  *
  * Additional constants and functions used for the programming of the VBE
  */

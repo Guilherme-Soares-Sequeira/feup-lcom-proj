@@ -4,6 +4,7 @@
 #include <lcom/lcf.h>
 
 /** @defgroup PS2 PS2
+ *  @{
  *
  * Constants used for the programming of the mouse
  */

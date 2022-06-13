@@ -2,7 +2,8 @@
 #define RTC_H
 
 /** @defgroup rtc rtc
- *
+ *  @{
+ * 
  * Constants and functions used for the programming of the RTC
  */
 

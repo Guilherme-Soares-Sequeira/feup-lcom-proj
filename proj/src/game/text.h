@@ -5,6 +5,7 @@
 #include <lcom/video_gr.h>
 
 /** @defgroup text text
+ *  @{
  *
  * Constants, structures and functions used for programming the text used by our program
  */

@@ -4,7 +4,8 @@
 #include <lcom/lcf.h>
 
 /** @defgroup position position
- *
+ *  @{
+ * 
  * Structure used to represent an entity's position on screen
  */
 

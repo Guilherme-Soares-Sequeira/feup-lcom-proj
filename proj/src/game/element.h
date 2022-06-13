@@ -11,6 +11,7 @@
 #include "draw_buttons.h"
 
 /** @defgroup element element
+ *  @{
  *
  * Constants, structures and functions used for programming the elements of our program
  */

@@ -13,6 +13,7 @@
 #include "pixel_buffer.h"
 
 /** @defgroup draw_buttons draw_buttons
+ *  @{
  *
  * Constants, structures and functions used for programming the drawing of buttons
  */

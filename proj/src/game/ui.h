@@ -9,6 +9,7 @@
 #include "draw_text.h"
 
 /** @defgroup UI UI
+ *  @{
  *
  * Constants, structures and functions used for programming our program's UI
  */

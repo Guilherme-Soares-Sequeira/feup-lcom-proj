@@ -4,6 +4,7 @@
 #include "../devices/rtc/rtc.h"
 
 /** @defgroup draw_clock draw_clock
+ *  @{
  *
  * Constants, structures and functions used for programming the clock
  */
